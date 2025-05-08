@@ -1,0 +1,2218 @@
+swagger: '2.0'
+info:
+  title: The ReliefWeb API
+  description: Interactive API documentation for the data API of Reliefweb.int. ReliefWeb
+    is a leading source of information on global crises and disasters.<br><br> Our
+    continuous coverage and archive going back to the 1970s makes ReliefWeb an unparalleled
+    resource for both current and historical data on humanitarian response.<br><br>
+    The vast majority of content on ReliefWeb has been contributed by humanitarian
+    partners. We owe it to the community to make data more accessible and reusable,
+    so that developers can build tools that increase exposure for valuable content
+    and facilitate analysis for better decisions.
+  termsOfService: https://apidoc.rwlabs.org/#tos
+  version: v1
+  contact:
+    url: https://reliefweb.int/contact
+    email: api@reliefweb.int
+  license:
+    name: Creative Commons Zero - Public Domain
+    url: http://creativecommons.org/about/cc0
+host: api.reliefweb.int
+basePath: /v1
+schemes:
+- http
+- https
+consumes:
+- text/plain; charset=utf-8
+- application/json
+produces:
+- application/json
+tags:
+- name: Discovery
+  description: Versions and main endpoints.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+- name: Reports
+  description: Gateway to updates and analysis from more than 4,000 global information
+    sources.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+- name: Jobs
+  description: Humanitarian job listings.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+- name: Training
+  description: Humanitarian training opportunities and courses.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+- name: Countries
+  description: Countries covered by ReliefWeb.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+- name: Disasters
+  description: Disasters covered by ReliefWeb.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+- name: Sources
+  description: Organizations providing content to ReliefWeb.
+  externalDocs:
+    description: RWApi docs.
+    url: https://apidoc.rwlabs.org
+paths:
+  /../:
+    get:
+      tags:
+      - Discovery
+      description: Review location and status of all versions.
+      operationId: discoveryVersions
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Success.
+  /:
+    get:
+      tags:
+      - Discovery
+      description: Review list of main entrypoints and top-level resources.
+      operationId: discoveryResources
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Success.
+  /reports:
+    get:
+      tags:
+      - Reports
+      summary: 'List or search updates, headlines or maps.
+
+        '
+      description: ''
+      operationId: getReports
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/query[value]'
+      - $ref: '#/parameters/query[operator]'
+      - $ref: '#/parameters/query[fields][]'
+      - $ref: '#/parameters/filter[field]'
+      - $ref: '#/parameters/filter[value][]'
+      - $ref: '#/parameters/filter[operator]'
+      - $ref: '#/parameters/filter[negate]'
+      - $ref: '#/parameters/filter[conditions][]'
+      - $ref: '#/parameters/facets[field]'
+      - $ref: '#/parameters/facets[name]'
+      - $ref: '#/parameters/facets[limit]'
+      - $ref: '#/parameters/facets[sort]'
+      - $ref: '#/parameters/facets[filter][]'
+      - $ref: '#/parameters/facets[interval]'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      - $ref: '#/parameters/limit'
+      - $ref: '#/parameters/offset'
+      - $ref: '#/parameters/sort[]'
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/preset'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Report'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      tags:
+      - Reports
+      summary: 'List or search updates, headlines or maps.
+
+        '
+      description: '<div id="reports-fields"></div>
+
+        '
+      operationId: searchReports
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - description: Returned fields
+        in: body
+        name: fields
+        required: false
+        schema:
+          $ref: '#/definitions/post-params'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Report'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+  /reports/{reportId}:
+    get:
+      tags:
+      - Reports
+      summary: Find report by its unique ID
+      description: 'Individual reports.
+
+        '
+      operationId: getReportById
+      parameters:
+      - description: The identifier of the report.
+        in: path
+        name: reportId
+        required: true
+        type: string
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Report fields
+          schema:
+            $ref: '#/definitions/Report'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: 'List or search humanitarian job offers.
+
+        '
+      description: ''
+      operationId: getJobs
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/query[value]'
+      - $ref: '#/parameters/query[operator]'
+      - $ref: '#/parameters/query[fields][]'
+      - $ref: '#/parameters/filter[field]'
+      - $ref: '#/parameters/filter[value][]'
+      - $ref: '#/parameters/filter[operator]'
+      - $ref: '#/parameters/filter[negate]'
+      - $ref: '#/parameters/filter[conditions][]'
+      - $ref: '#/parameters/facets[field]'
+      - $ref: '#/parameters/facets[name]'
+      - $ref: '#/parameters/facets[limit]'
+      - $ref: '#/parameters/facets[sort]'
+      - $ref: '#/parameters/facets[filter][]'
+      - $ref: '#/parameters/facets[interval]'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      - $ref: '#/parameters/limit'
+      - $ref: '#/parameters/offset'
+      - $ref: '#/parameters/sort[]'
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/preset'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Job'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      tags:
+      - Jobs
+      summary: 'List or search humanitarian job offers.
+
+        '
+      description: '<iframe width="100%" height="300px" src="http://reliefweb.int/help/api/field-definitions#jobs"></iframe>
+
+        '
+      operationId: searchJobs
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - description: Returned fields
+        in: body
+        name: fields
+        required: false
+        schema:
+          $ref: '#/definitions/post-params'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Job'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+  /jobs/{jobId}:
+    get:
+      tags:
+      - Jobs
+      summary: Find job by its unique ID
+      description: 'Individual jobs.
+
+        '
+      operationId: getJobById
+      parameters:
+      - description: The identifier of the job.
+        in: path
+        name: jobId
+        required: true
+        type: string
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Job fields
+          schema:
+            $ref: '#/definitions/Job'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+  /training:
+    get:
+      tags:
+      - Training
+      summary: 'List or search humanitarian learning opportunities.
+
+        '
+      description: ''
+      operationId: getTraining
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/query[value]'
+      - $ref: '#/parameters/query[operator]'
+      - $ref: '#/parameters/query[fields][]'
+      - $ref: '#/parameters/filter[field]'
+      - $ref: '#/parameters/filter[value][]'
+      - $ref: '#/parameters/filter[operator]'
+      - $ref: '#/parameters/filter[negate]'
+      - $ref: '#/parameters/filter[conditions][]'
+      - $ref: '#/parameters/facets[field]'
+      - $ref: '#/parameters/facets[name]'
+      - $ref: '#/parameters/facets[limit]'
+      - $ref: '#/parameters/facets[sort]'
+      - $ref: '#/parameters/facets[filter][]'
+      - $ref: '#/parameters/facets[interval]'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      - $ref: '#/parameters/limit'
+      - $ref: '#/parameters/offset'
+      - $ref: '#/parameters/sort[]'
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/preset'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Training'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      tags:
+      - Training
+      summary: 'List or search humanitarian learning opportunities.
+
+        '
+      description: ''
+      operationId: searchTraining
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - description: Returned fields
+        in: body
+        name: fields
+        required: false
+        schema:
+          $ref: '#/definitions/post-params'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Training'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+  /training/{trainingId}:
+    get:
+      tags:
+      - Training
+      summary: Find training by its unique ID
+      description: 'Individual training opportunities.
+
+        '
+      operationId: getTrainingById
+      parameters:
+      - description: The identifier of the training opportunity.
+        in: path
+        name: trainingId
+        required: true
+        type: string
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Training fields
+          schema:
+            $ref: '#/definitions/Training'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+  /countries:
+    get:
+      tags:
+      - Countries
+      summary: 'List or search countries covered by ReliefWeb.
+
+        '
+      description: ''
+      operationId: getCountries
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/query[value]'
+      - $ref: '#/parameters/query[operator]'
+      - $ref: '#/parameters/query[fields][]'
+      - $ref: '#/parameters/filter[field]'
+      - $ref: '#/parameters/filter[value][]'
+      - $ref: '#/parameters/filter[operator]'
+      - $ref: '#/parameters/filter[negate]'
+      - $ref: '#/parameters/filter[conditions][]'
+      - $ref: '#/parameters/facets[field]'
+      - $ref: '#/parameters/facets[name]'
+      - $ref: '#/parameters/facets[limit]'
+      - $ref: '#/parameters/facets[sort]'
+      - $ref: '#/parameters/facets[filter][]'
+      - $ref: '#/parameters/facets[interval]'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      - $ref: '#/parameters/limit'
+      - $ref: '#/parameters/offset'
+      - $ref: '#/parameters/sort[]'
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/preset'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Country'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      tags:
+      - Countries
+      summary: 'List or search countries covered by ReliefWeb.
+
+        '
+      description: ''
+      operationId: searchCountries
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - description: Returned fields
+        in: body
+        name: fields
+        required: false
+        schema:
+          $ref: '#/definitions/post-params'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Country'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+  /countries/{countryId}:
+    get:
+      tags:
+      - Countries
+      summary: Find country by its unique ID
+      description: 'Individual countries
+
+        '
+      operationId: getCountryById
+      parameters:
+      - description: The identifier of the country
+        in: path
+        name: countryId
+        required: true
+        type: string
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Country fields
+          schema:
+            $ref: '#/definitions/Country'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+  /disasters:
+    get:
+      tags:
+      - Disasters
+      summary: 'List or search disasters covered by ReliefWeb.
+
+        '
+      description: ''
+      operationId: getDisasters
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/query[value]'
+      - $ref: '#/parameters/query[operator]'
+      - $ref: '#/parameters/query[fields][]'
+      - $ref: '#/parameters/filter[field]'
+      - $ref: '#/parameters/filter[value][]'
+      - $ref: '#/parameters/filter[operator]'
+      - $ref: '#/parameters/filter[negate]'
+      - $ref: '#/parameters/filter[conditions][]'
+      - $ref: '#/parameters/facets[field]'
+      - $ref: '#/parameters/facets[name]'
+      - $ref: '#/parameters/facets[limit]'
+      - $ref: '#/parameters/facets[sort]'
+      - $ref: '#/parameters/facets[filter][]'
+      - $ref: '#/parameters/facets[interval]'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      - $ref: '#/parameters/limit'
+      - $ref: '#/parameters/offset'
+      - $ref: '#/parameters/sort[]'
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/preset'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Disaster'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      tags:
+      - Disasters
+      summary: 'List or search disasters covered by ReliefWeb.
+
+        '
+      description: ''
+      operationId: searchDisasters
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - description: Returned fields
+        in: body
+        name: fields
+        required: false
+        schema:
+          $ref: '#/definitions/post-params'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Disaster'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+  /disasters/{disasterId}:
+    get:
+      tags:
+      - Disasters
+      summary: Find disaster by its unique ID
+      description: 'Individual disasters
+
+        '
+      operationId: getDisasterById
+      parameters:
+      - description: The identifier of the disaster
+        in: path
+        name: disasterId
+        required: true
+        type: string
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Disaster fields
+          schema:
+            $ref: '#/definitions/Disaster'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+  /sources:
+    get:
+      tags:
+      - Sources
+      summary: 'List or search organizations providing content to ReliefWeb.
+
+        '
+      description: ''
+      operationId: getSources
+      consumes:
+      - text/plain; charset=utf-8
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/query[value]'
+      - $ref: '#/parameters/query[operator]'
+      - $ref: '#/parameters/query[fields][]'
+      - $ref: '#/parameters/filter[field]'
+      - $ref: '#/parameters/filter[value][]'
+      - $ref: '#/parameters/filter[operator]'
+      - $ref: '#/parameters/filter[negate]'
+      - $ref: '#/parameters/filter[conditions][]'
+      - $ref: '#/parameters/facets[field]'
+      - $ref: '#/parameters/facets[name]'
+      - $ref: '#/parameters/facets[limit]'
+      - $ref: '#/parameters/facets[sort]'
+      - $ref: '#/parameters/facets[filter][]'
+      - $ref: '#/parameters/facets[interval]'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      - $ref: '#/parameters/limit'
+      - $ref: '#/parameters/offset'
+      - $ref: '#/parameters/sort[]'
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/preset'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Source'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      tags:
+      - Sources
+      summary: 'List or search organizations providing content to ReliefWeb.
+
+        '
+      description: ''
+      operationId: searchSources
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - description: Returned fields
+        in: body
+        name: fields
+        required: false
+        schema:
+          $ref: '#/definitions/post-params'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Source'
+        400:
+          description: Unexpected value
+          schema:
+            $ref: '#/definitions/error'
+  /sources/{sourceId}:
+    get:
+      tags:
+      - Sources
+      summary: Find source by its unique ID
+      description: 'Individual sources.
+
+        '
+      operationId: getSourceById
+      parameters:
+      - description: The identifier of the source
+        in: path
+        name: sourceId
+        required: true
+        type: string
+      - $ref: '#/parameters/profile'
+      - $ref: '#/parameters/fields[include][]'
+      - $ref: '#/parameters/fields[exclude][]'
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Source fields
+          schema:
+            $ref: '#/definitions/Source'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+definitions:
+  Report:
+    properties:
+      body:
+        type: string
+      country:
+        items:
+          $ref: '#/definitions/country'
+        type: array
+      date:
+        $ref: '#/definitions/date'
+      format:
+        description: Format of report.
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      id:
+        format: int64
+        type: integer
+      language:
+        $ref: '#/definitions/language'
+      primary_country:
+        $ref: '#/definitions/country'
+      source:
+        description: Report production and coordination bodies.
+        items:
+          $ref: '#/definitions/source'
+        type: array
+      status:
+        type: boolean
+      theme:
+        description: Category of information contained in the report.
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      title:
+        type: string
+      type:
+        type: string
+  Job:
+    properties:
+      category:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      city:
+        items:
+          $ref: '#/definitions/location'
+        type: array
+      country:
+        items:
+          $ref: '#/definitions/country'
+        type: array
+      date:
+        $ref: '#/definitions/date'
+      description:
+        type: string
+      description-html:
+        type: string
+      experience:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      file:
+        items:
+          $ref: '#/definitions/file'
+        type: array
+      how-to-apply-html:
+        type: string
+      how_to_apply:
+        type: string
+      id:
+        type: string
+      language:
+        $ref: '#/definitions/language'
+      link:
+        type: string
+      theme:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      title:
+        type: string
+      url:
+        type: string
+  Training:
+    properties:
+      category:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      city:
+        items:
+          $ref: '#/definitions/location'
+        type: array
+      country:
+        items:
+          $ref: '#/definitions/country'
+        type: array
+      date:
+        $ref: '#/definitions/date'
+      description:
+        type: string
+      description-html:
+        type: string
+      file:
+        items:
+          $ref: '#/definitions/file'
+        type: array
+      format:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      how-to-apply-html:
+        type: string
+      how_to_apply:
+        type: string
+      id:
+        type: string
+      language:
+        $ref: '#/definitions/language'
+      link:
+        type: string
+      theme:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      title:
+        type: string
+      url:
+        type: string
+  Country:
+    properties:
+      current:
+        type: boolean
+      description:
+        type: string
+      description-html:
+        type: string
+      featured:
+        type: boolean
+      id:
+        type: integer
+      iso3:
+        type: string
+      name:
+        type: string
+      shortname:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+  Disaster:
+    properties:
+      category:
+        items:
+          $ref: '#/definitions/category'
+        type: array
+      category_primary:
+        $ref: '#/definitions/category'
+      country:
+        description: Countries impacted by this disaster.
+        items:
+          $ref: '#/definitions/country'
+        type: array
+      current:
+        description: Ongoing disaster
+        type: boolean
+      description:
+        type: string
+      description-html:
+        type: string
+      featured:
+        description: Receiving special attention.
+        type: boolean
+      glide:
+        description: '[Glide number](http://glidenumber.net)
+
+          '
+        type: string
+      id:
+        type: integer
+      link:
+        type: string
+      name:
+        type: string
+      primary_country:
+        $ref: '#/definitions/country'
+      type:
+        type: string
+  Source:
+    properties:
+      description:
+        type: string
+      description-html:
+        type: string
+      id:
+        type: integer
+      longname:
+        type: string
+      name:
+        type: string
+      shortname:
+        type: string
+      type:
+        items:
+          $ref: '#/definitions/country'
+        type: array
+      url:
+        type: string
+  category:
+    properties:
+      id:
+        format: integer
+        type: integer
+      name:
+        type: string
+  country:
+    description: Country object.
+    properties:
+      id:
+        type: integer
+      iso3:
+        type: string
+      name:
+        type: string
+      primary:
+        type: boolean
+      shortname:
+        type: string
+  date:
+    description: Date object
+    properties:
+      changed:
+        format: string
+        type: string
+      created:
+        format: string
+        type: string
+      original:
+        format: string
+        type: string
+  file:
+    properties:
+      description:
+        type: string
+      filename:
+        type: string
+      id:
+        type: integer
+      mimetype:
+        type: string
+      url:
+        type: string
+  language:
+    properties:
+      code:
+        type: string
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+  location:
+    properties:
+      name:
+        type: string
+  source:
+    properties:
+      homepage:
+        type: string
+      id:
+        format: integer
+        type: integer
+      link:
+        type: string
+      longname:
+        type: string
+      name:
+        type: string
+      shortname:
+        type: string
+      type:
+        $ref: '#/definitions/category'
+  error:
+    properties:
+      status:
+        type: integer
+      error:
+        $ref: '#/definitions/error-definition'
+  error-definition:
+    type: string
+  post-params:
+    properties:
+      query[value]:
+        $ref: '#/definitions/query[value]-post'
+      query[operator]-post:
+        $ref: '#/definitions/query[operator]-post'
+      query[fields][]-post:
+        $ref: '#/definitions/query[fields][]-post'
+      filter[field]-post:
+        $ref: '#/definitions/filter[field]-post'
+      filter[value][]-post:
+        $ref: '#/definitions/filter[value][]-post'
+      filter[operator]-post:
+        $ref: '#/definitions/filter[operator]-post'
+      filter[negate]-post:
+        $ref: '#/definitions/filter[negate]-post'
+      filter[conditions][]-post:
+        $ref: '#/definitions/filter[conditions][]-post'
+      facets[field]-post:
+        $ref: '#/definitions/facets[field]-post'
+      facets[name]-post:
+        $ref: '#/definitions/facets[name]-post'
+      facets[limit]-post:
+        $ref: '#/definitions/facets[limit]-post'
+      facets[sort]-post:
+        $ref: '#/definitions/facets[sort]-post'
+      facets[filter][]-post:
+        $ref: '#/definitions/facets[filter][]-post'
+      facets[interval]-post:
+        $ref: '#/definitions/facets[interval]-post'
+      fields[include][]:
+        $ref: '#/definitions/fields[include][]-post'
+      fields[exclude][]:
+        $ref: '#/definitions/fields[exclude][]-post'
+      sort[]-post:
+        $ref: '#/definitions/sort[]-post'
+      limit-post:
+        $ref: '#/definitions/limit-post'
+      offset-post:
+        $ref: '#/definitions/offset-post'
+      profile:
+        $ref: '#/definitions/profile-post'
+      preset-post:
+        $ref: '#/definitions/preset-post'
+  limit-post:
+    description: 'The maximum number of items to return for a list query. The default
+      is <code>10</code> and the maximum <code>1000</code>.
+
+      '
+    default: 10
+    format: int64
+    maximum: 1000
+    minimum: 1
+    type: integer
+  offset-post:
+    default: 0
+    description: 'The offset from which to return the items in a list query. Allows
+      paging through all results. The default is <code>0</code>.
+
+      '
+    format: int64
+    minimum: 0
+    type: integer
+  preset-post:
+    description: 'Pre-built standard configurations of queries, filters and sorts
+      for common use cases.
+
+      '
+    enum:
+    - analysis
+    - latest
+    - minimal
+    type: string
+  query[value]-post:
+    description: 'Specify the terms of your fuzzy search. The default is no query.
+
+      '
+    type: string
+  query[operator]-post:
+    description: 'Specify the operator by which your search query words will be combined.
+
+      '
+    enum:
+    - AND
+    - OR
+    type: string
+  query[fields][]-post:
+    description: 'Specify which fields to target with your search. You may use boost
+      syntax here, see the Advanced API Usage documentation.
+
+      '
+    type: array
+    items:
+      type: string
+  profile-post:
+    enum:
+    - full
+    - list
+    - minimal
+    type: string
+  fields[include][]-post:
+    description: 'Fields to include for each item.
+
+      '
+    items:
+      type: string
+    type: array
+  fields[exclude][]-post:
+    description: 'Sub-fields to exclude from results. For example, if you include
+      <code>date</code> you may exclude <code>date.changed</code>.
+
+      '
+    items:
+      type: string
+    type: array
+  filter[field]-post:
+    description: 'Field to filter by. Every condition must contain either a <code>field</code>
+      or <code>conditions</code> property.
+
+      '
+    type: string
+  filter[value][]-post:
+    description: 'Value for the field being filtered. Leave blank to require existence
+      of the field, must be present for <code>range</code> and <code>value</code>
+      conditions.
+
+      '
+    items:
+      type: string
+    type: array
+  filter[operator]-post:
+    description: 'Operator by which filters will be combined.
+
+      '
+    enum:
+    - AND
+    - OR
+    type: string
+  filter[negate]-post:
+    description: 'Reverse the filter to include those items that do not match.
+
+      '
+    type: boolean
+  filter[conditions][]-post:
+    description: 'This property is used to combine conditions with a logical connector
+      (the <code>operator</code> property). Every condition must contain one of the
+      <code>field</code> or <code>conditions</code> properties.
+
+      '
+    items:
+      type: string
+    type: array
+  facets[field]-post:
+    description: 'Field to facet by. May include dates, references or the status field.
+
+      '
+    type: string
+  facets[name]-post:
+    description: 'Identifier for resulting facet data. Useful when faceting multiple
+      ways on the same field.
+
+      '
+    type: string
+  facets[limit]-post:
+    description: 'Limit the number of facets returned for non-date based facets.
+
+      '
+    type: integer
+    format: int64
+  facets[sort]-post:
+    description: 'The sort order of non-date facets. Sorting may be by <code>value</code>
+      or <code>count</code> of terms, and ascending or descending. <code>count</code>
+      defaults to <code>desc</code>, <code>value</code> defaults to <code>asc</code>.
+
+      '
+    type: string
+  facets[filter][]-post:
+    description: 'Apply all the same capabilities of the filter parameter to the specific
+      results of this facet request.
+
+      '
+    items:
+      type: string
+    type: array
+  facets[interval]-post:
+    description: 'Round date information to the nearest interval unit.
+
+      Apply all the same capabilities of the filter parameter to the specific results
+      of this facet request.
+
+      '
+    enum:
+    - year
+    - month
+    - week
+    - day
+    type: string
+  sort[]-post:
+    description: 'Sort the list results. Defaults to search relevance. Values in the
+      form of <code>fieldname:(asc|desc)</code>.
+
+      '
+    items:
+      type: string
+    type: array
+parameters:
+  limit:
+    description: 'The maximum number of items to return for a list query. The default
+      is <code>10</code> and the maximum <code>1000</code>.
+
+      '
+    in: query
+    name: limit
+    required: false
+    default: 10
+    format: int64
+    maximum: 1000
+    minimum: 1
+    type: integer
+  offset:
+    default: 0
+    description: 'The offset from which to return the items in a list query. Allows
+      paging through all results. The default is <code>0</code>.
+
+      '
+    format: int64
+    in: query
+    minimum: 0
+    name: offset
+    required: false
+    type: integer
+  profile:
+    description: 'Pre-built standard selections of fields to return for ease of displaying
+      lists or items.
+
+      '
+    enum:
+    - full
+    - list
+    - minimal
+    in: query
+    name: profile
+    type: string
+  preset:
+    description: 'Pre-built standard configurations of queries, filters and sorts
+      for common use cases.
+
+      '
+    enum:
+    - analysis
+    - latest
+    - minimal
+    in: query
+    name: preset
+    type: string
+  fields[include][]:
+    description: 'Specify which fields to include for each item. Defaults to an item
+      label.
+
+      '
+    in: query
+    items:
+      type: string
+    name: fields[include][]
+    required: false
+    type: array
+  fields[exclude][]:
+    description: 'Specify sub-fields to exclude from overall results. For example,
+      if you include <code>date</code> you may exclude <code>date.changed</code>.
+
+      '
+    in: query
+    items:
+      type: string
+    name: fields[exclude][]
+    required: false
+    type: array
+  query[value]:
+    description: 'Specify the terms of your fuzzy search. The default is no query.
+
+      '
+    in: query
+    name: query[value]
+    required: false
+    type: string
+  query[operator]:
+    description: 'Specify the operator by which your search query words will be combined.
+
+      '
+    enum:
+    - AND
+    - OR
+    in: query
+    name: query[operator]
+    required: false
+    type: string
+  query[fields][]:
+    description: 'Specify which fields to target with your search. You may use boost
+      syntax here, see the Advanced API Usage documentation.
+
+      '
+    in: query
+    items:
+      type: string
+    name: query[fields][]
+    required: false
+    type: array
+  filter[field]:
+    description: 'Field to filter by. Every condition must contain either a <code>field</code>
+      or <code>conditions</code> property.
+
+      '
+    in: query
+    name: filter[field]
+    required: false
+    type: string
+  filter[value][]:
+    description: 'Value for the field being filtered. Leave blank to require existence
+      of the field, must be present for <code>range</code> and <code>value</code>
+      conditions.
+
+      '
+    in: query
+    items:
+      type: string
+    name: filter[value][]
+    required: false
+    type: array
+  filter[operator]:
+    description: 'Operator by which filters will be combined.
+
+      '
+    enum:
+    - AND
+    - OR
+    in: query
+    name: filter[operator]
+    required: false
+    type: string
+  filter[negate]:
+    description: 'Reverse the filter to include those items that do not match.
+
+      '
+    in: query
+    name: filter[negate]
+    required: false
+    type: boolean
+  filter[conditions][]:
+    description: 'This property is used to combine conditions with a logical connector
+      (the <code>operator</code> property). Every condition must contain one of the
+      <code>field</code> or <code>conditions</code> properties.
+
+      '
+    in: query
+    items:
+      type: string
+    name: filter[conditions][]
+    required: false
+    type: array
+  facets[field]:
+    description: 'Field to facet by. May include dates, references or the status field.
+
+      '
+    in: query
+    name: facets[field]
+    required: false
+    type: string
+  facets[name]:
+    description: 'Identifier for resulting facet data. Useful when faceting multiple
+      ways on the same field.
+
+      '
+    in: query
+    name: facets[name]
+    required: false
+    type: string
+  facets[limit]:
+    description: 'Limit the number of facets returned for non-date based facets.
+
+      '
+    in: query
+    name: facets[limit]
+    required: false
+    type: integer
+  facets[sort]:
+    description: 'The sort order of non-date facets. Sorting may be by <code>value</code>
+      or <code>count</code> of terms, and ascending or descending. <code>count</code>
+      defaults to <code>desc</code>, <code>value</code> defaults to <code>asc</code>.
+
+      '
+    in: query
+    name: facets[sort]
+    required: false
+    type: string
+  facets[filter][]:
+    description: 'Apply all the same capabilities of the filter parameter to the specific
+      results of this facet request.
+
+      '
+    in: query
+    items:
+      type: string
+    name: facets[filter][]
+    required: false
+    type: array
+  facets[interval]:
+    description: 'Round date information to the nearest interval unit.
+
+      Apply all the same capabilities of the filter parameter to the specific results
+      of this facet request.
+
+      '
+    enum:
+    - year
+    - month
+    - week
+    - day
+    in: query
+    name: facets[interval]
+    required: false
+    type: string
+  sort[]:
+    description: 'Sort the list results. Defaults to search relevance. Values in the
+      form of <code>fieldname:(asc|desc)</code>.
+
+      '
+    in: query
+    items:
+      type: string
+    name: sort[]
+    required: false
+    type: array
+  fields[include][reports]:
+    name: fields[include][]
+    in: query
+    required: false
+    type: array
+    items:
+      type: string
+      enum:
+      - body
+      - body-html
+      - country
+      - country.id
+      - country.iso3
+      - country.name
+      - country.primary
+      - country.shortname
+      - date
+      - date.changed
+      - date.created
+      - date.original
+      - disaster
+      - disaster.glide
+      - disaster.id
+      - disaster.name
+      - disaster.type
+      - disaster.type.code
+      - disaster.type.id
+      - disaster.type.name
+      - disaster.type.primary
+      - disaster_type
+      - disaster_type.code
+      - disaster_type.id
+      - disaster_type.name
+      - feature
+      - feature.id
+      - feature.name
+      - file
+      - file.description
+      - file.filename
+      - file.id
+      - file.mimetype
+      - file.preview
+      - file.preview.url
+      - file.preview.url-large
+      - file.preview.url-small
+      - file.preview.url-thumb
+      - file.url
+      - format
+      - format.id
+      - format.name
+      - headline
+      - headline.featured
+      - headline.image
+      - headline.image.caption
+      - headline.image.copyright
+      - headline.image.filename
+      - headline.image.id
+      - headline.image.mimetype
+      - headline.image.url
+      - headline.summary
+      - headline.title
+      - id
+      - image
+      - image.caption
+      - image.copyright
+      - image.filename
+      - image.id
+      - image.mimetype
+      - image.url
+      - image.url-large
+      - image.url-small
+      - image.url-thumb
+      - language
+      - language.code
+      - language.id
+      - language.name
+      - ocha_product
+      - ocha_product.id
+      - ocha_product.name
+      - origin
+      - primary_country
+      - primary_country.id
+      - primary_country.iso3
+      - primary_country.name
+      - primary_country.shortname
+      - source
+      - source.disclaimer
+      - source.homepage
+      - source.id
+      - source.longname
+      - source.name
+      - source.shortname
+      - source.spanish_name
+      - source.type
+      - source.type.id
+      - source.type.name
+      - status
+      - theme
+      - theme.id
+      - theme.name
+      - title
+      - url
+      - url_alias
+  fields[include][disasters]:
+    name: fields[include][]
+    in: query
+    required: false
+    type: array
+    items:
+      type: string
+      enum:
+      - country
+      - country.id
+      - country.iso3
+      - country.name
+      - country.primary
+      - country.shortname
+      - current
+      - date
+      - date.changed
+      - date.created
+      - date.event
+      - description
+      - description-html
+      - featured
+      - glide
+      - id
+      - name
+      - primary_country
+      - primary_country.id
+      - primary_country.iso3
+      - primary_country.name
+      - primary_country.shortname
+      - primary_type
+      - primary_type.id
+      - primary_type.name
+      - profile
+      - profile.appeals_response_plans
+      - profile.appeals_response_plans.active
+      - profile.appeals_response_plans.active.image
+      - profile.appeals_response_plans.active.title
+      - profile.appeals_response_plans.active.url
+      - profile.appeals_response_plans.archive
+      - profile.appeals_response_plans.archive.image
+      - profile.appeals_response_plans.archive.title
+      - profile.appeals_response_plans.archive.url
+      - profile.appeals_response_plans.title
+      - profile.key_content
+      - profile.key_content.active
+      - profile.key_content.active.image
+      - profile.key_content.active.title
+      - profile.key_content.active.url
+      - profile.key_content.archive
+      - profile.key_content.archive.image
+      - profile.key_content.archive.title
+      - profile.key_content.archive.url
+      - profile.key_content.title
+      - profile.overview
+      - profile.overview-html
+      - profile.useful_links
+      - profile.useful_links.active
+      - profile.useful_links.active.image
+      - profile.useful_links.active.title
+      - profile.useful_links.active.url
+      - profile.useful_links.title
+      - related_glide
+      - status
+      - type
+      - type.code
+      - type.id
+      - type.name
+      - type.primary
+      - url
+      - url_alias
+  fields[include][sources]:
+    name: fields[include][]
+    in: query
+    required: false
+    type: array
+    items:
+      type: string
+      enum:
+      - content_type
+      - country
+      - country.id
+      - country.iso3
+      - country.name
+      - country.primary
+      - country.shortname
+      - date
+      - date.changed
+      - date.created
+      - description
+      - description-html
+      - disclaimer
+      - fts_id
+      - homepage
+      - id
+      - logo
+      - logo.filename
+      - logo.filesize
+      - logo.height
+      - logo.id
+      - logo.mimetype
+      - logo.url
+      - logo.width
+      - longname
+      - name
+      - shortname
+      - spanish_name
+      - status
+      - type
+      - type.id
+      - type.name
+      - url
+      - url_alias
+  fields[include][countries]:
+    name: fields[include][]
+    in: query
+    required: false
+    type: array
+    items:
+      type: string
+      enum:
+      - current
+      - date
+      - date.changed
+      - date.created
+      - description
+      - description-html
+      - featured
+      - id
+      - iso3
+      - name
+      - profile
+      - profile.appeals_response_plans
+      - profile.appeals_response_plans.active
+      - profile.appeals_response_plans.active.image
+      - profile.appeals_response_plans.active.title
+      - profile.appeals_response_plans.active.url
+      - profile.appeals_response_plans.archive
+      - profile.appeals_response_plans.archive.image
+      - profile.appeals_response_plans.archive.title
+      - profile.appeals_response_plans.archive.url
+      - profile.appeals_response_plans.title
+      - profile.key_content
+      - profile.key_content.active
+      - profile.key_content.active.image
+      - profile.key_content.active.title
+      - profile.key_content.active.url
+      - profile.key_content.archive
+      - profile.key_content.archive.image
+      - profile.key_content.archive.title
+      - profile.key_content.archive.url
+      - profile.key_content.title
+      - profile.overview
+      - profile.overview-html
+      - profile.useful_links
+      - profile.useful_links.active
+      - profile.useful_links.active.image
+      - profile.useful_links.active.title
+      - profile.useful_links.active.url
+      - profile.useful_links.title
+      - shortname
+      - status
+      - url
+      - url_alias
+components:
+  parameters:
+    fields[include][disasters]:
+      name: fields[include][]
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - country
+          - country.id
+          - country.iso3
+          - country.primary
+          - country.name
+          - country.shortname
+          - current
+          - date
+          - date.changed
+          - date.created
+          - date.event
+          - description
+          - description-html
+          - featured
+          - glide
+          - id
+          - name
+          - primary_country
+          - primary_country.id
+          - primary_country.iso3
+          - primary_country.name
+          - primary_country.shortname
+          - primary_type
+          - primary_type.id
+          - primary_type.name
+          - profile
+          - profile.overview
+          - profile.overview-html
+          - profile.key_content
+          - profile.key_content.title
+          - profile.key_content.active
+          - profile.key_content.active.url
+          - profile.key_content.active.title
+          - profile.key_content.active.image
+          - profile.key_content.archive
+          - profile.key_content.archive.url
+          - profile.key_content.archive.title
+          - profile.key_content.archive.image
+          - profile.appeals_response_plans
+          - profile.appeals_response_plans.title
+          - profile.appeals_response_plans.active
+          - profile.appeals_response_plans.active.url
+          - profile.appeals_response_plans.active.title
+          - profile.appeals_response_plans.active.image
+          - profile.appeals_response_plans.archive
+          - profile.appeals_response_plans.archive.url
+          - profile.appeals_response_plans.archive.title
+          - profile.appeals_response_plans.archive.image
+          - profile.useful_links
+          - profile.useful_links.title
+          - profile.useful_links.active
+          - profile.useful_links.active.url
+          - profile.useful_links.active.title
+          - profile.useful_links.active.image
+          - related_glide
+          - status
+          - type
+          - type.code
+          - type.id
+          - type.name
+          - type.primary
+          - url
+          - url_alias
+          x-enum-descriptions:
+          - Shortcut for country - defaults to country.name
+          - Id for country used by ReliefWeb
+          - ISO 3166-1 alpha-3 code
+          - Flag to indicate this is the primary country
+          - Name of country in English
+          - Short name of country where applicable, for example 'Syria' for 'Syrian
+            Arab Republic'
+          - Deprecated
+          - Shortcut for date - defaults to date.created
+          - Date entry modified on ReliefWeb (ISO 8601)
+          - Date entry created on ReliefWeb (ISO 8601)
+          - Date when the disaster occurred (ISO 8601)
+          - Description of the disaster in Markdown format
+          - Description of the disaster in HTML format
+          - Flag to indicate if the disaster is featured on ReliefWeb home page
+          - Global IDEntifier number (GLIDE) of the disaster
+          - Unique id of disaster used by ReliefWeb
+          - ''
+          - Shortcut for primary country - defaults to primary_country.name
+          - Id of primary country used by ReliefWeb
+          - ISO 3166-1 alpha-3 code
+          - "Link for\_more information"
+          - Short name of country where applicable, for example 'Syria' for 'Syrian
+            Arab Republic'
+          - Shortcut for primary disaster type - defaults to primary_type.name
+          - Id for primary disaster type used by ReliefWeb
+          - Name of primary disaster type
+          - defaults to profile.overview
+          - Profile of the country in Markdown format
+          - Profile of the country in HTML format
+          - Latest situation reports and analysis
+          - '"Key Content"'
+          - Array of links for current key content for the country
+          - Current key content link url
+          - Current key content link title
+          - Current key content link image
+          - Array of links for archive key content for the country
+          - Archive key content link url
+          - Archive key content link title
+          - Archive key content link image
+          - Appeals and Response Plans for this country
+          - '"Appeals & Response Plans"'
+          - Array of links for current appeals and plans
+          - Current appeal or plan url
+          - Current appeal or plan title
+          - Current appeal or plan image
+          - Array of links for archive appeals and plans
+          - Archive appeal or plan url
+          - Archive appeal or plan title
+          - Archive appeal or plan image
+          - Useful links to external sites
+          - '"Useful links"'
+          - Array of useful links
+          - Useful link url
+          - Useful link title
+          - Useful link image
+          - Related Global IDEntifier number (GLIDE)
+          - current', 'alert', 'past'
+          - Shortcut for disaster type - defaults to type.name
+          - Code of disaster type
+          - Id of disaster type used by ReliefWeb
+          - "Link for\_values"
+          - Whether disaster type is primary or not
+          - Canonical url
+          - Friendly' url of the disaster
+    fields[include][country]:
+      name: fields[include][]
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - current
+          - date
+          - date.changed
+          - date.created
+          - description
+          - description-html
+          - featured
+          - id
+          - iso3
+          - name
+          - profile
+          - profile.overview
+          - profile.overview-html
+          - profile.key_content
+          - profile.key_content.title
+          - profile.key_content.active
+          - profile.key_content.active.url
+          - profile.key_content.active.title
+          - profile.key_content.active.image
+          - profile.key_content.archive
+          - profile.key_content.archive.url
+          - profile.key_content.archive.title
+          - profile.key_content.archive.image
+          - profile.appeals_response_plans
+          - profile.appeals_response_plans.title
+          - profile.appeals_response_plans.active
+          - profile.appeals_response_plans.active.url
+          - profile.appeals_response_plans.active.title
+          - profile.appeals_response_plans.active.image
+          - profile.appeals_response_plans.archive
+          - profile.appeals_response_plans.archive.url
+          - profile.appeals_response_plans.archive.title
+          - profile.appeals_response_plans.archive.image
+          - profile.useful_links
+          - profile.useful_links.title
+          - profile.useful_links.active
+          - profile.useful_links.active.url
+          - profile.useful_links.active.title
+          - profile.useful_links.active.image
+          - shortname
+          - status
+          - url
+          - url_alias
+          x-enum-descriptions:
+          - Deprecated
+          - Shortcut for date - defaults to date.created
+          - Date entry modified on ReliefWeb (ISO 8601)
+          - Date entry created on ReliefWeb (ISO 8601)
+          - Description of the country in Markdown format
+          - Description of the country in HTML format
+          - Flag to indicate if the country is featured on ReliefWeb home page
+          - Unique id of country used by ReliefWeb
+          - ISO 3166-1 alpha-3 code
+          - Country name in English
+          - defaults to profile.overview
+          - Profile of the country in Markdown format
+          - Profile of the country in HTML format
+          - Latest situation reports and analysis
+          - '"Key Content"'
+          - Array of links for current key content for the country
+          - Current key content link url
+          - Current key content link title
+          - Current key content link image
+          - Array of links for archive key content for the country
+          - Archive key content link url
+          - Archive key content link title
+          - Archive key content link image
+          - Appeals and Response Plans for this country
+          - '"Appeals & Response Plans"'
+          - Array of links for current appeals and plans
+          - Current appeal or plan url
+          - Current appeal or plan title
+          - Current appeal or plan image
+          - Array of links for archive appeals and plans
+          - Archive appeal or plan url
+          - Archive appeal or plan title
+          - Archive appeal or plan image
+          - Useful links to external sites
+          - '"Useful links"'
+          - Array of useful links
+          - Useful link url
+          - Useful link title
+          - Useful link image
+          - Short name of country where applicable, for example 'Syria' for 'Syrian
+            Arab Republic'
+          - Whether country has an active situation
+          - Canonical url
+          - Friendly' url of the country
+    fields[include][sources]:
+      name: fields[include][]
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - content_type
+          - country
+          - country.id
+          - country.iso3
+          - country.name
+          - country.primary
+          - country.shortname
+          - date
+          - date.changed
+          - date.created
+          - description
+          - description-html
+          - disclaimer
+          - fts_id
+          - homepage
+          - id
+          - logo
+          - logo.filename
+          - logo.filesize
+          - logo.height
+          - logo.id
+          - logo.mimetype
+          - logo.url
+          - logo.width
+          - longname
+          - name
+          - shortname
+          - spanish_name
+          - status
+          - type
+          - type.id
+          - type.name
+          - url
+          - url_alias
+          x-enum-descriptions:
+          - Content types published from this source
+          - Shortcut for country - defaults to country.name
+          - Id for country used by ReliefWeb
+          - ISO 3166-1 alpha-3 code
+          - Name of the country in English where the source headquarters is located
+          - Flag to indicate this is the primary country
+          - Short name of the country in English where the source headquarters is
+            located
+          - Shortcut for date - defaults to date.created
+          - Date entry modified on ReliefWeb (ISO 8601)
+          - Date entry created on ReliefWeb (ISO 8601)
+          - Description of the source in Markdown format
+          - Description of the source in HTML format
+          - Disclaimer information
+          - "Id number for organization used by\_FTS"
+          - URL of organization
+          - Unique id for source used by ReliefWeb
+          - Shortcut for logo - defaults to logo.url
+          - File name of the logo
+          - File size of the logo
+          - Height of the logo
+          - Id for logo used by ReliefWeb
+          - MIME type of the logo
+          - URL of the logo
+          - Width of the logo
+          - Official name of source, where applicable
+          - Name of source
+          - Name of the source in abbreviated format, where applicable
+          - Name of the source in Spanish
+          - Whether source is active or not
+          - Shortcut for type of organization - defaults to type.name
+          - Id of organization type used by ReliefWeb
+          - "Link for\_values"
+          - Canonical url
+          - Friendly' url of the source
+    fields[include][reports]:
+      name: fields[include][]
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+          - body
+          - body-html
+          - country
+          - country.id
+          - country.iso3
+          - country.name
+          - country.primary
+          - country.shortname
+          - date
+          - date.changed
+          - date.created
+          - date.original
+          - disaster
+          - disaster.id
+          - disaster.name
+          - disaster.glide
+          - disaster.type
+          - disaster.type.code
+          - disaster.type.id
+          - disaster.type.name
+          - disaster.type.primary
+          - disaster_type
+          - disaster_type.id
+          - disaster_type.name
+          - disaster_type.code
+          - feature
+          - feature.id
+          - feature.name
+          - file
+          - file.description
+          - file.filename
+          - file.id
+          - file.mimetype
+          - file.preview
+          - file.preview.url
+          - file.preview.url-large
+          - file.preview.url-small
+          - file.preview.url-thumb
+          - file.url
+          - format
+          - format.id
+          - format.name
+          - headline
+          - headline.featured
+          - headline.image
+          - headline.image.id
+          - headline.image.mimetype
+          - headline.image.filename
+          - headline.image.caption
+          - headline.image.copyright
+          - headline.image.url
+          - headline.summary
+          - headline.title
+          - id
+          - image
+          - image.caption
+          - image.copyright
+          - image.id
+          - image.mimetype
+          - image.filename
+          - image.url
+          - image.url-large
+          - image.url-small
+          - image.url-thumb
+          - language
+          - language.code
+          - language.id
+          - language.name
+          - ocha_product
+          - ocha_product.id
+          - ocha_product.name
+          - origin
+          - primary_country
+          - primary_country.id
+          - primary_country.name
+          - primary_country.shortname
+          - primary_country.iso3
+          - source
+          - source.disclaimer
+          - source.id
+          - source.name
+          - source.longname
+          - source.homepage
+          - source.shortname
+          - source.spanish_name
+          - source.type
+          - source.type.id
+          - source.type.name
+          - status
+          - theme
+          - theme.id
+          - theme.name
+          - title
+          - url
+          - url_alias
+          x-enum-descriptions:
+          - Main text in Markdown format
+          - Main text in HTML format
+          - Shortcut for country - defaults to country.name
+          - Id for country used by ReliefWeb
+          - ISO 3166-1 alpha-3 code
+          - Name of country in English
+          - Flag to indicate this is the primary country
+          - Short name of country where applicable, for example 'Syria' for 'Syrian
+            Arab Republic'
+          - Shortcut for date fields - defaults to date.created
+          - Date entry modified on ReliefWeb (ISO 8601)
+          - Date entry created on ReliefWeb (ISO 8601)
+          - Date entry first published by original source (ISO 8601)
+          - Shortcut for related disaster - defaults to disaster.name
+          - Id for related disaster used by ReliefWeb
+          - Name assigned to the disaster based on the ReliefWeb disaster naming convention
+          - Global IDEntifier number (GLIDE) of the disaster
+          - Disaster type of the associated disaster. Note this may be different to
+            the `disaster_type` of a report. Defaults to disaster.type.name
+          - Code for the disaster type of the associated disaster.
+          - Id for the disaster type of the associated disaster.
+          - "Link for\_values"
+          - Whether this is the primary disaster type for the associated disaster.
+          - Shortcut for disaster type - defaults to disaster_type.name
+          - Id for disaster type used by ReliefWeb
+          - "Link for\_values"
+          - GLIDE hazard code for disaster type.
+          - defaults to feature.name
+          - Id for feature used by ReliefWeb
+          - "Link for\_values."
+          - File attachment shortcut - defaults to file.id
+          - Description of file attachment
+          - File name of file attachment
+          - Id of file attachment used by ReliefWeb
+          - MIME type of file attachment
+          - Shortcut for preview image of file attachment - defaults to file.preview.url
+          - Link to preview image of file attachment
+          - Link to a large preview image with a width of 680px
+          - Link to a small preview image with a width of 200px
+          - Link to a thumbnail preview image with a maximum width of 220px and a
+            maximum height of 100px
+          - Link to file attachment
+          - Shortcut for content format - defaults to format.name
+          - Id of content format used by ReliefWeb
+          - "Link for\_values"
+          - Shortcut for headline - defaults to headline.title
+          - ''
+          - Shortcut for headline image - defaults to headline.image.id
+          - Unique id of headline image used by ReliefWeb
+          - MIME type of the headline image
+          - File name of the headline image
+          - Caption attached to the headline image
+          - Copyright attached to the headline image
+          - URL of the headline image
+          - Summary of body, if report is selected as headline. Typically 180-190
+            characters long
+          - Headline text, if report is selected as headline. Typically 100-120 characters
+            long
+          - Unique id of report used by ReliefWeb
+          - Image shortcut - defaults to image.id
+          - Caption attached to the image
+          - Copyright attached to the image
+          - Unique id of image used by ReliefWeb
+          - MIME type of the image
+          - File name of the image
+          - Link to the original image
+          - Link to a large image with a width of 680px
+          - Link to a small image with a width of 200px
+          - Link to a thumbnail image with a maximum width of 220px and a maximum
+            height of 100px
+          - Shortcut for language - defaults to language.name
+          - ISO 639-1 code of the language the entry is written in
+          - Id for language of report used by ReliefWeb
+          - "Language the report is written in - Link for\_values."
+          - Shortcut for OCHA product - defaults to ocha_product.name
+          - Id of OCHA product used by ReliefWeb
+          - "Link for\_values"
+          - Url of original report when it was added to ReliefWeb
+          - Shortcut for primary country - defaults to primary_country.name
+          - Id of primary country used by ReliefWeb
+          - "Link for\_more information"
+          - Short name of country where applicable, for example 'Syria' for 'Syrian
+            Arab Republic'
+          - ISO 3166-1 alpha-3 code
+          - "Shortcut for\_sources\_- defaults to source.name"
+          - Disclaimer information for the source
+          - Id for source used by ReliefWeb
+          - Common name of source
+          - Official name of the source if different from source.name
+          - URL of the source's primary website
+          - Short name of the source, typically an acronym e.g. UNICEF
+          - Spanish name of the source
+          - Shortcut for source type - defaults to source.type.name
+          - Id for source type used by ReliefWeb
+          - "Link for\_values"
+          - ''
+          - Shortcut for theme - defaults to theme.name
+          - Id of theme used by ReliefWeb
+          - "Link for\_values"
+          - Title of report
+          - Canonical url
+          - Friendly' url of the report

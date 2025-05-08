@@ -1,0 +1,496 @@
+openapi: 3.0.3
+info:
+  title: CEMS Risk and Recovery Mapping API
+  version: 1.10.0
+  description: "A list of activations for CEMS Risk and Recovery Mapping"
+paths:
+  /api/public-activations/:
+    get:
+      operationId: public_activations_list
+      description: This endpoint allows retrieving a specific activation or a list of activations.
+      summary: Retrieve activations
+      parameters:
+      - name: code
+        in: query
+        description: Activation code
+        required: true
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - Public Activation List
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedActivationList'
+          description: A list of activations
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: Not Found
+components:
+  schemas:
+    Activation:
+      type: object
+      properties:
+        code:
+          type: string
+          title: Activation Code
+          description: A univocal identifier of the activation. E.g., 'EMSN001'.
+          pattern: ^EMSN\d{3}$
+          maxLength: 7
+        name:
+          type: string
+          title: Activation Name
+          description: The title of the activation, e.g., 'Flood risk assessment in Italy'.
+          maxLength: 500
+        activator:
+          type: string
+          title: Authorised User
+          description: The Authorised User who requested the activation.
+          maxLength: 255
+        enduser:
+          type: string
+          nullable: true
+          title: End User
+          description: If the activation is requested by an end user on behalf of the authorised user, the end user's name.
+          maxLength: 255
+        reason:
+          type: string
+          title: Activation Reason
+          description: A brief description of the activation reason.
+          maxLength: 50000
+        activationTime:
+          type: string
+          format: date-time
+          title: Activation Time
+          description: Time of activation acceptance.
+        eventTime:
+          type: string
+          format: date-time
+          nullable: true
+          title: Event time
+          description: The approxiumate time of the event. In case of a preparation activation, the time of the event is not available.
+        registrationTime:
+          type: string
+          format: date-time
+          title: Registration time
+          description: The time of production start.
+        countries:
+          type: array
+          items:
+            type: array
+            maxLength: 200
+          description: A list of countries on which the activation products are analysed. E.g., ['Italy', 'France'].
+        continent:
+          description: Continent of the activation
+        category:
+          title: Event type
+          description: The main event type of the activation. E.g., 'Flood'.
+        subCategory:
+          nullable: true
+          title: Event subtype
+          description: If the activation products are related to a sub-event of the main event type, the sub-event type. E.g., 'Landslide'.
+        centroid:
+          type: string
+          description: The centroid of the areas of interest for the activation. POINT (x.x y.y)
+          maxLength: 200
+        sensitive:
+          type: boolean
+          description: False if the activation is public.
+        deliveryTime:
+          type: string
+          format: date-time
+          title: Delivery time
+          description: Expected delivery time of the activation. E.g. 2024-02-15T09:28:00Z
+        viewerUrl:
+          type: string
+          format: uri
+          nullable: true
+          title: If available, the endpoint for the activation's viewer, displaying the activation's main products.
+          maxLength: 500
+        storyMapUrl:
+          type: string
+          format: uri
+          nullable: true
+          title: If available, the endpoint for the activation's situational reporting, a brief technical report displaying the main methodologies, products results.
+          maxLength: 500
+        dashboardUrl:
+          type: string
+          format: uri
+          nullable: true
+          title: If available, the endpoint for the activation's dashboard, displaying in a graphical interactive form, the activation results and quantification.
+          maxLength: 500
+        ArcGISRestAPILayers:
+          type: array
+          format: uri
+          title: If available, the endpoints for the activation's ArcGIS REST API Layers ['layer name', 'endpoint URL']
+        geodataDownload:
+          type: string
+          title: Endpoint for the activation's geodata download.
+          description: A zip file containing the products geodata
+        reportingDownload:
+          type: string
+          title: Endpoint for the activation's reporting material download.
+          description: A zip or pdf files containing the reporting material for the activation.
+        ancillaryProductsDownload:
+          type: string
+          title: Endpoint for the activation's ancillary products download.
+          description: If available, a zip file containing the ancillary products requested for the activation that are not geodata, maps or reporting.
+        rasterDataDownload:
+          type: string
+          title: Endpoint for the activation's raster products download.
+          description: Raster deliverables consist of extensive geospatial datasets included in the activation products. They are available as a separate download when the total file size is significant.
+        publicationDate:
+          type: string
+          format: date
+          nullable: true
+          title: Publication date
+          description: The date of the activation publication. E.g. 2024-02-15
+        closed:
+          type: boolean
+          title: Activation status.
+          description: True if the activation is closed, false is the activation is ongoing.
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        all_finished_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - ArcGISRestAPILayers
+      - activator
+      - ancillaryProductsDownload
+      - category
+      - closed
+      - code
+      - geodataDownload
+      - name
+      - products
+      - reportingDownload
+    AncillaryData:
+      type: object
+      properties:
+        ancillaryType:
+          title: Dataset Type
+          description: The type of the dataset. E.g., 'DEM'.
+        providerType:
+          title: Provider Type
+          description: The type of the provider. E.g., 'Public'.
+        providerName:
+          type: string
+          title: Provider Name
+          description: The name of the provider. E.g., 'Copernicus'.
+          maxLength: 255
+        inspireTheme:
+          title: INSPIRE Theme
+          description: The INSPIRE theme of the dataset. E.g., 'Elevation'.
+        scaleOrGSD:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          title: Scale or GSD
+          description: The scale (if vector) or GSD (if raster) of the dataset.
+        datasetUpdate:
+          type: string
+          format: date-time
+          nullable: true
+          title: Dataset Update
+          description: The last update of the dataset, if available. E.g., 2024-02-15T09:28:00Z
+        linkedProducts:
+          type: array
+        linkedAois:
+          type: array
+      required:
+      - ancillaryType
+      - inspireTheme
+      - linkedAois
+      - linkedProducts
+      - providerName
+      - providerType
+    Aoi:
+      type: object
+      properties:
+        aoiNumber:
+          type: string
+          title: AOI Number
+          pattern: ^\d{2}$
+          maxLength: 2
+          description: A univocal identifier of the AOI. E.g., '01'.
+        aoiName:
+          type: string
+          title: AOI Name
+          maxLength: 255
+          description: The name of the AOI. E.g., 'Rome'.
+        extent:
+          type: string
+          title: AOI Extent
+          description: A polygon in WKT format delineating the geographical extent of the AOI. E.g., 'POLYGON((x y, x y, x
+            y))'
+          maxLength: 7000
+        isRealExtent:
+          type: boolean
+          title: Is Real Extent
+          description: True if the extent is the real extent of the AOI, false if it is an approximation (used in case AOI polygon complexity would produce an overly long record).
+        sqkm:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          title: Area (sqkm)
+          description: The area of the AOI in square kilometers.
+      required:
+      - aoiName
+      - aoiNumber
+    Image:
+      type: object
+      properties:
+        provider:
+          title: Image Provider
+          description: The name of the provider. E.g., 'ESA'.
+        sensorType:
+          title: Sensor Type
+          description: The type of the sensor. E.g., 'Optical'.
+        resolutionClass:
+          title: Resolution Class
+          description: The resolution class of the sensor. E.g., 'Very High Resolution 1'.
+        orderTime:
+          type: string
+          format: date-time
+          nullable: true
+          title: Order Time
+          description: If available, the order time of the image. E.g. 2024-02-15T09:28:00Z
+        sensorName:
+          type: string
+          title: Sensor Name
+          maxLength: 255
+          description: The name of the sensor. E.g., 'Sentinel-2'.
+        acquisitionTime:
+          type: string
+          format: date-time
+          title: Acquisition Time
+          description: The time of the acquisition. E.g. '2024-02-15T09:28:00Z'
+        expectedDeliveryTime:
+          type: string
+          format: date-time
+          nullable: true
+          title: If the image is ordered, the expected delivery time
+          description: E.g. 2024-02-15T09:28:00Z
+        gsdResolution:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          title: GSD Resolution of the image
+        footprint:
+          type: string
+          nullable: true
+          maxLength: 7000
+          title: Footprint
+          description: The total footprint of the image in WKT format. E.g., 'POLYGON((x y, x y, x y))'
+        usedForAnalysis:
+          type: boolean
+          title: Used for analysis
+          description: True if the image is used for analysis.
+        preOrPost:
+          title: Pre or Post
+          description: |-
+            * `PRE` - Pre-event
+            * `POST` - Post-event
+        observationAngle:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          title: Observation Angle
+          description: The observation angle of the image in degrees.
+        cloudCover:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          title: Cloud cover in AOI.
+          description: The cloud cover in the AOI in percentage of the AOI total area.
+        linkedProducts:
+          type: string
+        linkedAois:
+          type: string
+      required:
+      - acquisitionTime
+      - gsdResolution
+      - linkedAois
+      - linkedProducts
+      - provider
+      - resolutionClass
+      - sensorName
+      - sensorType
+    PaginatedActivationList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activation'
+    Product:
+      type: object
+      properties:
+        productName:
+          type: string
+          title: Product Name
+          description: A univocal identifier of the product in the activation. E.g., 'P01'.
+          pattern: ^P\d{2}(_MONIT\d{2})?$
+          maxLength: 11
+        productAcronym:
+          type: string
+          pattern: ^[A-Z]+$
+          maxLength: 10
+          title: Product Acronym
+          description: An acronym of the analysis name. E.g., 'FRA'.
+        analysisName:
+          type: string
+          title: Analysis name
+          description: The name of a product. E.g., 'Flood extent delineation'
+          maxLength: 255
+        analysisScale:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,0})?$
+          title: Analysis Scale
+          description: If relevant, the scale of the analysis. E.g., '10000'.
+        briefDescription:
+          type: string
+          nullable: true
+          title: Brief Description
+          description: A brief description of the product. E.g., 'Flood risk analysis'.
+          maxLength: 2000
+        determinationMethod:
+          title: Determination Method
+          description: The method used to determine the product. E.g., 'Automatic Processing'.
+        subEvent:
+          nullable: true
+          title: Sub Event
+          description: If the product refers to a subEvent of the main activation event.
+        monitoring:
+          type: boolean
+          title: Monitoring
+          description: True if the product is a monitoring product.
+        monitoringNumber:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,2}(?:\.\d{0,0})?$
+          nullable: true
+          title: Monitoring Number
+          description: If monitoring is true, a monitoring number. E.g., '1'
+        drmPhase:
+          title: DRM Phase
+          description: The phase of the DRM cycle the product refers to. E.g., 'Recovery'.
+        feasible:
+          type: boolean
+          title: Feasibility
+          description: True if the product is feasible with the available data.
+        statusCode:
+          title: Version status
+          description: |-
+            * `W` - Waiting for data (if needed input data is not available)
+            * `I` - In production
+            * `QC` - Quality Check
+            * `F` - Finished
+        mapsCount:
+          type: string
+          format: decimal
+          title: Maps Count
+          description: The number of maps produced for the product.
+        versionNumber:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,2}(?:\.\d{0,0})?$
+          title: Version
+          description: The version number of the product. E.g., '1'.
+        versionReason:
+          type: string
+          title: Version reason
+          maxLength: 255
+          description: The reason for the version update. E.g., 'New data available'.
+        versionDelivery:
+          type: string
+          format: date
+          title: Version delivery time
+          description: Expected delivery time of the version. E.g. 2024-02-15
+        mapsDownload:
+          type: string
+          title: Maps Download
+          description: The endpoint for the product's maps download. In case of multiple maps, a zip file containing the maps.
+        linkedAois:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aoi'
+        linkedImages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        linkedAncillaryData:
+          type: array
+          items:
+            $ref: '#/components/schemas/AncillaryData'
+      required:
+      - analysisName
+      - drmPhase
+      - linkedAncillaryData
+      - linkedAois
+      - linkedImages
+      - mapsCount
+      - mapsDownload
+      - productName
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
