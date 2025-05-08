@@ -1,0 +1,67 @@
+##############################################################################
+#  eomdg_core.ttl  –  consolidated EO-MDG ontology T-Box (schema only)
+#  • namespaces, classes, object-properties
+#  • NO taxonomy instances
+#  • NO example DisasterEvent – keep data separate
+##############################################################################
+
+@prefix eomdg: <http://example.org/eomdg/> .
+@prefix geo:   <http://www.opengis.net/ont/geosparql#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+############################
+## Core Classes (T-Box)   ##
+############################
+eomdg:DisasterEvent        a owl:Class .
+eomdg:DisasterObservation  a owl:Class .
+
+eomdg:HazardGroup          a owl:Class .
+eomdg:HazardSubgroup       a owl:Class .
+eomdg:HazardType           a owl:Class .
+eomdg:HazardSubtype        a owl:Class .
+
+eomdg:AdministrativeArea   a owl:Class .
+eomdg:SensorModality       a owl:Class .
+eomdg:MLObjective          a owl:Class .
+
+############################
+## Object-Property Box    ##
+############################
+
+### disaster → hazard hierarchy links
+eomdg:hasHazardGroup     a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:HazardGroup .
+eomdg:hasHazardSubgroup  a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:HazardSubgroup .
+eomdg:hasHazardType      a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:HazardType .
+eomdg:hasHazardSubtype   a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:HazardSubtype .
+
+### hazard → sensor & ML knowledge
+eomdg:isMonitoredBy        a owl:ObjectProperty ; rdfs:domain eomdg:HazardType ; rdfs:range eomdg:SensorModality .
+eomdg:hasRecommendedSensor a owl:ObjectProperty ; rdfs:subPropertyOf eomdg:isMonitoredBy .   # alias
+eomdg:hasRelatedObjective  a owl:ObjectProperty ; rdfs:domain eomdg:HazardType ; rdfs:range eomdg:MLObjective .
+
+### disaster → place & geometry
+eomdg:affectedContinent        a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:AdministrativeArea .
+eomdg:affectedCountry          a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:AdministrativeArea .
+eomdg:affectedRegion           a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range eomdg:AdministrativeArea .
+eomdg:adminUnitLevel1          a owl:ObjectProperty ; rdfs:domain eomdg:DisasterObservation ; rdfs:range eomdg:AdministrativeArea .
+eomdg:adminUnitLevel2          a owl:ObjectProperty ; rdfs:domain eomdg:DisasterObservation ; rdfs:range eomdg:AdministrativeArea .
+
+eomdg:hasAffectedAreaGeometry  a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range geo:Geometry .
+eomdg:hasHazardExtentGeometry  a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range geo:Geometry .
+
+### disaster → time (OWL-Time)
+time:hasBeginning  a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range time:Instant .
+time:hasEnd        a owl:ObjectProperty ; rdfs:domain eomdg:DisasterEvent ; rdfs:range time:Instant .
+
+############################
+## Data-quality helpers   ##
+############################
+eomdg:startDateQuality a owl:DatatypeProperty .
+eomdg:endDateQuality   a owl:DatatypeProperty .
+
+##############################################################################
+# End of schema                                                             ##
+##############################################################################
