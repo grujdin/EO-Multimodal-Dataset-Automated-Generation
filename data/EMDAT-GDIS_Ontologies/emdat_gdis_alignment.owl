@@ -1,0 +1,91 @@
+@prefix emdat: <http://www.example.org/emdat#> .
+@prefix gdis:  <http://www.example.org/gdis#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+###############################################################################
+# Bridging/Alignment Ontology
+###############################################################################
+
+<http://www.example.org/emdat_gdis_alignment>
+    a owl:Ontology ;
+    rdfs:label "EM-DAT / GDIS Alignment" ;
+    rdfs:comment """
+      Defines property alignments between EM-DAT and GDIS for unified queries. 
+      Also defines an object property to link multiple GDISRecords to a single
+      EMDATPublicRecord.
+    """ .
+
+
+###############################################################################
+# Equivalent Data Properties
+###############################################################################
+
+# 1. "disNo" in EM-DAT is essentially "disasterno" in GDIS.
+emdat:disNo
+    owl:equivalentProperty gdis:disasterno .
+
+# 2. "iso" in EM-DAT is the same as "iso3" in GDIS.
+emdat:iso
+    owl:equivalentProperty gdis:iso3 .
+
+# 3. "country" in EM-DAT is the same concept as "country" in GDIS.
+emdat:country
+    owl:equivalentProperty gdis:country .
+
+# 4. "historic" in EM-DAT might equate to "historical" in GDIS.
+#    EM-DAT uses "Yes/No"; GDIS uses 1/0. Still treat them as equivalent for queries.
+emdat:historic
+    owl:equivalentProperty gdis:historical .
+
+# 5. "disasterType" in EM-DAT is the same as "disastertype" in GDIS.
+emdat:disasterType
+    owl:equivalentProperty gdis:disastertype .
+
+# 6. "location" in EM-DAT is a single field,
+#    while GDIS has "location" plus adm1, adm2, adm3. They are not a perfect match,
+#    but we can declare them equivalent for broad queries.
+emdat:location
+    owl:equivalentProperty gdis:location .
+
+
+###############################################################################
+# Object Property to Link Many GDIS Rows to One EM-DAT Record
+###############################################################################
+
+# This property expresses that a gdis:GDISRecord instance references
+# exactly one emdat:EMDATPublicRecord. We do NOT unify classes, because 
+# we can have many GDIS rows (sub-locations) per one EM-DAT row.
+
+gdis:refersToEMDATRecord
+    a owl:ObjectProperty ;
+    rdfs:label "refers to EM-DAT record" ;
+    rdfs:comment """
+      Links a GDIS row to the corresponding EM-DAT row. 
+      Each gdis:GDISRecord can refer to exactly one emdat:EMDATPublicRecord,
+      but that record may be shared by many GDIS rows.
+    """ ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range emdat:EMDATPublicRecord .
+
+# Optional: if you want to navigate from an EM-DAT record to all related GDIS rows:
+emdat:hasGDISLocation
+    a owl:ObjectProperty ;
+    rdfs:label "has GDIS location breakdown" ;
+    rdfs:comment """
+      Inverse of gdis:refersToEMDATRecord. 
+      Each EMDATPublicRecord can have multiple GDISRecords describing sub-locations.
+    """ ;
+    owl:inverseOf gdis:refersToEMDATRecord .
+
+###############################################################################
+# (Optional) Equivalent Classes?
+# Typically, we do NOT unify classes since the row structures differ and
+# each emdat:EMDATPublicRecord can correspond to multiple gdis:GDISRecord.
+#
+# emdat:EMDATPublicRecord  owl:equivalentClass  gdis:GDISRecord .
+#
+# Use this only if you truly want to claim each GDIS row is the same 
+# single row as in EM-DAT, which is usually not correct in a 1:many scenario.
+###############################################################################

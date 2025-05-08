@@ -1,0 +1,165 @@
+@prefix gdis: <http://www.example.org/gdis#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+##################################################################
+# Ontology Declaration
+##################################################################
+
+<http://www.example.org/gdis>
+    a owl:Ontology ;
+    rdfs:label "GDIS (Geocoded Disasters) Structural Metadata Ontology" ;
+    rdfs:comment """
+      Defines columns (as data properties) and the gdis:GDISRecord class 
+      for the GDIS dataset as described in Table 1.
+    """ .
+
+##################################################################
+# Main Class
+##################################################################
+
+gdis:GDISRecord
+    a owl:Class ;
+    rdfs:label "GDIS Record" ;
+    rdfs:comment "Represents one row in the GDIS (geocoded disasters) dataset." .
+
+##################################################################
+# Data Properties: One per column in GDIS
+##################################################################
+
+### 1. disasterno
+gdis:disasterno
+    a owl:DatatypeProperty ;
+    rdfs:label "disasterno" ;
+    rdfs:comment "ID-variable from EM-DAT used to join with EM-DAT records." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 2. id
+gdis:id
+    a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:comment "Unique ID in GDIS. Each disaster in each country has a unique id." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 3. geo_id
+gdis:geo_id
+    a owl:DatatypeProperty ;
+    rdfs:label "geo_id" ;
+    rdfs:comment "Unique ID for each location in GDIS." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 4. country
+gdis:country
+    a owl:DatatypeProperty ;
+    rdfs:label "country" ;
+    rdfs:comment "Name of the country for the observation." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 5. iso3
+gdis:iso3
+    a owl:DatatypeProperty ;
+    rdfs:label "iso3" ;
+    rdfs:comment "Three-letter country code (ISO 3166-1)." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 6. gwno
+gdis:gwno
+    a owl:DatatypeProperty ;
+    rdfs:label "gwno" ;
+    rdfs:comment "Gleditsch and Ward country code." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 7. geolocation
+gdis:geolocation
+    a owl:DatatypeProperty ;
+    rdfs:label "geolocation" ;
+    rdfs:comment "Highest disaggregated location name (often same as adm3 if available)." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 8. level
+gdis:level
+    a owl:DatatypeProperty ;
+    rdfs:label "level" ;
+    rdfs:comment "Administrative level of observation (1, 2, or 3, with 3 most disaggregated)." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:int .
+
+### 9. adm1
+gdis:adm1
+    a owl:DatatypeProperty ;
+    rdfs:label "adm1" ;
+    rdfs:comment "Admin level 1 name for the location." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 10. adm2
+gdis:adm2
+    a owl:DatatypeProperty ;
+    rdfs:label "adm2" ;
+    rdfs:comment "Admin level 2 name for the location." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 11. adm3
+gdis:adm3
+    a owl:DatatypeProperty ;
+    rdfs:label "adm3" ;
+    rdfs:comment "Admin level 3 name for the location." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 12. location
+gdis:location
+    a owl:DatatypeProperty ;
+    rdfs:label "location" ;
+    rdfs:comment "Original location string from the dataset (basis for geocoding)." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 13. historical
+gdis:historical
+    a owl:DatatypeProperty ;
+    rdfs:label "historical" ;
+    rdfs:comment "1 if the disaster happened in a country that has since changed, else 0." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:int .
+
+### 14. hist_country
+gdis:hist_country
+    a owl:DatatypeProperty ;
+    rdfs:label "hist_country" ;
+    rdfs:comment "Name of the country at the time of the disaster if different from 'country'." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 15. disastertype
+gdis:disastertype
+    a owl:DatatypeProperty ;
+    rdfs:label "disastertype" ;
+    rdfs:comment "Type of disaster (flood, storm, earthquake, etc.) in GDIS classification." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 16. geometry
+gdis:geometry
+    a owl:DatatypeProperty ;
+    rdfs:label "geometry" ;
+    rdfs:comment "Polygon geometry for the admin level boundary (if included, e.g., in shapefile)." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .
+
+### 17. centroid
+gdis:centroid
+    a owl:DatatypeProperty ;
+    rdfs:label "centroid" ;
+    rdfs:comment "Longitude-latitude (or lat-long) coordinates for the administrative centroid." ;
+    rdfs:domain gdis:GDISRecord ;
+    rdfs:range xsd:string .

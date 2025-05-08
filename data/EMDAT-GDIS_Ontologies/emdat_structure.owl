@@ -1,0 +1,399 @@
+@prefix emdat: <http://www.example.org/emdat#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+################################################################################
+# Ontology Declaration
+################################################################################
+
+<http://www.example.org/emdat>
+    a owl:Ontology ;
+    rdfs:label "EM-DAT Public Table Structural Metadata Ontology" ;
+    rdfs:comment """
+      Captures the structural metadata (column names, data types) for the EM-DAT
+      Public Table. Each row in the source table is modeled as an instance of 
+      emdat:EMDATPublicRecord, with properties corresponding to each column.
+    """ .
+
+################################################################################
+# Main Class: One record (row) in the EM-DAT Public dataset
+################################################################################
+
+emdat:EMDATPublicRecord
+    a owl:Class ;
+    rdfs:label "EM-DAT Public Record" ;
+    rdfs:comment "Represents one row (i.e., one disaster entry) in the EM-DAT Public Table." .
+
+################################################################################
+# Data Properties: One per column
+# (Feel free to refine data types if you have more precise constraints.)
+################################################################################
+
+### 1. DisNo.
+emdat:disNo
+    a owl:DatatypeProperty ;
+    rdfs:label "DisNo." ;
+    rdfs:comment "Disaster Number (unique identifier within EM-DAT)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 2. Historic
+emdat:historic
+    a owl:DatatypeProperty ;
+    rdfs:label "Historic" ;
+    rdfs:comment "Indicates if the disaster is historic (Yes/No)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 3. Classification Key
+emdat:classificationKey
+    a owl:DatatypeProperty ;
+    rdfs:label "Classification Key" ;
+    rdfs:comment "E.g., nat-hyd-flo-riv, nat-cli-wil-lan, etc." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 4. Disaster Group
+emdat:disasterGroup
+    a owl:DatatypeProperty ;
+    rdfs:label "Disaster Group" ;
+    rdfs:comment "High-level group (e.g., Natural, Technological)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 5. Disaster Subgroup
+emdat:disasterSubgroup
+    a owl:DatatypeProperty ;
+    rdfs:label "Disaster Subgroup" ;
+    rdfs:comment "Subgroup classification (e.g., Hydrological, Climatological)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 6. Disaster Type
+emdat:disasterType
+    a owl:DatatypeProperty ;
+    rdfs:label "Disaster Type" ;
+    rdfs:comment "Type classification (e.g., Flood, Wildfire)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 7. Disaster Subtype
+emdat:disasterSubtype
+    a owl:DatatypeProperty ;
+    rdfs:label "Disaster Subtype" ;
+    rdfs:comment "More specific subtype (e.g., Riverine flood, Land fire)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 8. External IDs
+emdat:externalIDs
+    a owl:DatatypeProperty ;
+    rdfs:label "External IDs" ;
+    rdfs:comment "Links to other systems, e.g., GLIDE IDs, DFO codes." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 9. Event Name
+emdat:eventName
+    a owl:DatatypeProperty ;
+    rdfs:label "Event Name" ;
+    rdfs:comment "Common name or label of the event." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 10. ISO
+emdat:iso
+    a owl:DatatypeProperty ;
+    rdfs:label "ISO" ;
+    rdfs:comment "ISO country code (3-letter)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 11. Country
+emdat:country
+    a owl:DatatypeProperty ;
+    rdfs:label "Country" ;
+    rdfs:comment "Full country name." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 12. Subregion
+emdat:subregion
+    a owl:DatatypeProperty ;
+    rdfs:label "Subregion" ;
+    rdfs:comment "Subregion name (e.g., Sub-Saharan Africa, Southeastern Asia)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 13. Region
+emdat:region
+    a owl:DatatypeProperty ;
+    rdfs:label "Region" ;
+    rdfs:comment "Geographic region name (e.g., Americas, Europe, Africa)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 14. Location
+emdat:location
+    a owl:DatatypeProperty ;
+    rdfs:label "Location" ;
+    rdfs:comment "Detailed location info (provinces, districts, etc.)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 15. Origin
+emdat:origin
+    a owl:DatatypeProperty ;
+    rdfs:label "Origin" ;
+    rdfs:comment "Cause or source of the disaster (e.g., Torrential rains)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 16. Associated Types
+emdat:associatedTypes
+    a owl:DatatypeProperty ;
+    rdfs:label "Associated Types" ;
+    rdfs:comment "Other related phenomena that occurred (e.g., Crop failure, Epidemic)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 17. OFDA/BHA Response
+emdat:ofdaBhaResponse
+    a owl:DatatypeProperty ;
+    rdfs:label "OFDA/BHA Response" ;
+    rdfs:comment "Indicates if OFDA/BHA responded (Yes/No)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 18. Appeal
+emdat:appeal
+    a owl:DatatypeProperty ;
+    rdfs:label "Appeal" ;
+    rdfs:comment "Indicates if an appeal was launched (Yes/No)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 19. Declaration
+emdat:declaration
+    a owl:DatatypeProperty ;
+    rdfs:label "Declaration" ;
+    rdfs:comment "Indicates if a state of emergency/declaration was made (Yes/No)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 20. AID Contribution ('000 US$)
+emdat:aidContribution
+    a owl:DatatypeProperty ;
+    rdfs:label "AID Contribution ('000 US$)" ;
+    rdfs:comment "Financial contribution from external aid, in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 21. Magnitude
+emdat:magnitude
+    a owl:DatatypeProperty ;
+    rdfs:label "Magnitude" ;
+    rdfs:comment "Measured magnitude (where applicable) in numeric form." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 22. Magnitude Scale
+emdat:magnitudeScale
+    a owl:DatatypeProperty ;
+    rdfs:label "Magnitude Scale" ;
+    rdfs:comment "Scale used for measuring magnitude (e.g., km2, Richter, etc.)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 23. Latitude
+emdat:latitude
+    a owl:DatatypeProperty ;
+    rdfs:label "Latitude" ;
+    rdfs:comment "Latitude in decimal degrees." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 24. Longitude
+emdat:longitude
+    a owl:DatatypeProperty ;
+    rdfs:label "Longitude" ;
+    rdfs:comment "Longitude in decimal degrees." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 25. River Basin
+emdat:riverBasin
+    a owl:DatatypeProperty ;
+    rdfs:label "River Basin" ;
+    rdfs:comment "Name of river basin(s) where the disaster occurred." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 26. Start Year
+emdat:startYear
+    a owl:DatatypeProperty ;
+    rdfs:label "Start Year" ;
+    rdfs:comment "Year in which the disaster event started." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 27. Start Month
+emdat:startMonth
+    a owl:DatatypeProperty ;
+    rdfs:label "Start Month" ;
+    rdfs:comment "Month in which the disaster event started (1-12)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 28. Start Day
+emdat:startDay
+    a owl:DatatypeProperty ;
+    rdfs:label "Start Day" ;
+    rdfs:comment "Day in which the disaster event started (1-31)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 29. End Year
+emdat:endYear
+    a owl:DatatypeProperty ;
+    rdfs:label "End Year" ;
+    rdfs:comment "Year in which the disaster event ended." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 30. End Month
+emdat:endMonth
+    a owl:DatatypeProperty ;
+    rdfs:label "End Month" ;
+    rdfs:comment "Month in which the disaster event ended (1-12)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 31. End Day
+emdat:endDay
+    a owl:DatatypeProperty ;
+    rdfs:label "End Day" ;
+    rdfs:comment "Day in which the disaster event ended (1-31)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 32. Total Deaths
+emdat:totalDeaths
+    a owl:DatatypeProperty ;
+    rdfs:label "Total Deaths" ;
+    rdfs:comment "Number of total reported deaths due to the event." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 33. No. Injured
+emdat:noInjured
+    a owl:DatatypeProperty ;
+    rdfs:label "No. Injured" ;
+    rdfs:comment "Number of people reported injured." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 34. No. Affected
+emdat:noAffected
+    a owl:DatatypeProperty ;
+    rdfs:label "No. Affected" ;
+    rdfs:comment "Number of people otherwise affected." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 35. No. Homeless
+emdat:noHomeless
+    a owl:DatatypeProperty ;
+    rdfs:label "No. Homeless" ;
+    rdfs:comment "Number of people left homeless." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 36. Total Affected
+emdat:totalAffected
+    a owl:DatatypeProperty ;
+    rdfs:label "Total Affected" ;
+    rdfs:comment "Sum of injured, homeless, and affected populations." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:int .
+
+### 37. Reconstruction Costs ('000 US$)
+emdat:reconstructionCosts
+    a owl:DatatypeProperty ;
+    rdfs:label "Reconstruction Costs ('000 US$)" ;
+    rdfs:comment "Estimated reconstruction costs in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 38. Reconstruction Costs, Adjusted ('000 US$)
+emdat:reconstructionCostsAdjusted
+    a owl:DatatypeProperty ;
+    rdfs:label "Reconstruction Costs, Adjusted ('000 US$)" ;
+    rdfs:comment "Adjusted reconstruction costs in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 39. Insured Damage ('000 US$)
+emdat:insuredDamage
+    a owl:DatatypeProperty ;
+    rdfs:label "Insured Damage ('000 US$)" ;
+    rdfs:comment "Insured property damage in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 40. Insured Damage, Adjusted ('000 US$)
+emdat:insuredDamageAdjusted
+    a owl:DatatypeProperty ;
+    rdfs:label "Insured Damage, Adjusted ('000 US$)" ;
+    rdfs:comment "Adjusted insured damage in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 41. Total Damage ('000 US$)
+emdat:totalDamage
+    a owl:DatatypeProperty ;
+    rdfs:label "Total Damage ('000 US$)" ;
+    rdfs:comment "Total damage cost in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 42. Total Damage, Adjusted ('000 US$)
+emdat:totalDamageAdjusted
+    a owl:DatatypeProperty ;
+    rdfs:label "Total Damage, Adjusted ('000 US$)" ;
+    rdfs:comment "Adjusted total damage in thousands of US$." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 43. CPI
+emdat:cpi
+    a owl:DatatypeProperty ;
+    rdfs:label "CPI" ;
+    rdfs:comment "Consumer Price Index used for cost adjustments." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:decimal .
+
+### 44. Admin Units
+emdat:adminUnits
+    a owl:DatatypeProperty ;
+    rdfs:label "Admin Units" ;
+    rdfs:comment "List of administrative units affected (often in JSON-like form)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:string .
+
+### 45. Entry Date
+emdat:entryDate
+    a owl:DatatypeProperty ;
+    rdfs:label "Entry Date" ;
+    rdfs:comment "Date on which the record was first entered in EM-DAT (YYYY-MM-DD)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:date .
+
+### 46. Last Update
+emdat:lastUpdate
+    a owl:DatatypeProperty ;
+    rdfs:label "Last Update" ;
+    rdfs:comment "Date on which the record was last updated (YYYY-MM-DD)." ;
+    rdfs:domain emdat:EMDATPublicRecord ;
+    rdfs:range xsd:date .

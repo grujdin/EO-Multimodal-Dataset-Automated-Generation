@@ -1,0 +1,1005 @@
+@prefix hazard: <http://www.example.org/hazard#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+###############################################################################
+# Ontology Declaration
+###############################################################################
+
+<http://www.example.org/hazard>
+    a owl:Ontology ;
+    rdfs:label "Refined Hazard Ontology (EM-DAT Classification)" ;
+    rdfs:comment "Incorporates rows from the EM-DAT classification table, mapping each to an OWL class with data properties." .
+
+###############################################################################
+# Top-Level Classes (Group)
+#
+# We'll define 'Natural' and 'Technological' as in EM-DAT,
+# then define subgroups and types from the table.
+###############################################################################
+
+hazard:Hazard
+    a owl:Class ;
+    rdfs:label "Hazard" .
+
+### NATURAL
+hazard:Natural
+    a owl:Class ;
+    rdfs:subClassOf hazard:Hazard ;
+    rdfs:label "Natural Hazard" ;
+    rdfs:comment "All hazards listed under EM-DAT Natural group." .
+
+### TECHNOLOGICAL
+hazard:Technological
+    a owl:Class ;
+    rdfs:subClassOf hazard:Hazard ;
+    rdfs:label "Technological Hazard" ;
+    rdfs:comment "All hazards listed under EM-DAT Technological group." .
+
+###############################################################################
+# Data Properties for EM-DAT
+###############################################################################
+
+hazard:emdatGroup
+    a owl:DatatypeProperty ;
+    rdfs:label "EM-DAT Group" ;
+    rdfs:domain hazard:Hazard ;
+    rdfs:range xsd:string .
+
+hazard:emdatSubgroup
+    a owl:DatatypeProperty ;
+    rdfs:label "EM-DAT Subgroup" ;
+    rdfs:domain hazard:Hazard ;
+    rdfs:range xsd:string .
+
+hazard:emdatType
+    a owl:DatatypeProperty ;
+    rdfs:label "EM-DAT Type" ;
+    rdfs:domain hazard:Hazard ;
+    rdfs:range xsd:string .
+
+hazard:emdatSubtype
+    a owl:DatatypeProperty ;
+    rdfs:label "EM-DAT Subtype" ;
+    rdfs:domain hazard:Hazard ;
+    rdfs:range xsd:string .
+
+hazard:emdatCode
+    a owl:DatatypeProperty ;
+    rdfs:label "EM-DAT Code" ;
+    rdfs:domain hazard:Hazard ;
+    rdfs:range xsd:string .
+
+hazard:emdatCount
+    a owl:DatatypeProperty ;
+    rdfs:label "EM-DAT Count" ;
+    rdfs:domain hazard:Hazard ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of events recorded in EM-DAT for this category (as per your table)." .
+
+################################################################################
+# NATURAL: Subgroups (Biological, Climatological, Extra-terrestrial, Geophysical,
+#                     Hydrological, Meteorological)
+################################################################################
+
+## 1. Biological
+hazard:Biological
+    a owl:Class ;
+    rdfs:subClassOf hazard:Natural ;
+    rdfs:label "Biological Hazard (Natural)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" .
+
+### 1.1 Animal Incident
+hazard:AnimalIncident
+    a owl:Class ;
+    rdfs:subClassOf hazard:Biological ;
+    rdfs:label "Animal Incident" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Animal incident" ;
+    hazard:emdatSubtype "Animal incident" ;
+    hazard:emdatCode "nat-bio-ani-ani" ;
+    hazard:emdatCount 1 .
+
+### 1.2 Epidemic
+hazard:Epidemic
+    a owl:Class ;
+    rdfs:subClassOf hazard:Biological ;
+    rdfs:label "Epidemic" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" .
+    
+#### Bacterial disease
+hazard:BacterialDisease
+    a owl:Class ;
+    rdfs:subClassOf hazard:Epidemic ;
+    rdfs:label "Bacterial Disease (Epidemic)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" ;
+    hazard:emdatSubtype "Bacterial disease" ;
+    hazard:emdatCode "nat-bio-epi-bac" ;
+    hazard:emdatCount 781 .
+
+#### Infectious disease (General)
+hazard:InfectiousDiseaseGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:Epidemic ;
+    rdfs:label "Infectious Disease (General)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" ;
+    hazard:emdatSubtype "Infectious disease (General)" ;
+    hazard:emdatCode "nat-bio-epi-dis" ;
+    hazard:emdatCount 142 .
+
+#### Fungal disease
+hazard:FungalDisease
+    a owl:Class ;
+    rdfs:subClassOf hazard:Epidemic ;
+    rdfs:label "Fungal Disease (Epidemic)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" ;
+    hazard:emdatSubtype "Fungal disease" ;
+    hazard:emdatCode "nat-bio-epi-fun" ;
+    hazard:emdatCount 0 .
+
+#### Parasitic disease
+hazard:ParasiticDisease
+    a owl:Class ;
+    rdfs:subClassOf hazard:Epidemic ;
+    rdfs:label "Parasitic Disease (Epidemic)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" ;
+    hazard:emdatSubtype "Parasitic disease" ;
+    hazard:emdatCode "nat-bio-epi-par" ;
+    hazard:emdatCount 51 .
+
+#### Prion disease
+hazard:PrionDisease
+    a owl:Class ;
+    rdfs:subClassOf hazard:Epidemic ;
+    rdfs:label "Prion Disease (Epidemic)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" ;
+    hazard:emdatSubtype "Prion disease" ;
+    hazard:emdatCode "nat-bio-epi-pri" ;
+    hazard:emdatCount 0 .
+
+#### Viral disease
+hazard:ViralDisease
+    a owl:Class ;
+    rdfs:subClassOf hazard:Epidemic ;
+    rdfs:label "Viral Disease (Epidemic)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Epidemic" ;
+    hazard:emdatSubtype "Viral disease" ;
+    hazard:emdatCode "nat-bio-epi-vir" ;
+    hazard:emdatCount 547 .
+
+### 1.3 Infestation
+hazard:Infestation
+    a owl:Class ;
+    rdfs:subClassOf hazard:Biological ;
+    rdfs:label "Infestation" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Infestation" .
+
+#### Grasshopper infestation
+hazard:GrasshopperInfestation
+    a owl:Class ;
+    rdfs:subClassOf hazard:Infestation ;
+    rdfs:label "Grasshopper Infestation" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Infestation" ;
+    hazard:emdatSubtype "Grasshopper infestation" ;
+    hazard:emdatCode "nat-bio-inf-gra" ;
+    hazard:emdatCount 16 .
+
+#### Infestation (General)
+hazard:InfestationGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:Infestation ;
+    rdfs:label "Infestation (General)" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Infestation" ;
+    hazard:emdatSubtype "Infestation (General)" ;
+    hazard:emdatCode "nat-bio-inf-inf" ;
+    hazard:emdatCount 9 .
+
+#### Locust infestation
+hazard:LocustInfestation
+    a owl:Class ;
+    rdfs:subClassOf hazard:Infestation ;
+    rdfs:label "Locust Infestation" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Infestation" ;
+    hazard:emdatSubtype "Locust infestation" ;
+    hazard:emdatCode "nat-bio-inf-loc" ;
+    hazard:emdatCount 67 .
+
+#### Worms infestation
+hazard:WormInfestation
+    a owl:Class ;
+    rdfs:subClassOf hazard:Infestation ;
+    rdfs:label "Worms Infestation" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Biological" ;
+    hazard:emdatType "Infestation" ;
+    hazard:emdatSubtype "Worms infestation" ;
+    hazard:emdatCode "nat-bio-inf-wor" ;
+    hazard:emdatCount 3 .
+
+## 2. Climatological
+hazard:Climatological
+    a owl:Class ;
+    rdfs:subClassOf hazard:Natural ;
+    rdfs:label "Climatological Hazard" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Climatological" .
+
+### Drought
+hazard:Drought
+    a owl:Class ;
+    rdfs:subClassOf hazard:Climatological ;
+    rdfs:label "Drought" ;
+    hazard:emdatType "Drought" ;
+    hazard:emdatSubtype "Drought" ;
+    hazard:emdatCode "nat-cli-dro-dro" ;
+    hazard:emdatCount 804 .
+
+### Glacial lake outburst flood
+hazard:GlacialLakeOutburstFlood
+    a owl:Class ;
+    rdfs:subClassOf hazard:Climatological ;
+    rdfs:label "Glacial Lake Outburst Flood" ;
+    hazard:emdatType "Glacial lake outburst flood" ;
+    hazard:emdatSubtype "Glacial lake outburst flood" ;
+    hazard:emdatCode "nat-cli-glo-glo" ;
+    hazard:emdatCount 3 .
+
+### Wildfire
+hazard:Wildfire
+    a owl:Class ;
+    rdfs:subClassOf hazard:Climatological ;
+    rdfs:label "Wildfire" ;
+    hazard:emdatType "Wildfire" .
+
+#### Forest fire
+hazard:ForestFire
+    a owl:Class ;
+    rdfs:subClassOf hazard:Wildfire ;
+    rdfs:label "Forest Fire" ;
+    hazard:emdatSubtype "Forest fire" ;
+    hazard:emdatCode "nat-cli-wil-for" ;
+    hazard:emdatCount 317 .
+
+#### Land fire (Brush, Bush, Pasture)
+hazard:LandFire
+    a owl:Class ;
+    rdfs:subClassOf hazard:Wildfire ;
+    rdfs:label "Land Fire (Brush, Bush, Pasture)" ;
+    hazard:emdatSubtype "Land fire (Brush, Bush, Pasture)" ;
+    hazard:emdatCode "nat-cli-wil-lan" ;
+    hazard:emdatCount 92 .
+
+#### Wildfire (General)
+hazard:WildfireGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:Wildfire ;
+    rdfs:label "Wildfire (General)" ;
+    hazard:emdatSubtype "Wildfire (General)" ;
+    hazard:emdatCode "nat-cli-wil-wil" ;
+    hazard:emdatCount 53 .
+
+## 3. Extra-terrestrial
+hazard:ExtraTerrestrial
+    a owl:Class ;
+    rdfs:subClassOf hazard:Natural ;
+    rdfs:label "Extra-Terrestrial Hazard" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Extra-terrestrial" .
+
+### Impact
+hazard:Impact
+    a owl:Class ;
+    rdfs:subClassOf hazard:ExtraTerrestrial ;
+    rdfs:label "Impact" ;
+    hazard:emdatType "Impact" .
+
+#### Airburst
+hazard:Airburst
+    a owl:Class ;
+    rdfs:subClassOf hazard:Impact ;
+    rdfs:label "Airburst" ;
+    hazard:emdatSubtype "Airburst" ;
+    hazard:emdatCode "nat-ext-imp-air" ;
+    hazard:emdatCount 0 .
+
+#### Collision
+hazard:Collision
+    a owl:Class ;
+    rdfs:subClassOf hazard:Impact ;
+    rdfs:label "Collision (Asteroid/Meteorite)" ;
+    hazard:emdatSubtype "Collision" ;
+    hazard:emdatCode "nat-ext-imp-col" ;
+    hazard:emdatCount 1 .
+
+### Space weather
+hazard:SpaceWeather
+    a owl:Class ;
+    rdfs:subClassOf hazard:ExtraTerrestrial ;
+    rdfs:label "Space Weather" ;
+    hazard:emdatType "Space weather" .
+
+#### Energetic particles
+hazard:EnergeticParticles
+    a owl:Class ;
+    rdfs:subClassOf hazard:SpaceWeather ;
+    rdfs:label "Energetic Particles" ;
+    hazard:emdatSubtype "Energetic particles" ;
+    hazard:emdatCode "nat-ext-spa-ene" ;
+    hazard:emdatCount 0 .
+
+#### Geomagnetic storm
+hazard:GeomagneticStorm
+    a owl:Class ;
+    rdfs:subClassOf hazard:SpaceWeather ;
+    rdfs:label "Geomagnetic Storm" ;
+    hazard:emdatSubtype "Geomagnetic storm" ;
+    hazard:emdatCode "nat-ext-spa-geo" ;
+    hazard:emdatCount 0 .
+
+#### Radio disturbance
+hazard:RadioDisturbance
+    a owl:Class ;
+    rdfs:subClassOf hazard:SpaceWeather ;
+    rdfs:label "Radio Disturbance" ;
+    hazard:emdatSubtype "Radio disturbance" ;
+    hazard:emdatCode "nat-ext-spa-rad" ;
+    hazard:emdatCount 0 .
+
+#### Shockwave
+hazard:Shockwave
+    a owl:Class ;
+    rdfs:subClassOf hazard:SpaceWeather ;
+    rdfs:label "Shockwave" ;
+    hazard:emdatSubtype "Shockwave" ;
+    hazard:emdatCode "nat-ext-spa-sho" ;
+    hazard:emdatCount 0 .
+
+## 4. Geophysical
+hazard:Geophysical
+    a owl:Class ;
+    rdfs:subClassOf hazard:Natural ;
+    rdfs:label "Geophysical Hazard" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Geophysical" .
+
+### Earthquake
+hazard:Earthquake
+    a owl:Class ;
+    rdfs:subClassOf hazard:Geophysical ;
+    rdfs:label "Earthquake" ;
+    hazard:emdatType "Earthquake" .
+
+#### Ground movement
+hazard:GroundMovement
+    a owl:Class ;
+    rdfs:subClassOf hazard:Earthquake ;
+    rdfs:label "Ground Movement (Earthquake)" ;
+    hazard:emdatSubtype "Ground movement" ;
+    hazard:emdatCode "nat-geo-ear-gro" ;
+    hazard:emdatCount 1544 .
+
+#### Tsunami
+hazard:Tsunami
+    a owl:Class ;
+    rdfs:subClassOf hazard:Earthquake ;
+    rdfs:label "Tsunami" ;
+    hazard:emdatSubtype "Tsunami" ;
+    hazard:emdatCode "nat-geo-ear-tsu" ;
+    hazard:emdatCount 57 .
+
+### Mass movement (dry)
+hazard:MassMovementDry
+    a owl:Class ;
+    rdfs:subClassOf hazard:Geophysical ;
+    rdfs:label "Mass Movement (Dry)" ;
+    hazard:emdatType "Mass movement (dry)" .
+
+#### Avalanche (dry)
+hazard:AvalancheDry
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementDry ;
+    rdfs:label "Avalanche (Dry)" ;
+    hazard:emdatSubtype "Avalanche (dry)" ;
+    hazard:emdatCode "nat-geo-mmd-ava" ;
+    hazard:emdatCount 5 .
+
+#### Landslide (dry)
+hazard:LandslideDry
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementDry ;
+    rdfs:label "Landslide (Dry)" ;
+    hazard:emdatSubtype "Landslide (dry)" ;
+    hazard:emdatCode "nat-geo-mmd-lan" ;
+    hazard:emdatCount 30 .
+
+#### Rockfall (dry)
+hazard:RockfallDry
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementDry ;
+    rdfs:label "Rockfall (Dry)" ;
+    hazard:emdatSubtype "Rockfall (dry)" ;
+    hazard:emdatCode "nat-geo-mmd-roc" ;
+    hazard:emdatCount 9 .
+
+#### Sudden Subsidence (dry)
+hazard:SuddenSubsidenceDry
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementDry ;
+    rdfs:label "Sudden Subsidence (Dry)" ;
+    hazard:emdatSubtype "Sudden Subsidence (dry)" ;
+    hazard:emdatCode "nat-geo-mmd-sub" ;
+    hazard:emdatCount 1 .
+
+### Volcanic activity
+hazard:VolcanicActivity
+    a owl:Class ;
+    rdfs:subClassOf hazard:Geophysical ;
+    rdfs:label "Volcanic Activity" ;
+    hazard:emdatType "Volcanic activity" .
+
+#### Ash fall
+hazard:AshFall
+    a owl:Class ;
+    rdfs:subClassOf hazard:VolcanicActivity ;
+    rdfs:label "Ash Fall" ;
+    hazard:emdatSubtype "Ash fall" ;
+    hazard:emdatCode "nat-geo-vol-ash" ;
+    hazard:emdatCount 249 .
+
+#### Lahar
+hazard:Lahar
+    a owl:Class ;
+    rdfs:subClassOf hazard:VolcanicActivity ;
+    rdfs:label "Lahar" ;
+    hazard:emdatSubtype "Lahar" ;
+    hazard:emdatCode "nat-geo-vol-lah" ;
+    hazard:emdatCount 0 .
+
+#### Lava flow
+hazard:LavaFlow
+    a owl:Class ;
+    rdfs:subClassOf hazard:VolcanicActivity ;
+    rdfs:label "Lava Flow" ;
+    hazard:emdatSubtype "Lava flow" ;
+    hazard:emdatCode "nat-geo-vol-lav" ;
+    hazard:emdatCount 10 .
+
+#### Pyroclastic flow
+hazard:PyroclasticFlow
+    a owl:Class ;
+    rdfs:subClassOf hazard:VolcanicActivity ;
+    rdfs:label "Pyroclastic Flow" ;
+    hazard:emdatSubtype "Pyroclastic flow" ;
+    hazard:emdatCode "nat-geo-vol-pyr" ;
+    hazard:emdatCount 4 .
+
+#### Volcanic activity (General)
+hazard:VolcanicActivityGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:VolcanicActivity ;
+    rdfs:label "Volcanic Activity (General)" ;
+    hazard:emdatSubtype "Volcanic activity (General)" ;
+    hazard:emdatCode "nat-geo-vol-vol" ;
+    hazard:emdatCount 9 .
+
+## 5. Hydrological
+hazard:Hydrological
+    a owl:Class ;
+    rdfs:subClassOf hazard:Natural ;
+    rdfs:label "Hydrological Hazard" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Hydrological" .
+
+### Flood
+hazard:Flood
+    a owl:Class ;
+    rdfs:subClassOf hazard:Hydrological ;
+    rdfs:label "Flood" ;
+    hazard:emdatType "Flood" .
+
+#### Coastal flood
+hazard:CoastalFlood
+    a owl:Class ;
+    rdfs:subClassOf hazard:Flood ;
+    rdfs:label "Coastal Flood" ;
+    hazard:emdatSubtype "Coastal flood" ;
+    hazard:emdatCode "nat-hyd-flo-coa" ;
+    hazard:emdatCount 85 .
+
+#### Flash flood
+hazard:FlashFlood
+    a owl:Class ;
+    rdfs:subClassOf hazard:Flood ;
+    rdfs:label "Flash Flood" ;
+    hazard:emdatSubtype "Flash flood" ;
+    hazard:emdatCode "nat-hyd-flo-fla" ;
+    hazard:emdatCount 831 .
+
+#### Flood (General)
+hazard:FloodGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:Flood ;
+    rdfs:label "Flood (General)" ;
+    hazard:emdatSubtype "Flood (General)" ;
+    hazard:emdatCode "nat-hyd-flo-flo" ;
+    hazard:emdatCount 2283 .
+
+#### Ice jam flood
+hazard:IceJamFlood
+    a owl:Class ;
+    rdfs:subClassOf hazard:Flood ;
+    rdfs:label "Ice Jam Flood" ;
+    hazard:emdatSubtype "Ice jam flood" ;
+    hazard:emdatCode "nat-hyd-flo-ice" ;
+    hazard:emdatCount 0 .
+
+#### Riverine flood
+hazard:RiverineFlood
+    a owl:Class ;
+    rdfs:subClassOf hazard:Flood ;
+    rdfs:label "Riverine Flood" ;
+    hazard:emdatSubtype "Riverine flood" ;
+    hazard:emdatCode "nat-hyd-flo-riv" ;
+    hazard:emdatCount 2657 .
+
+### Mass movement (wet)
+hazard:MassMovementWet
+    a owl:Class ;
+    rdfs:subClassOf hazard:Hydrological ;
+    rdfs:label "Mass Movement (Wet)" ;
+    hazard:emdatType "Mass movement (wet)" .
+
+#### Avalanche (wet)
+hazard:AvalancheWet
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementWet ;
+    rdfs:label "Avalanche (Wet)" ;
+    hazard:emdatSubtype "Avalanche (wet)" ;
+    hazard:emdatCode "nat-hyd-mmw-ava" ;
+    hazard:emdatCount 121 .
+
+#### Landslide (wet)
+hazard:LandslideWet
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementWet ;
+    rdfs:label "Landslide (Wet)" ;
+    hazard:emdatSubtype "Landslide (wet)" ;
+    hazard:emdatCode "nat-hyd-mmw-lan" ;
+    hazard:emdatCount 609 .
+
+#### Mudslide
+hazard:Mudslide
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementWet ;
+    rdfs:label "Mudslide" ;
+    hazard:emdatSubtype "Mudslide" ;
+    hazard:emdatCode "nat-hyd-mmw-mud" ;
+    hazard:emdatCount 79 .
+
+#### Rockfall (wet)
+hazard:RockfallWet
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementWet ;
+    rdfs:label "Rockfall (Wet)" ;
+    hazard:emdatSubtype "Rockfall (wet)" ;
+    hazard:emdatCode "nat-hyd-mmw-roc" ;
+    hazard:emdatCount 3 .
+
+#### Sudden Subsidence (wet)
+hazard:SuddenSubsidenceWet
+    a owl:Class ;
+    rdfs:subClassOf hazard:MassMovementWet ;
+    rdfs:label "Sudden Subsidence (Wet)" ;
+    hazard:emdatSubtype "Sudden Subsidence (wet)" ;
+    hazard:emdatCode "nat-hyd-mmw-sub" ;
+    hazard:emdatCount 1 .
+
+### Wave action
+hazard:WaveAction
+    a owl:Class ;
+    rdfs:subClassOf hazard:Hydrological ;
+    rdfs:label "Wave Action" ;
+    hazard:emdatType "Wave action" .
+
+#### Rogue wave
+hazard:RogueWave
+    a owl:Class ;
+    rdfs:subClassOf hazard:WaveAction ;
+    rdfs:label "Rogue Wave" ;
+    hazard:emdatSubtype "Rogue wave" ;
+    hazard:emdatCode "nat-hyd-wav-rog" ;
+    hazard:emdatCount 0 .
+
+#### Seiche
+hazard:Seiche
+    a owl:Class ;
+    rdfs:subClassOf hazard:WaveAction ;
+    rdfs:label "Seiche" ;
+    hazard:emdatSubtype "Seiche" ;
+    hazard:emdatCode "nat-hyd-wav-sei" ;
+    hazard:emdatCount 0 .
+
+## 6. Meteorological
+hazard:Meteorological
+    a owl:Class ;
+    rdfs:subClassOf hazard:Natural ;
+    rdfs:label "Meteorological Hazard" ;
+    hazard:emdatGroup "Natural" ;
+    hazard:emdatSubgroup "Meteorological" .
+
+### Extreme temperature
+hazard:ExtremeTemperature
+    a owl:Class ;
+    rdfs:subClassOf hazard:Meteorological ;
+    rdfs:label "Extreme Temperature" ;
+    hazard:emdatType "Extreme temperature" .
+
+#### Cold wave
+hazard:ColdWave
+    a owl:Class ;
+    rdfs:subClassOf hazard:ExtremeTemperature ;
+    rdfs:label "Cold Wave" ;
+    hazard:emdatSubtype "Cold wave" ;
+    hazard:emdatCode "nat-met-ext-col" ;
+    hazard:emdatCount 311 .
+
+#### Heat wave
+hazard:HeatWave
+    a owl:Class ;
+    rdfs:subClassOf hazard:ExtremeTemperature ;
+    rdfs:label "Heat Wave" ;
+    hazard:emdatSubtype "Heat wave" ;
+    hazard:emdatCode "nat-met-ext-hea" ;
+    hazard:emdatCount 259 .
+
+#### Severe winter conditions
+hazard:SevereWinterConditions
+    a owl:Class ;
+    rdfs:subClassOf hazard:ExtremeTemperature ;
+    rdfs:label "Severe Winter Conditions" ;
+    hazard:emdatSubtype "Severe winter conditions" ;
+    hazard:emdatCode "nat-met-ext-sev" ;
+    hazard:emdatCount 79 .
+
+### Fog
+hazard:Fog
+    a owl:Class ;
+    rdfs:subClassOf hazard:Meteorological ;
+    rdfs:label "Fog" ;
+    hazard:emdatType "Fog" ;
+    hazard:emdatSubtype "Fog" ;
+    hazard:emdatCode "nat-met-fog-fog" ;
+    hazard:emdatCount 1 .
+
+### Storm
+hazard:Storm
+    a owl:Class ;
+    rdfs:subClassOf hazard:Meteorological ;
+    rdfs:label "Storm" ;
+    hazard:emdatType "Storm" .
+
+#### Blizzard/Winter storm
+hazard:Blizzard
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Blizzard/Winter Storm" ;
+    hazard:emdatSubtype "Blizzard/Winter storm" ;
+    hazard:emdatCode "nat-met-sto-bli" ;
+    hazard:emdatCount 226 .
+
+#### Derecho
+hazard:Derecho
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Derecho" ;
+    hazard:emdatSubtype "Derecho" ;
+    hazard:emdatCode "nat-met-sto-der" ;
+    hazard:emdatCount 6 .
+
+#### Extra-tropical storm
+hazard:ExtratropicalStorm
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Extra-tropical Storm" ;
+    hazard:emdatSubtype "Extra-tropical storm" ;
+    hazard:emdatCode "nat-met-sto-ext" ;
+    hazard:emdatCount 148 .
+
+#### Hail
+hazard:Hail
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Hail" ;
+    hazard:emdatSubtype "Hail" ;
+    hazard:emdatCode "nat-met-sto-hai" ;
+    hazard:emdatCount 111 .
+
+#### Lightning/Thunderstorms
+hazard:LightningThunderstorms
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Lightning/Thunderstorms" ;
+    hazard:emdatSubtype "Lightning/Thunderstorms" ;
+    hazard:emdatCode "nat-met-sto-lig" ;
+    hazard:emdatCount 189 .
+
+#### Sand/Dust storm
+hazard:SandDustStorm
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Sand/Dust Storm" ;
+    hazard:emdatSubtype "Sand/Dust storm" ;
+    hazard:emdatCode "nat-met-sto-san" ;
+    hazard:emdatCount 20 .
+
+#### Severe weather
+hazard:SevereWeather
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Severe Weather" ;
+    hazard:emdatSubtype "Severe weather" ;
+    hazard:emdatCode "nat-met-sto-sev" ;
+    hazard:emdatCount 263 .
+
+#### Storm (General)
+hazard:StormGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Storm (General)" ;
+    hazard:emdatSubtype "Storm (General)" ;
+    hazard:emdatCode "nat-met-sto-sto" ;
+    hazard:emdatCount 898 .
+
+#### Storm surge
+hazard:StormSurge
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Storm Surge" ;
+    hazard:emdatSubtype "Storm surge" ;
+    hazard:emdatCode "nat-met-sto-sur" ;
+    hazard:emdatCount 7 .
+
+#### Tornado
+hazard:Tornado
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Tornado" ;
+    hazard:emdatSubtype "Tornado" ;
+    hazard:emdatCode "nat-met-sto-tor" ;
+    hazard:emdatCount 296 .
+
+#### Tropical cyclone
+hazard:TropicalCyclone
+    a owl:Class ;
+    rdfs:subClassOf hazard:Storm ;
+    rdfs:label "Tropical Cyclone" ;
+    hazard:emdatSubtype "Tropical cyclone" ;
+    hazard:emdatCode "nat-met-sto-tro" ;
+    hazard:emdatCount 2492 .
+
+################################################################################
+# TECHNOLOGICAL: Subgroups (Industrial accident, Transport, Miscellaneous)
+################################################################################
+
+### Industrial accident
+hazard:IndustrialAccident
+    a owl:Class ;
+    rdfs:subClassOf hazard:Technological ;
+    rdfs:label "Industrial Accident" ;
+    hazard:emdatGroup "Technological" ;
+    hazard:emdatSubgroup "Industrial accident" .
+
+#### Chemical spill
+hazard:ChemicalSpill
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Chemical Spill" ;
+    hazard:emdatType "Chemical spill" ;
+    hazard:emdatSubtype "Chemical spill" ;
+    hazard:emdatCode "tec-ind-che-che" ;
+    hazard:emdatCount 108 .
+
+#### Collapse (Industrial)
+hazard:CollapseIndustrial
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Collapse (Industrial)" ;
+    hazard:emdatType "Collapse (Industrial)" ;
+    hazard:emdatSubtype "Collapse (Industrial)" ;
+    hazard:emdatCode "tec-ind-col-col" ;
+    hazard:emdatCount 181 .
+
+#### Explosion (Industrial)
+hazard:ExplosionIndustrial
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Explosion (Industrial)" ;
+    hazard:emdatType "Explosion (Industrial)" ;
+    hazard:emdatSubtype "Explosion (Industrial)" ;
+    hazard:emdatCode "tec-ind-exp-exp" ;
+    hazard:emdatCount 778 .
+
+#### Fire (Industrial)
+hazard:FireIndustrial
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Fire (Industrial)" ;
+    hazard:emdatType "Fire (Industrial)" ;
+    hazard:emdatSubtype "Fire (Industrial)" ;
+    hazard:emdatCode "tec-ind-fir-fir" ;
+    hazard:emdatCount 219 .
+
+#### Gas leak
+hazard:GasLeak
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Gas Leak" ;
+    hazard:emdatType "Gas leak" ;
+    hazard:emdatSubtype "Gas leak" ;
+    hazard:emdatCode "tec-ind-gas-gas" ;
+    hazard:emdatCount 61 .
+
+#### Industrial accident (General)
+hazard:IndustrialAccidentGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Industrial Accident (General)" ;
+    hazard:emdatType "Industrial accident (General)" ;
+    hazard:emdatSubtype "Industrial accident (General)" ;
+    hazard:emdatCode "tec-ind-ind-ind" ;
+    hazard:emdatCount 124 .
+
+#### Oil spill
+hazard:OilSpill
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Oil Spill" ;
+    hazard:emdatType "Oil spill" ;
+    hazard:emdatSubtype "Oil spill" ;
+    hazard:emdatCode "tec-ind-oil-oil" ;
+    hazard:emdatCount 8 .
+
+#### Poisoning
+hazard:Poisoning
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Poisoning" ;
+    hazard:emdatType "Poisoning" ;
+    hazard:emdatSubtype "Poisoning" ;
+    hazard:emdatCode "tec-ind-poi-poi" ;
+    hazard:emdatCount 76 .
+
+#### Radiation
+hazard:Radiation
+    a owl:Class ;
+    rdfs:subClassOf hazard:IndustrialAccident ;
+    rdfs:label "Radiation (Industrial)" ;
+    hazard:emdatType "Radiation" ;
+    hazard:emdatSubtype "Radiation" ;
+    hazard:emdatCode "tec-ind-rad-rad" ;
+    hazard:emdatCount 9 .
+
+### Miscellaneous accident
+hazard:MiscAccident
+    a owl:Class ;
+    rdfs:subClassOf hazard:Technological ;
+    rdfs:label "Miscellaneous Accident" ;
+    hazard:emdatGroup "Technological" ;
+    hazard:emdatSubgroup "Miscellaneous accident" .
+
+#### Collapse (Miscellaneous)
+hazard:CollapseMisc
+    a owl:Class ;
+    rdfs:subClassOf hazard:MiscAccident ;
+    rdfs:label "Collapse (Miscellaneous)" ;
+    hazard:emdatType "Collapse (Miscellaneous)" ;
+    hazard:emdatSubtype "Collapse (Miscellaneous)" ;
+    hazard:emdatCode "tec-mis-col-col" ;
+    hazard:emdatCount 305 .
+
+#### Explosion (Miscellaneous)
+hazard:ExplosionMisc
+    a owl:Class ;
+    rdfs:subClassOf hazard:MiscAccident ;
+    rdfs:label "Explosion (Miscellaneous)" ;
+    hazard:emdatType "Explosion (Miscellaneous)" ;
+    hazard:emdatSubtype "Explosion (Miscellaneous)" ;
+    hazard:emdatCode "tec-mis-exp-exp" ;
+    hazard:emdatCount 220 .
+
+#### Fire (Miscellaneous)
+hazard:FireMisc
+    a owl:Class ;
+    rdfs:subClassOf hazard:MiscAccident ;
+    rdfs:label "Fire (Miscellaneous)" ;
+    hazard:emdatType "Fire (Miscellaneous)" ;
+    hazard:emdatSubtype "Fire (Miscellaneous)" ;
+    hazard:emdatCode "tec-mis-fir-fir" ;
+    hazard:emdatCount 788 .
+
+#### Miscellaneous accident (General)
+hazard:MiscAccidentGeneral
+    a owl:Class ;
+    rdfs:subClassOf hazard:MiscAccident ;
+    rdfs:label "Miscellaneous Accident (General)" ;
+    hazard:emdatType "Miscellaneous accident (General)" ;
+    hazard:emdatSubtype "Miscellaneous accident (General)" ;
+    hazard:emdatCode "tec-mis-mis-mis" ;
+    hazard:emdatCount 275 .
+
+### Transport
+hazard:Transport
+    a owl:Class ;
+    rdfs:subClassOf hazard:Technological ;
+    rdfs:label "Transport Accident" ;
+    hazard:emdatGroup "Technological" ;
+    hazard:emdatSubgroup "Transport" .
+
+#### Air
+hazard:AirTransport
+    a owl:Class ;
+    rdfs:subClassOf hazard:Transport ;
+    rdfs:label "Air Transport Accident" ;
+    hazard:emdatType "Air" ;
+    hazard:emdatSubtype "Air" ;
+    hazard:emdatCode "tec-tra-air-air" ;
+    hazard:emdatCount 1089 .
+
+#### Rail
+hazard:RailTransport
+    a owl:Class ;
+    rdfs:subClassOf hazard:Transport ;
+    rdfs:label "Rail Transport Accident" ;
+    hazard:emdatType "Rail" ;
+    hazard:emdatSubtype "Rail" ;
+    hazard:emdatCode "tec-tra-rai-rai" ;
+    hazard:emdatCount 645 .
+
+#### Road
+hazard:RoadTransport
+    a owl:Class ;
+    rdfs:subClassOf hazard:Transport ;
+    rdfs:label "Road Transport Accident" ;
+    hazard:emdatType "Road" ;
+    hazard:emdatSubtype "Road" ;
+    hazard:emdatCode "tec-tra-roa-roa" ;
+    hazard:emdatCount 2857 .
+
+#### Water
+hazard:WaterTransport
+    a owl:Class ;
+    rdfs:subClassOf hazard:Transport ;
+    rdfs:label "Water Transport Accident" ;
+    hazard:emdatType "Water" ;
+    hazard:emdatSubtype "Water" ;
+    hazard:emdatCode "tec-tra-wat-wat" ;
+    hazard:emdatCount 1624 .
+
+###############################################################################
+# End of refined hazard.owl
+###############################################################################
