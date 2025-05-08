@@ -1,8 +1,8 @@
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 
-CLIENT_ID = "edc00d-7ecb-4baf-8e3bbb56764"
-CLIENT_SECRET = "9OgD9zMKQtWrdfdfdfdIgFTKBoyiuEI"
+CLIENT_ID = "<your_client_id>"
+CLIENT_SECRET = "<your_client_secret>"
 
 def get_sentinelhub_token(client_id=CLIENT_ID, client_secret=CLIENT_SECRET):
     try:
