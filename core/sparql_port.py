@@ -41,7 +41,7 @@ if graph is None:
     local_graph = Graph()
     try:
         # Adjust this fallback file path if needed. Assuming TTL format for fallback.
-        local_graph.parse("file:///C:/Users/grujd/PycharmProjects/JSTARS_2025-Version1/.venv/data/api_semantics_full_merged.ttl", format="turtle")
+        local_graph.parse("file:///<your_home_directory>/data/api_semantics_full_merged.ttl", format="turtle")
         graph = local_graph
         st.session_state["semantic_graph"] = graph
         st.write(f"✅ Fallback loaded graph with {len(graph)} triples.")
