@@ -12,8 +12,8 @@ st.set_page_config(page_title="API SentinelHub Semantic Connector", layout="wide
 st.title("🛰️ API SentinelHub Semantic Connector")
 
 # ---- Automatically retrieve token using environment or inline credentials
-client_id = os.getenv("SENTINELHUB_CLIENT_ID", "edc4e00d-7ecb-4baf-8e33-03e90abbb504")
-client_secret = os.getenv("SENTINELHUB_CLIENT_SECRET", "9OgD9zMKQtWrIw62vDCyngFTKBoyiuEI")
+client_id = os.getenv("SENTINELHUB_CLIENT_ID", "<your_client_id>")
+client_secret = os.getenv("SENTINELHUB_CLIENT_SECRET", "<your_client_secret>")
 
 if not client_id or not client_secret:
     st.error("❌ SentinelHub credentials not set. Please define them in code or via environment.")
