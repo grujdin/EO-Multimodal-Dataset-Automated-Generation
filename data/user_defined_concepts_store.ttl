@@ -1,0 +1,5 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.org/disaster#Tentative_1744058627> a <http://example.org/disaster#TentativeConcept> ;
+    rdfs:label "wildfire" .
+

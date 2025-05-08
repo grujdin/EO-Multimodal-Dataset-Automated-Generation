@@ -1,0 +1,2350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:api="http://example.org/api#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://sws.geonames.org/8505033">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Serbia and Montenegro</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.type.id</api:name>
+    <skos:note xml:lang="en">Id for the disaster type of the associated disaster.</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Type Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster_type.code">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster_type.code</api:name>
+    <skos:note xml:lang="en">GLIDE hazard code for disaster type.</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster_Type Code</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.id</api:name>
+    <skos:note xml:lang="en">Id for source used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Source Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4030699">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Pitcairn</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>shortname</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3351879">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Angola</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/49518">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Rwanda</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/7609695">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Sint Maarten</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.type.primary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.type.primary</api:name>
+    <skos:note xml:lang="en">Whether this is the primary disaster type for the associated disaster.</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Type Primary</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#sources">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Sources Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#content_type"/>
+    <api:hasField rdf:resource="http://example.org/api#country"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#date"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#disclaimer"/>
+    <api:hasField rdf:resource="http://example.org/api#fts_id"/>
+    <api:hasField rdf:resource="http://example.org/api#homepage"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#logo"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.filename"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.filesize"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.height"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.id"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.mimetype"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.url"/>
+    <api:hasField rdf:resource="http://example.org/api#logo.width"/>
+    <api:hasField rdf:resource="http://example.org/api#longname"/>
+    <api:hasField rdf:resource="http://example.org/api#name"/>
+    <api:hasField rdf:resource="http://example.org/api#shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#spanish_name"/>
+    <api:hasField rdf:resource="http://example.org/api#status"/>
+    <api:hasField rdf:resource="http://example.org/api#type"/>
+    <api:hasField rdf:resource="http://example.org/api#type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+    <api:hasField rdf:resource="http://example.org/api#url_alias"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#reports">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Reports Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#body"/>
+    <api:hasField rdf:resource="http://example.org/api#body-html"/>
+    <api:hasField rdf:resource="http://example.org/api#country"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#date"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#date.original"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.glide"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.id"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.name"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.type"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.type.code"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster.type.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster_type"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster_type.code"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster_type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#disaster_type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#feature"/>
+    <api:hasField rdf:resource="http://example.org/api#feature.id"/>
+    <api:hasField rdf:resource="http://example.org/api#feature.name"/>
+    <api:hasField rdf:resource="http://example.org/api#file"/>
+    <api:hasField rdf:resource="http://example.org/api#file.description"/>
+    <api:hasField rdf:resource="http://example.org/api#file.filename"/>
+    <api:hasField rdf:resource="http://example.org/api#file.id"/>
+    <api:hasField rdf:resource="http://example.org/api#file.mimetype"/>
+    <api:hasField rdf:resource="http://example.org/api#file.preview"/>
+    <api:hasField rdf:resource="http://example.org/api#file.preview.url"/>
+    <api:hasField rdf:resource="http://example.org/api#file.preview.url-large"/>
+    <api:hasField rdf:resource="http://example.org/api#file.preview.url-small"/>
+    <api:hasField rdf:resource="http://example.org/api#file.preview.url-thumb"/>
+    <api:hasField rdf:resource="http://example.org/api#file.url"/>
+    <api:hasField rdf:resource="http://example.org/api#format"/>
+    <api:hasField rdf:resource="http://example.org/api#format.id"/>
+    <api:hasField rdf:resource="http://example.org/api#format.name"/>
+    <api:hasField rdf:resource="http://example.org/api#headline"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.featured"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image.caption"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image.copyright"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image.filename"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image.id"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image.mimetype"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.image.url"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.summary"/>
+    <api:hasField rdf:resource="http://example.org/api#headline.title"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#image"/>
+    <api:hasField rdf:resource="http://example.org/api#image.caption"/>
+    <api:hasField rdf:resource="http://example.org/api#image.copyright"/>
+    <api:hasField rdf:resource="http://example.org/api#image.filename"/>
+    <api:hasField rdf:resource="http://example.org/api#image.id"/>
+    <api:hasField rdf:resource="http://example.org/api#image.mimetype"/>
+    <api:hasField rdf:resource="http://example.org/api#image.url"/>
+    <api:hasField rdf:resource="http://example.org/api#image.url-large"/>
+    <api:hasField rdf:resource="http://example.org/api#image.url-small"/>
+    <api:hasField rdf:resource="http://example.org/api#image.url-thumb"/>
+    <api:hasField rdf:resource="http://example.org/api#language"/>
+    <api:hasField rdf:resource="http://example.org/api#language.code"/>
+    <api:hasField rdf:resource="http://example.org/api#language.id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.name"/>
+    <api:hasField rdf:resource="http://example.org/api#ocha_product"/>
+    <api:hasField rdf:resource="http://example.org/api#ocha_product.id"/>
+    <api:hasField rdf:resource="http://example.org/api#ocha_product.name"/>
+    <api:hasField rdf:resource="http://example.org/api#origin"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#source"/>
+    <api:hasField rdf:resource="http://example.org/api#source.disclaimer"/>
+    <api:hasField rdf:resource="http://example.org/api#source.homepage"/>
+    <api:hasField rdf:resource="http://example.org/api#source.id"/>
+    <api:hasField rdf:resource="http://example.org/api#source.longname"/>
+    <api:hasField rdf:resource="http://example.org/api#source.name"/>
+    <api:hasField rdf:resource="http://example.org/api#source.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#source.spanish_name"/>
+    <api:hasField rdf:resource="http://example.org/api#source.type"/>
+    <api:hasField rdf:resource="http://example.org/api#source.type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#source.type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#status"/>
+    <api:hasField rdf:resource="http://example.org/api#theme"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.id"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.name"/>
+    <api:hasField rdf:resource="http://example.org/api#title"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+    <api:hasField rdf:resource="http://example.org/api#url_alias"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date</api:name>
+    <skos:note xml:lang="en">Shortcut for date fields - defaults to date.created</skos:note>
+    <skos:prefLabel xml:lang="en">Date</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.event">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.event</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disasters">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Disasters Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#country"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#current"/>
+    <api:hasField rdf:resource="http://example.org/api#date"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#date.event"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#featured"/>
+    <api:hasField rdf:resource="http://example.org/api#glide"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_type"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#profile"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.overview"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.overview-html"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.title"/>
+    <api:hasField rdf:resource="http://example.org/api#related_glide"/>
+    <api:hasField rdf:resource="http://example.org/api#status"/>
+    <api:hasField rdf:resource="http://example.org/api#type"/>
+    <api:hasField rdf:resource="http://example.org/api#type.code"/>
+    <api:hasField rdf:resource="http://example.org/api#type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#type.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+    <api:hasField rdf:resource="http://example.org/api#url_alias"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/285570">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Kuwait</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/272103">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Lebanon</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/174982">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Armenia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language.name</api:name>
+    <skos:note xml:lang="en">Language the report is written in - Link for values.</skos:note>
+    <skos:prefLabel xml:lang="en">Language Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image.url</api:name>
+    <skos:note xml:lang="en">URL of the headline image</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image Url</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.type.id</api:name>
+    <skos:note xml:lang="en">Id for source type used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Source Type Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2081918">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Micronesia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/239880">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Central African Republic</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster_type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster_type.id</api:name>
+    <skos:note xml:lang="en">Id for disaster type used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster_Type Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.archive">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.archive</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image.mimetype">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image.mimetype</api:name>
+    <skos:note xml:lang="en">MIME type of the headline image</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image Mimetype</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.filesize">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.filesize</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#homepage">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>homepage</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3996063">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mexico</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.height">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.height</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.archive.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.archive.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1562822">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Vietnam</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source</api:name>
+    <skos:note xml:lang="en">Shortcut for sources - defaults to source.name</skos:note>
+    <skos:prefLabel xml:lang="en">Source</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.type</api:name>
+    <skos:note xml:lang="en">Shortcut for source type - defaults to source.type.name</skos:note>
+    <skos:prefLabel xml:lang="en">Source Type</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.id</api:name>
+    <skos:note xml:lang="en">Id for country used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Country Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country</api:name>
+    <skos:note xml:lang="en">Shortcut for primary country - defaults to primary_country.name</skos:note>
+    <skos:prefLabel xml:lang="en">Primary_Country</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1282028">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Maldives</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/5880801">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">American Samoa</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2245662">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Senegal</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2750405">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">The Netherlands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/934292">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mauritius</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#feature.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>feature.name</api:name>
+    <skos:note xml:lang="en">Link for values.</skos:note>
+    <skos:prefLabel xml:lang="en">Feature Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1282588">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">British Indian Ocean Territory</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#countries">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Countries Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#current"/>
+    <api:hasField rdf:resource="http://example.org/api#date"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#featured"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#name"/>
+    <api:hasField rdf:resource="http://example.org/api#profile"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.active.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.archive.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.appeals_response_plans.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.active.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.archive.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.key_content.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.overview"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.overview-html"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active.image"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active.title"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.active.url"/>
+    <api:hasField rdf:resource="http://example.org/api#profile.useful_links.title"/>
+    <api:hasField rdf:resource="http://example.org/api#shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#status"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+    <api:hasField rdf:resource="http://example.org/api#url_alias"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#related_glide">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>related_glide</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2420477">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guinea</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2921044">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Germany</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4031074">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Tokelau</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.changed">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.changed</api:name>
+    <skos:note xml:lang="en">Date entry modified on ReliefWeb (ISO 8601)</skos:note>
+    <skos:prefLabel xml:lang="en">Date Changed</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2410758">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Sao Tome and Principe</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/935317">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Reunion</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1819730">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Hong Kong</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/933860">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Botswana</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.name</api:name>
+    <skos:note xml:lang="en">Name assigned to the disaster based on the ReliefWeb disaster naming convention</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/149590">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Tanzania</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.filename">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.filename</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1512440">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Uzbekistan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/390903">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Greece</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.primary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.primary</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.preview.url-thumb">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.preview.url-thumb</api:name>
+    <skos:note xml:lang="en">Link to a thumbnail preview image with a maximum width of 220px and a maximum height of 100px</skos:note>
+    <skos:prefLabel xml:lang="en">File Preview Url-Thumb</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3381670">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">French Guiana</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>url</api:name>
+    <skos:note xml:lang="en">Canonical url</skos:note>
+    <skos:prefLabel xml:lang="en">Url</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.preview.url-small">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.preview.url-small</api:name>
+    <skos:note xml:lang="en">Link to a small preview image with a width of 200px</skos:note>
+    <skos:prefLabel xml:lang="en">File Preview Url-Small</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.name</api:name>
+    <skos:altLabel xml:lang="fr">Nom du pays</skos:altLabel>
+    <skos:altLabel xml:lang="latn">Nomen Terrae</skos:altLabel>
+    <skos:note xml:lang="en">Name of country in English</skos:note>
+    <skos:prefLabel xml:lang="en">Country Name</skos:prefLabel>
+    <skos:related rdf:resource="http://sws.geonames.org/1814991"/>
+    <skos:related rdf:resource="http://sws.geonames.org/3017382"/>
+    <skos:related rdf:resource="http://sws.geonames.org/3723988"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#body">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>body</api:name>
+    <skos:altLabel xml:lang="fr">Corps du texte</skos:altLabel>
+    <skos:altLabel xml:lang="latn">Corpus</skos:altLabel>
+    <skos:note xml:lang="en">Main text in Markdown format</skos:note>
+    <skos:prefLabel xml:lang="en">Body</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2186224">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">New Zealand</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3057568">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Slovakia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.caption">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.caption</api:name>
+    <skos:note xml:lang="en">Caption attached to the image</skos:note>
+    <skos:prefLabel xml:lang="en">Image Caption</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2080185">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Marshall Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1210997">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bangladesh</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.overview">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.overview</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#format">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>format</api:name>
+    <skos:note xml:lang="en">Shortcut for content format - defaults to format.name</skos:note>
+    <skos:prefLabel xml:lang="en">Format</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.iso3</api:name>
+    <skos:note xml:lang="en">ISO 3166-1 alpha-3 code</skos:note>
+    <skos:prefLabel xml:lang="en">Primary_Country Iso3</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3164670">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Vatican</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3489940">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Jamaica</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/607072">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Svalbard and Jan Mayen</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3378535">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guyana</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3703430">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Panama</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2215636">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Libya</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1861060">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Japan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1559582">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Palau</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3474414">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Falkland Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.shortname</api:name>
+    <skos:note xml:lang="en">Short name of country where applicable, for example 'Syria' for 'Syrian Arab Republic'</skos:note>
+    <skos:prefLabel xml:lang="en">Primary_Country Shortname</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3932488">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Peru</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.mimetype">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.mimetype</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#content_type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>content_type</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1036973">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mozambique</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/203312">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Democratic Republic of the Congo</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/953987">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">South Africa</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.original">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.original</api:name>
+    <skos:note xml:lang="en">Date entry first published by original source (ISO 8601)</skos:note>
+    <skos:prefLabel xml:lang="en">Date Original</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/587116">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Azerbaijan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2134431">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Vanuatu</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/927384">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Malawi</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.iso3</api:name>
+    <skos:note xml:lang="en">ISO 3166-1 alpha-3 code</skos:note>
+    <skos:prefLabel xml:lang="en">Country Iso3</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language.code">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language.code</api:name>
+    <skos:altLabel xml:lang="fr">Code de langue</skos:altLabel>
+    <skos:altLabel xml:lang="latn">Codex Linguarum</skos:altLabel>
+    <skos:note xml:lang="en">ISO 639-1 code of the language the entry is written in</skos:note>
+    <skos:prefLabel xml:lang="en">Language Code</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2309096">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Equatorial Guinea</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1527747">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Kyrgyzstan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3374084">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Barbados</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.type.name</api:name>
+    <skos:note xml:lang="en">Link for values</skos:note>
+    <skos:prefLabel xml:lang="en">Source Type Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.useful_links">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.useful_links</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3579143">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guadeloupe</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3617476">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Nicaragua</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.useful_links.active.image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.useful_links.active.image</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#origin">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>origin</api:name>
+    <skos:note xml:lang="en">Url of original report when it was added to ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Origin</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/458258">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Latvia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/661882">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Aland Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2328926">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Nigeria</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4034749">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Wallis and Futuna</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.active.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.active.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3923057">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bolivia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3474415">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">South Georgia and the South Sandwich Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3425505">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Greenland</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>title</api:name>
+    <skos:altLabel xml:lang="fr">Titre</skos:altLabel>
+    <skos:altLabel xml:lang="latn">Titulus</skos:altLabel>
+    <skos:note xml:lang="en">Title of report</skos:note>
+    <skos:prefLabel xml:lang="en">Title</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/337996">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Ethiopia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2372248">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guinea-Bissau</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/878675">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Zimbabwe</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/163843">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Syria</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/732800">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bulgaria</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#theme.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>theme.name</api:name>
+    <skos:note xml:lang="en">Link for values</skos:note>
+    <skos:prefLabel xml:lang="en">Theme Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/921929">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Comoros</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3277605">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bosnia and Herzegovina</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image</api:name>
+    <skos:note xml:lang="en">Shortcut for headline image - defaults to headline.image.id</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3077311">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Czechia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.type.code">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.type.code</api:name>
+    <skos:note xml:lang="en">Code for the disaster type of the associated disaster.</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Type Code</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.type</api:name>
+    <skos:note xml:lang="en">Disaster type of the associated disaster. Note this may be different to the `disaster_type` of a report. Defaults to disaster.type.name</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Type</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/895949">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Zambia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1605651">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Thailand</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3595528">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guatemala</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.url</api:name>
+    <skos:note xml:lang="en">Link to file attachment</skos:note>
+    <skos:prefLabel xml:lang="en">File Url</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3577279">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Aruba</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2993457">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Monaco</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.shortname</api:name>
+    <skos:note xml:lang="en">Short name of country where applicable, for example 'Syria' for 'Syrian Arab Republic'</skos:note>
+    <skos:prefLabel xml:lang="en">Country Shortname</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3042225">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Isle of Man</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/290557">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">United Arab Emirates</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2661886">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Sweden</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1269750">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">India</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3608932">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Honduras</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.shortname</api:name>
+    <skos:note xml:lang="en">Short name of the source, typically an acronym e.g. UNICEF</skos:note>
+    <skos:prefLabel xml:lang="en">Source Shortname</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1220409">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Tajikistan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.name</api:name>
+    <skos:note xml:lang="en">Link for more information</skos:note>
+    <skos:prefLabel xml:lang="en">Primary_Country Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2542007">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Morocco</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/7626844">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bonaire, Saint Eustatius and Saba </skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3573591">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Trinidad and Tobago</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3895114">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Chile</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.url-large">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.url-large</api:name>
+    <skos:note xml:lang="en">Link to a large image with a width of 680px</skos:note>
+    <skos:prefLabel xml:lang="en">Image Url-Large</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/69543">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Yemen</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image.id</api:name>
+    <skos:note xml:lang="en">Unique id of headline image used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3424932">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Pierre and Miquelon</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/690791">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Ukraine</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/934841">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Eswatini</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/719819">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Hungary</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.filename">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.filename</api:name>
+    <skos:note xml:lang="en">File name of the image</skos:note>
+    <skos:prefLabel xml:lang="en">Image Filename</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>id</api:name>
+    <skos:note xml:lang="en">Unique id of report used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/7626836">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Curacao</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.id</api:name>
+    <skos:note xml:lang="en">Unique id of image used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Image Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2264397">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Portugal</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#ocha_product.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>ocha_product.id</api:name>
+    <skos:note xml:lang="en">Id of OCHA product used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Ocha_Product Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#spanish_name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>spanish_name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3194884">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Montenegro</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo.width">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo.width</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/718075">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">North Macedonia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4030945">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Kiribati</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1655842">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Laos</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1327865">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Myanmar</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3576916">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Turks and Caicos Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#url_alias">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>url_alias</api:name>
+    <skos:note xml:lang="en">Friendly' url of the report</skos:note>
+    <skos:prefLabel xml:lang="en">Url_Alias</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.url-small">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.url-small</api:name>
+    <skos:note xml:lang="en">Link to a small image with a width of 200px</skos:note>
+    <skos:prefLabel xml:lang="en">Image Url-Small</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3578476">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Barthelemy</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/289688">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Qatar</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4796775">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">U.S. Virgin Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#status">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>status</api:name>
+    <skos:prefLabel xml:lang="en">Status</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.active">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.active</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.active.image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.active.image</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.url-thumb">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.url-thumb</api:name>
+    <skos:note xml:lang="en">Link to a thumbnail image with a maximum width of 220px and a maximum height of 100px</skos:note>
+    <skos:prefLabel xml:lang="en">Image Url-Thumb</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.mimetype">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.mimetype</api:name>
+    <skos:note xml:lang="en">MIME type of file attachment</skos:note>
+    <skos:prefLabel xml:lang="en">File Mimetype</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3578097">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Montserrat</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4043988">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guam</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3041565">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Andorra</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3580718">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cayman Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2440476">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Niger</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4032283">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Tonga</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/660013">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Finland</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#theme.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>theme.id</api:name>
+    <skos:note xml:lang="en">Id of theme used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Theme Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4030656">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">French Polynesia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2395170">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Benin</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/146669">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cyprus</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2260494">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Republic of the Congo</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image.caption">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image.caption</api:name>
+    <skos:note xml:lang="en">Caption attached to the headline image</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image Caption</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/433561">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Burundi</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2110425">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Nauru</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2078138">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Christmas Island</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2103350">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Solomon Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3575174">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Kitts and Nevis</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2461445">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Western Sahara</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3575830">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Dominica</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/294640">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Israel</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/597427">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Lithuania</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1966436">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Timor Leste</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3439705">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Uruguay</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.disclaimer">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.disclaimer</api:name>
+    <skos:note xml:lang="en">Disclaimer information for the source</skos:note>
+    <skos:prefLabel xml:lang="en">Source Disclaimer</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image</api:name>
+    <skos:note xml:lang="en">Image shortcut - defaults to image.id</skos:note>
+    <skos:prefLabel xml:lang="en">Image</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.id</api:name>
+    <skos:note xml:lang="en">Id of file attachment used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">File Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/831053">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Kosovo</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3576396">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Antigua and Barbuda</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/366755">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Sudan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.summary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.summary</api:name>
+    <skos:note xml:lang="en">Summary of body, if report is selected as headline. Typically 180-190 characters long</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Summary</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.preview.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.preview.url</api:name>
+    <skos:note xml:lang="en">Link to preview image of file attachment</skos:note>
+    <skos:prefLabel xml:lang="en">File Preview Url</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2963597">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Ireland</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#format.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>format.name</api:name>
+    <skos:note xml:lang="en">Link for values</skos:note>
+    <skos:prefLabel xml:lang="en">Format Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1694008">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Philippines</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.archive.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.archive.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.id</api:name>
+    <skos:note xml:lang="en">Id of primary country used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Primary_Country Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3144096">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Norway</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.overview-html">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.overview-html</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/6697173">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Antarctica</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.primary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.primary</api:name>
+    <skos:note xml:lang="en">Flag to indicate this is the primary country</skos:note>
+    <skos:prefLabel xml:lang="en">Country Primary</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disclaimer">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disclaimer</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3042362">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Guernsey</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/192950">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Kenya</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/798549">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Romania</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#feature">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>feature</api:name>
+    <skos:note xml:lang="en">defaults to feature.name</skos:note>
+    <skos:prefLabel xml:lang="en">Feature</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.id</api:name>
+    <skos:note xml:lang="en">Id for related disaster used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/6251999">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Canada</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2782113">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Austria</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2029969">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mongolia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline</api:name>
+    <skos:note xml:lang="en">Shortcut for headline - defaults to headline.title</skos:note>
+    <skos:prefLabel xml:lang="en">Headline</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.active.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.active.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2361809">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Burkina Faso</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2205218">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Fiji</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2635167">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">United Kingdom</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2378080">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mauritania</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/453733">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Estonia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#theme">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>theme</api:name>
+    <skos:note xml:lang="en">Shortcut for theme - defaults to theme.name</skos:note>
+    <skos:prefLabel xml:lang="en">Theme</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2510769">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Spain</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file</api:name>
+    <skos:note xml:lang="en">File attachment shortcut - defaults to file.id</skos:note>
+    <skos:prefLabel xml:lang="en">File</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#ocha_product.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>ocha_product.name</api:name>
+    <skos:note xml:lang="en">Link for values</skos:note>
+    <skos:prefLabel xml:lang="en">Ocha_Product Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster_type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster_type</api:name>
+    <skos:note xml:lang="en">Shortcut for disaster type - defaults to disaster_type.name</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster_Type</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2413451">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Gambia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.created">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.created</api:name>
+    <skos:note xml:lang="en">Date entry created on ReliefWeb (ISO 8601)</skos:note>
+    <skos:prefLabel xml:lang="en">Date Created</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#body-html">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>body-html</api:name>
+    <skos:note xml:lang="en">Main text in HTML format</skos:note>
+    <skos:prefLabel xml:lang="en">Body-Html</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.name</api:name>
+    <skos:note xml:lang="en">Common name of source</skos:note>
+    <skos:prefLabel xml:lang="en">Source Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1668284">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Taiwan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/290291">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bahrain</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3190538">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Slovenia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.archive.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.archive.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.active.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.active.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2287781">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Ivory Coast</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/130758">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Iran</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1643084">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Indonesia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/932692">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Lesotho</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.description">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.description</api:name>
+    <skos:note xml:lang="en">Description of file attachment</skos:note>
+    <skos:prefLabel xml:lang="en">File Description</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4566966">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Puerto Rico</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2629691">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Iceland</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1149361">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Afghanistan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/8505032">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Netherlands Antilles</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3585968">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">El Salvador</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1835841">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">South Korea</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/5854968">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">United States Minor Outlying Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3469034">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Brazil</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1227603">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Sri Lanka</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.useful_links.active">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.useful_links.active</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2464461">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Tunisia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1252634">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bhutan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/51537">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Somalia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1547376">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cocos Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/357994">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Egypt</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.copyright">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.copyright</api:name>
+    <skos:note xml:lang="en">Copyright attached to the image</skos:note>
+    <skos:prefLabel xml:lang="en">Image Copyright</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.archive.image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.archive.image</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/7909807">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">South Sudan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.url</api:name>
+    <skos:note xml:lang="en">Link to the original image</skos:note>
+    <skos:prefLabel xml:lang="en">Image Url</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2077456">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Australia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2622320">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Faroe Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2088628">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Papua New Guinea</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#description">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>description</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#image.mimetype">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>image.mimetype</api:name>
+    <skos:note xml:lang="en">MIME type of the image</skos:note>
+    <skos:prefLabel xml:lang="en">Image Mimetype</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/6254930">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Palestinian Territory</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2453866">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mali</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3370751">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Helena</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1218197">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Turkmenistan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.title</api:name>
+    <skos:note xml:lang="en">Headline text, if report is selected as headline. Typically 100-120 characters long</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Title</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster</api:name>
+    <skos:note xml:lang="en">Shortcut for related disaster - defaults to disaster.name</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.featured">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.featured</api:name>
+    <skos:prefLabel xml:lang="en">Headline Featured</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_type.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.longname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.longname</api:name>
+    <skos:note xml:lang="en">Official name of the source if different from source.name</skos:note>
+    <skos:prefLabel xml:lang="en">Source Longname</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3625428">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Venezuela</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4034894">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Samoa</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2275384">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Liberia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language</api:name>
+    <skos:note xml:lang="en">Shortcut for language - defaults to language.name</skos:note>
+    <skos:prefLabel xml:lang="en">Language</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3865483">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Argentina</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.filename">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.filename</api:name>
+    <skos:note xml:lang="en">File name of file attachment</skos:note>
+    <skos:prefLabel xml:lang="en">File Filename</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2139685">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">New Caledonia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3042058">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Liechtenstein</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2802361">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Belgium</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3374766">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cabo Verde</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2589581">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Algeria</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/248816">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Jordan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3686110">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Colombia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/614540">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Georgia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/630336">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Belarus</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image.copyright">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image.copyright</api:name>
+    <skos:note xml:lang="en">Copyright attached to the headline image</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image Copyright</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/99237">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Iraq</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3577718">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">British Virgin Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.active.image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.active.image</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2403846">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Sierra Leone</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#feature.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>feature.id</api:name>
+    <skos:note xml:lang="en">Id for feature used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Feature Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.homepage">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.homepage</api:name>
+    <skos:note xml:lang="en">URL of the source's primary website</skos:note>
+    <skos:prefLabel xml:lang="en">Source Homepage</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster_type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster_type.name</api:name>
+    <skos:note xml:lang="en">Link for values</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster_Type Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2623032">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Denmark</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1168579">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Pakistan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2658434">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Switzerland</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3576468">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Lucia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.useful_links.active.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.useful_links.active.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.code">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.code</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3578421">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Martin</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3624060">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Costa Rica</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1814991">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">China</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1821275">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Macao</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language.id</api:name>
+    <skos:note xml:lang="en">Id for language of report used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Language Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3508796">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Dominican Republic</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.spanish_name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.spanish_name</api:name>
+    <skos:note xml:lang="en">Spanish name of the source</skos:note>
+    <skos:prefLabel xml:lang="en">Source Spanish_Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2363686">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Togo</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3572887">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bahamas</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.active.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.active.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>iso3</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1880251">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Singapore</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.type.name</api:name>
+    <skos:note xml:lang="en">Link for values</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Type Name</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2562770">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Malta</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3168068">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">San Marino</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2017370">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Russia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3371123">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bouvet Island</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3723988">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Haiti</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2110297">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Tuvalu</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3042142">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Jersey</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#ocha_product">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>ocha_product</api:name>
+    <skos:note xml:lang="en">Shortcut for OCHA product - defaults to ocha_product.name</skos:note>
+    <skos:prefLabel xml:lang="en">Ocha_Product</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_type</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3577815">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saint Vincent and the Grenadines</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2411586">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Gibraltar</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.useful_links.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.useful_links.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2400553">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Gabon</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3580239">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Grenada</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/783754">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Albania</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3355338">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Namibia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#longname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>longname</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1062947">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Madagascar</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3573511">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Anguilla</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.active">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.active</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_type.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1547314">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Heard Island and McDonald Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4041468">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Northern Mariana Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content.archive.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content.archive.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1831722">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cambodia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#description-html">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>description-html</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1522867">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Kazakhstan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3570311">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Martinique</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/6290252">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Serbia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disaster.glide">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>disaster.glide</api:name>
+    <skos:note xml:lang="en">Global IDEntifier number (GLIDE) of the disaster</skos:note>
+    <skos:prefLabel xml:lang="en">Disaster Glide</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.preview">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.preview</api:name>
+    <skos:note xml:lang="en">Shortcut for preview image of file attachment - defaults to file.preview.url</skos:note>
+    <skos:prefLabel xml:lang="en">File Preview</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1733045">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Malaysia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2233387">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cameroon</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.preview.url-large">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.preview.url-large</api:name>
+    <skos:note xml:lang="en">Link to a large preview image with a width of 680px</skos:note>
+    <skos:prefLabel xml:lang="en">File Preview Url-Large</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#featured">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>featured</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/6252001">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">United States</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/338010">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Eritrea</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.archive.image">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.archive.image</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.key_content">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.key_content</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1546748">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">French Southern Territories</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/798544">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Poland</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/241170">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Seychelles</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3573345">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Bermuda</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/countries/CountryScheme">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    <skos:prefLabel xml:lang="en">GeoNames Country List</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#headline.image.filename">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>headline.image.filename</api:name>
+    <skos:note xml:lang="en">File name of the headline image</skos:note>
+    <skos:prefLabel xml:lang="en">Headline Image Filename</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3437598">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Paraguay</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#format.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>format.id</api:name>
+    <skos:note xml:lang="en">Id of content format used by ReliefWeb</skos:note>
+    <skos:prefLabel xml:lang="en">Format Id</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1873107">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">North Korea</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3202326">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Croatia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/286963">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Oman</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/223816">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Djibouti</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3017382">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">France</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#logo">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>logo</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country</api:name>
+    <skos:note xml:lang="en">Shortcut for country - defaults to country.name</skos:note>
+    <skos:prefLabel xml:lang="en">Country</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2960313">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Luxembourg</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.useful_links.active.title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.useful_links.active.title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3582678">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Belize</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/102358">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Saudi Arabia</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2434508">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Chad</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#fts_id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>fts_id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1282988">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Nepal</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#glide">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>glide</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1899402">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cook Islands</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#current">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>current</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1024031">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Mayotte</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3382998">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Suriname</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2300660">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Ghana</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/226074">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Uganda</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/2155115">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Norfolk Island</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/298795">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Turkey</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label> Endpoint</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3175395">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Italy</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/1820814">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Brunei</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3562981">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Cuba</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/4036232">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Niue</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/3658394">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Ecuador</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#profile.appeals_response_plans.archive">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>profile.appeals_response_plans.archive</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://sws.geonames.org/617790">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="http://example.org/countries/CountryScheme"/>
+    <skos:prefLabel xml:lang="en">Moldova</skos:prefLabel>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,626 @@
+@prefix : <http://example.org/disaster#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Avalanche a :GDACSHazardType ;
+    rdfs:label "Avalanche" ;
+    :gdacsCode "AV" .
+
+:Cyclone a :GDACSHazardType ;
+    rdfs:label "Cyclone" ;
+    :gdacsCode "TC" .
+
+:Drought a :DisasterType ;
+    rdfs:label "Drought" ;
+    :glideCode "DR" ;
+    :reliefwebTypeId 4672 .
+
+:Earthquake a :DisasterType ;
+    rdfs:label "Earthquake" ;
+    :glideCode "EQ" ;
+    :relatedTheme :Health ;
+    :reliefwebTypeId 4628 ;
+    :typicallyAffects :Greece,
+        :USA .
+
+:EarthquakeGDACS a :GDACSHazardType ;
+    rdfs:label "Earthquake" ;
+    :gdacsCode "EQ" .
+
+:Epidemic a :DisasterType ;
+    rdfs:label "Epidemic" ;
+    :glideCode "EP" ;
+    :reliefwebTypeId 4642 .
+
+:Flood a :DisasterType ;
+    rdfs:label "Flood" ;
+    :glideCode "FL" ;
+    :reliefwebTypeId 4611 .
+
+:FloodGDACS a :GDACSHazardType ;
+    rdfs:label "Flood" ;
+    :gdacsCode "FL" .
+
+:Landslide a :GDACSHazardType ;
+    rdfs:label "Landslide" ;
+    :gdacsCode "LS" .
+
+:Mudslide a :GDACSHazardType ;
+    rdfs:label "Mudslide" ;
+    :gdacsCode "MS" .
+
+:StormSurge a :GDACSHazardType ;
+    rdfs:label "StormSurge" ;
+    :gdacsCode "SS" .
+
+:TropicalCyclone a :DisasterType ;
+    rdfs:label "Tropical Cyclone" ;
+    :glideCode "TC" ;
+    :reliefwebTypeId 4618 .
+
+:Tsunami a :GDACSHazardType ;
+    rdfs:label "Tsunami" ;
+    :gdacsCode "TS" .
+
+:Volcano a :DisasterType ;
+    rdfs:label "Volcano" ;
+    :glideCode "VO" ;
+    :reliefwebTypeId 4615 .
+
+:VolcanoGDACS a :GDACSHazardType ;
+    rdfs:label "Volcano" ;
+    :gdacsCode "VO" .
+
+:WildFire a :DisasterType ;
+    rdfs:label "Wild Fire" ;
+    :exampleQuery "query[value]=wildfire&filter[field]=country&filter[value][]=Portugal" ;
+    :glideCode "WF" ;
+    :relatedTheme :Health,
+        :WaterSanitationHygiene ;
+    :reliefwebTypeId 4648 ;
+    :typicallyAffects :Portugal,
+        :USA .
+
+:WildFireGDACS a :GDACSHazardType ;
+    rdfs:label "WildFire" ;
+    :gdacsCode "WF" .
+
+<http://www.example.org/hazard#AirTransport> a :DisasterType ;
+    rdfs:label "Air Transport Accident" ;
+    :glideCode "AI"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#Airburst> a :DisasterType ;
+    rdfs:label "Airburst" ;
+    :glideCode "AI"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#AnimalIncident> a :DisasterType ;
+    rdfs:label "Animal Incident" ;
+    :glideCode "AN"^^xsd:string ;
+    :reliefwebTypeId 4614 .
+
+<http://www.example.org/hazard#AshFall> a :DisasterType ;
+    rdfs:label "Ash Fall" ;
+    :glideCode "AS"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#AvalancheDry> a :DisasterType ;
+    rdfs:label "Avalanche (Dry)" ;
+    :glideCode "AV"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#AvalancheWet> a :DisasterType ;
+    rdfs:label "Avalanche (Wet)" ;
+    :glideCode "AV"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#BacterialDisease> a :DisasterType ;
+    rdfs:label "Bacterial Disease (Epidemic)" ;
+    :glideCode "BA"^^xsd:string ;
+    :reliefwebTypeId 4616 .
+
+<http://www.example.org/hazard#Biological> a :DisasterType ;
+    rdfs:label "Biological Hazard (Natural)" ;
+    :glideCode "BI"^^xsd:string ;
+    :reliefwebTypeId 4610 .
+
+<http://www.example.org/hazard#Blizzard> a :DisasterType ;
+    rdfs:label "Blizzard/Winter Storm" ;
+    :glideCode "BL"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#ChemicalSpill> a :DisasterType ;
+    rdfs:label "Chemical Spill" ;
+    :glideCode "CH"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#Climatological> a :DisasterType ;
+    rdfs:label "Climatological Hazard" ;
+    :glideCode "CL"^^xsd:string ;
+    :reliefwebTypeId 4614 .
+
+<http://www.example.org/hazard#CoastalFlood> a :DisasterType ;
+    rdfs:label "Coastal Flood" ;
+    :glideCode "CO"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#ColdWave> a :DisasterType ;
+    rdfs:label "Cold Wave" ;
+    :glideCode "CW"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#CollapseIndustrial> a :DisasterType ;
+    rdfs:label "Collapse (Industrial)" ;
+    :glideCode "CO"^^xsd:string ;
+    :reliefwebTypeId 4618 .
+
+<http://www.example.org/hazard#CollapseMisc> a :DisasterType ;
+    rdfs:label "Collapse (Miscellaneous)" ;
+    :glideCode "CO"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#Collision> a :DisasterType ;
+    rdfs:label "Collision (Asteroid/Meteorite)" ;
+    :glideCode "CO"^^xsd:string ;
+    :reliefwebTypeId 4609 .
+
+<http://www.example.org/hazard#Derecho> a :DisasterType ;
+    rdfs:label "Derecho" ;
+    :glideCode "DE"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#Drought> a :DisasterType ;
+    rdfs:label "Drought" ;
+    :glideCode "DR"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#Earthquake> a :DisasterType ;
+    rdfs:label "Earthquake" ;
+    :glideCode "EQ"^^xsd:string ;
+    :reliefwebTypeId 4610 .
+
+<http://www.example.org/hazard#EnergeticParticles> a :DisasterType ;
+    rdfs:label "Energetic Particles" ;
+    :glideCode "EN"^^xsd:string ;
+    :reliefwebTypeId 4618 .
+
+<http://www.example.org/hazard#Epidemic> a :DisasterType ;
+    rdfs:label "Epidemic" ;
+    :glideCode "EP"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#ExplosionIndustrial> a :DisasterType ;
+    rdfs:label "Explosion (Industrial)" ;
+    :glideCode "EX"^^xsd:string ;
+    :reliefwebTypeId 4619 .
+
+<http://www.example.org/hazard#ExplosionMisc> a :DisasterType ;
+    rdfs:label "Explosion (Miscellaneous)" ;
+    :glideCode "EX"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#ExtraTerrestrial> a :DisasterType ;
+    rdfs:label "Extra-Terrestrial Hazard" ;
+    :glideCode "EX"^^xsd:string ;
+    :reliefwebTypeId 4616 .
+
+<http://www.example.org/hazard#ExtratropicalStorm> a :DisasterType ;
+    rdfs:label "Extra-tropical Storm" ;
+    :glideCode "EX"^^xsd:string ;
+    :reliefwebTypeId 4618 .
+
+<http://www.example.org/hazard#ExtremeTemperature> a :DisasterType ;
+    rdfs:label "Extreme Temperature" ;
+    :glideCode "EX"^^xsd:string ;
+    :reliefwebTypeId 4618 .
+
+<http://www.example.org/hazard#FireIndustrial> a :DisasterType ;
+    rdfs:label "Fire (Industrial)" ;
+    :glideCode "FI"^^xsd:string ;
+    :reliefwebTypeId 4614 .
+
+<http://www.example.org/hazard#FireMisc> a :DisasterType ;
+    rdfs:label "Fire (Miscellaneous)" ;
+    :glideCode "FI"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#FlashFlood> a :DisasterType ;
+    rdfs:label "Flash Flood" ;
+    :glideCode "FF"^^xsd:string ;
+    :reliefwebTypeId 4610 .
+
+<http://www.example.org/hazard#Flood> a :DisasterType ;
+    rdfs:label "Flood" ;
+    :glideCode "FL"^^xsd:string ;
+    :reliefwebTypeId 4605 .
+
+<http://www.example.org/hazard#FloodGeneral> a :DisasterType ;
+    rdfs:label "Flood (General)" ;
+    :glideCode "FL"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#Fog> a :DisasterType ;
+    rdfs:label "Fog" ;
+    :glideCode "FO"^^xsd:string ;
+    :reliefwebTypeId 4603 .
+
+<http://www.example.org/hazard#ForestFire> a :DisasterType ;
+    rdfs:label "Forest Fire" ;
+    :glideCode "FO"^^xsd:string ;
+    :reliefwebTypeId 4610 .
+
+<http://www.example.org/hazard#FungalDisease> a :DisasterType ;
+    rdfs:label "Fungal Disease (Epidemic)" ;
+    :glideCode "FU"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#GasLeak> a :DisasterType ;
+    rdfs:label "Gas Leak" ;
+    :glideCode "GA"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#GeomagneticStorm> a :DisasterType ;
+    rdfs:label "Geomagnetic Storm" ;
+    :glideCode "GE"^^xsd:string ;
+    :reliefwebTypeId 4616 .
+
+<http://www.example.org/hazard#Geophysical> a :DisasterType ;
+    rdfs:label "Geophysical Hazard" ;
+    :glideCode "GE"^^xsd:string ;
+    :reliefwebTypeId 4611 .
+
+<http://www.example.org/hazard#GlacialLakeOutburstFlood> a :DisasterType ;
+    rdfs:label "Glacial Lake Outburst Flood" ;
+    :glideCode "GL"^^xsd:string ;
+    :reliefwebTypeId 4624 .
+
+<http://www.example.org/hazard#GrasshopperInfestation> a :DisasterType ;
+    rdfs:label "Grasshopper Infestation" ;
+    :glideCode "GR"^^xsd:string ;
+    :reliefwebTypeId 4622 .
+
+<http://www.example.org/hazard#GroundMovement> a :DisasterType ;
+    rdfs:label "Ground Movement (Earthquake)" ;
+    :glideCode "GR"^^xsd:string ;
+    :reliefwebTypeId 4614 .
+
+<http://www.example.org/hazard#Hail> a :DisasterType ;
+    rdfs:label "Hail" ;
+    :glideCode "HA"^^xsd:string ;
+    :reliefwebTypeId 4604 .
+
+<http://www.example.org/hazard#HeatWave> a :DisasterType ;
+    rdfs:label "Heat Wave" ;
+    :glideCode "HT"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#Hydrological> a :DisasterType ;
+    rdfs:label "Hydrological Hazard" ;
+    :glideCode "HY"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#IceJamFlood> a :DisasterType ;
+    rdfs:label "Ice Jam Flood" ;
+    :glideCode "IC"^^xsd:string ;
+    :reliefwebTypeId 4611 .
+
+<http://www.example.org/hazard#Impact> a :DisasterType ;
+    rdfs:label "Impact" ;
+    :glideCode "IM"^^xsd:string ;
+    :reliefwebTypeId 4606 .
+
+<http://www.example.org/hazard#IndustrialAccident> a :DisasterType ;
+    rdfs:label "Industrial Accident" ;
+    :glideCode "IN"^^xsd:string ;
+    :reliefwebTypeId 4618 .
+
+<http://www.example.org/hazard#IndustrialAccidentGeneral> a :DisasterType ;
+    rdfs:label "Industrial Accident (General)" ;
+    :glideCode "IN"^^xsd:string ;
+    :reliefwebTypeId 4625 .
+
+<http://www.example.org/hazard#InfectiousDiseaseGeneral> a :DisasterType ;
+    rdfs:label "Infectious Disease (General)" ;
+    :glideCode "IN"^^xsd:string ;
+    :reliefwebTypeId 4624 .
+
+<http://www.example.org/hazard#Infestation> a :DisasterType ;
+    rdfs:label "Infestation" ;
+    :glideCode "IN"^^xsd:string ;
+    :reliefwebTypeId 4611 .
+
+<http://www.example.org/hazard#InfestationGeneral> a :DisasterType ;
+    rdfs:label "Infestation (General)" ;
+    :glideCode "IN"^^xsd:string ;
+    :reliefwebTypeId 4618 .
+
+<http://www.example.org/hazard#Lahar> a :DisasterType ;
+    rdfs:label "Lahar" ;
+    :glideCode "LA"^^xsd:string ;
+    :reliefwebTypeId 4605 .
+
+<http://www.example.org/hazard#LandFire> a :DisasterType ;
+    rdfs:label "Land Fire (Brush, Bush, Pasture)" ;
+    :glideCode "LA"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#LandslideDry> a :DisasterType ;
+    rdfs:label "Landslide (Dry)" ;
+    :glideCode "LA"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#LandslideWet> a :DisasterType ;
+    rdfs:label "Landslide (Wet)" ;
+    :glideCode "LA"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#LavaFlow> a :DisasterType ;
+    rdfs:label "Lava Flow" ;
+    :glideCode "LA"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#LightningThunderstorms> a :DisasterType ;
+    rdfs:label "Lightning/Thunderstorms" ;
+    :glideCode "LI"^^xsd:string ;
+    :reliefwebTypeId 4622 .
+
+<http://www.example.org/hazard#LocustInfestation> a :DisasterType ;
+    rdfs:label "Locust Infestation" ;
+    :glideCode "LO"^^xsd:string ;
+    :reliefwebTypeId 4617 .
+
+<http://www.example.org/hazard#MassMovementDry> a :DisasterType ;
+    rdfs:label "Mass Movement (Dry)" ;
+    :glideCode "MA"^^xsd:string ;
+    :reliefwebTypeId 4615 .
+
+<http://www.example.org/hazard#MassMovementWet> a :DisasterType ;
+    rdfs:label "Mass Movement (Wet)" ;
+    :glideCode "MA"^^xsd:string ;
+    :reliefwebTypeId 4615 .
+
+<http://www.example.org/hazard#Meteorological> a :DisasterType ;
+    rdfs:label "Meteorological Hazard" ;
+    :glideCode "ME"^^xsd:string ;
+    :reliefwebTypeId 4614 .
+
+<http://www.example.org/hazard#MiscAccident> a :DisasterType ;
+    rdfs:label "Miscellaneous Accident" ;
+    :glideCode "MI"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#MiscAccidentGeneral> a :DisasterType ;
+    rdfs:label "Miscellaneous Accident (General)" ;
+    :glideCode "MI"^^xsd:string ;
+    :reliefwebTypeId 4619 .
+
+<http://www.example.org/hazard#Mudslide> a :DisasterType ;
+    rdfs:label "Mudslide" ;
+    :glideCode "MS"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#Natural> a :DisasterType ;
+    rdfs:label "Natural Hazard" ;
+    :glideCode "NA"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#OilSpill> a :DisasterType ;
+    rdfs:label "Oil Spill" ;
+    :glideCode "OI"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#ParasiticDisease> a :DisasterType ;
+    rdfs:label "Parasitic Disease (Epidemic)" ;
+    :glideCode "PA"^^xsd:string ;
+    :reliefwebTypeId 4616 .
+
+<http://www.example.org/hazard#Poisoning> a :DisasterType ;
+    rdfs:label "Poisoning" ;
+    :glideCode "PO"^^xsd:string ;
+    :reliefwebTypeId 4609 .
+
+<http://www.example.org/hazard#PrionDisease> a :DisasterType ;
+    rdfs:label "Prion Disease (Epidemic)" ;
+    :glideCode "PR"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#PyroclasticFlow> a :DisasterType ;
+    rdfs:label "Pyroclastic Flow" ;
+    :glideCode "PY"^^xsd:string ;
+    :reliefwebTypeId 4615 .
+
+<http://www.example.org/hazard#Radiation> a :DisasterType ;
+    rdfs:label "Radiation (Industrial)" ;
+    :glideCode "RA"^^xsd:string ;
+    :reliefwebTypeId 4609 .
+
+<http://www.example.org/hazard#RadioDisturbance> a :DisasterType ;
+    rdfs:label "Radio Disturbance" ;
+    :glideCode "RA"^^xsd:string ;
+    :reliefwebTypeId 4616 .
+
+<http://www.example.org/hazard#RailTransport> a :DisasterType ;
+    rdfs:label "Rail Transport Accident" ;
+    :glideCode "RA"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#RiverineFlood> a :DisasterType ;
+    rdfs:label "Riverine Flood" ;
+    :glideCode "RI"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#RoadTransport> a :DisasterType ;
+    rdfs:label "Road Transport Accident" ;
+    :glideCode "RO"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#RockfallDry> a :DisasterType ;
+    rdfs:label "Rockfall (Dry)" ;
+    :glideCode "RO"^^xsd:string ;
+    :reliefwebTypeId 4611 .
+
+<http://www.example.org/hazard#RockfallWet> a :DisasterType ;
+    rdfs:label "Rockfall (Wet)" ;
+    :glideCode "RO"^^xsd:string ;
+    :reliefwebTypeId 4611 .
+
+<http://www.example.org/hazard#RogueWave> a :DisasterType ;
+    rdfs:label "Rogue Wave" ;
+    :glideCode "RO"^^xsd:string ;
+    :reliefwebTypeId 4609 .
+
+<http://www.example.org/hazard#SandDustStorm> a :DisasterType ;
+    rdfs:label "Sand/Dust Storm" ;
+    :glideCode "SA"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#Seiche> a :DisasterType ;
+    rdfs:label "Seiche" ;
+    :glideCode "SE"^^xsd:string ;
+    :reliefwebTypeId 4606 .
+
+<http://www.example.org/hazard#SevereWeather> a :DisasterType ;
+    rdfs:label "Severe Weather" ;
+    :glideCode "SE"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#SevereWinterConditions> a :DisasterType ;
+    rdfs:label "Severe Winter Conditions" ;
+    :glideCode "SE"^^xsd:string ;
+    :reliefwebTypeId 4622 .
+
+<http://www.example.org/hazard#Shockwave> a :DisasterType ;
+    rdfs:label "Shockwave" ;
+    :glideCode "SH"^^xsd:string ;
+    :reliefwebTypeId 4609 .
+
+<http://www.example.org/hazard#SpaceWeather> a :DisasterType ;
+    rdfs:label "Space Weather" ;
+    :glideCode "SP"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#Storm> a :DisasterType ;
+    rdfs:label "Storm" ;
+    :glideCode "ST"^^xsd:string ;
+    :reliefwebTypeId 4605 .
+
+<http://www.example.org/hazard#StormGeneral> a :DisasterType ;
+    rdfs:label "Storm (General)" ;
+    :glideCode "ST"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#StormSurge> a :DisasterType ;
+    rdfs:label "Storm Surge" ;
+    :glideCode "SS"^^xsd:string ;
+    :reliefwebTypeId 4610 .
+
+<http://www.example.org/hazard#SuddenSubsidenceDry> a :DisasterType ;
+    rdfs:label "Sudden Subsidence (Dry)" ;
+    :glideCode "SU"^^xsd:string ;
+    :reliefwebTypeId 4619 .
+
+<http://www.example.org/hazard#SuddenSubsidenceWet> a :DisasterType ;
+    rdfs:label "Sudden Subsidence (Wet)" ;
+    :glideCode "SU"^^xsd:string ;
+    :reliefwebTypeId 4619 .
+
+<http://www.example.org/hazard#Technological> a :DisasterType ;
+    rdfs:label "Technological Hazard" ;
+    :glideCode "TE"^^xsd:string ;
+    :reliefwebTypeId 4613 .
+
+<http://www.example.org/hazard#Tornado> a :DisasterType ;
+    rdfs:label "Tornado" ;
+    :glideCode "TO"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#Transport> a :DisasterType ;
+    rdfs:label "Transport Accident" ;
+    :glideCode "TR"^^xsd:string ;
+    :reliefwebTypeId 4609 .
+
+<http://www.example.org/hazard#TropicalCyclone> a :DisasterType ;
+    rdfs:label "Tropical Cyclone" ;
+    :glideCode "TC"^^xsd:string ;
+    :reliefwebTypeId 4615 .
+
+<http://www.example.org/hazard#Tsunami> a :DisasterType ;
+    rdfs:label "Tsunami" ;
+    :glideCode "TS"^^xsd:string ;
+    :reliefwebTypeId 4607 .
+
+<http://www.example.org/hazard#ViralDisease> a :DisasterType ;
+    rdfs:label "Viral Disease (Epidemic)" ;
+    :glideCode "VI"^^xsd:string ;
+    :reliefwebTypeId 4612 .
+
+<http://www.example.org/hazard#VolcanicActivity> a :DisasterType ;
+    rdfs:label "Volcanic Activity" ;
+    :glideCode "VO"^^xsd:string ;
+    :reliefwebTypeId 4616 .
+
+<http://www.example.org/hazard#VolcanicActivityGeneral> a :DisasterType ;
+    rdfs:label "Volcanic Activity (General)" ;
+    :glideCode "VO"^^xsd:string ;
+    :reliefwebTypeId 4623 .
+
+<http://www.example.org/hazard#WaterTransport> a :DisasterType ;
+    rdfs:label "Water Transport Accident" ;
+    :glideCode "WA"^^xsd:string ;
+    :reliefwebTypeId 4614 .
+
+<http://www.example.org/hazard#WaveAction> a :DisasterType ;
+    rdfs:label "Wave Action" ;
+    :glideCode "WA"^^xsd:string ;
+    :reliefwebTypeId 4610 .
+
+<http://www.example.org/hazard#Wildfire> a :DisasterType ;
+    rdfs:label "Wildfire" ;
+    :glideCode "WI"^^xsd:string ;
+    :reliefwebTypeId 4608 .
+
+<http://www.example.org/hazard#WildfireGeneral> a :DisasterType ;
+    rdfs:label "Wildfire (General)" ;
+    :glideCode "WI"^^xsd:string ;
+    :reliefwebTypeId 4615 .
+
+<http://www.example.org/hazard#WormInfestation> a :DisasterType ;
+    rdfs:label "Worms Infestation" ;
+    :glideCode "WO"^^xsd:string ;
+    :reliefwebTypeId 4615 .
+
+:Greece a :Country ;
+    rdfs:label "Greece" ;
+    :iso3 "GRC" ;
+    :reliefwebName "Greece" .
+
+:Portugal a :Country ;
+    rdfs:label "Portugal" ;
+    :iso3 "PRT" ;
+    :reliefwebName "Portugal" .
+
+:WaterSanitationHygiene a :HumanitarianTheme ;
+    rdfs:label "Water Sanitation Hygiene" ;
+    :reliefwebId 4604 ;
+    :reliefwebName "WASH" .
+
+:Health a :HumanitarianTheme ;
+    rdfs:label "Health" ;
+    :reliefwebId 4595 ;
+    :reliefwebName "Health" .
+
+:HumanitarianTheme a owl:Class .
+
+:USA a :Country ;
+    rdfs:label "United States of America" ;
+    :iso3 "USA" ;
+    :reliefwebName "United States of America" .
+
+:Country a owl:Class .
+
+:GDACSHazardType a owl:Class .
+
+:DisasterType a owl:Class .
+

@@ -1,0 +1,1934 @@
+@prefix api: <http://example.org/api#> .
+@prefix ex: <http://example.org/countries/> .
+@prefix gn: <http://sws.geonames.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+api: a api:Endpoint ;
+    rdfs:label " Endpoint" .
+
+api:countries a api:Endpoint ;
+    rdfs:label "Countries Endpoint" ;
+    api:hasField api:current,
+        api:date,
+        api:date.changed,
+        api:date.created,
+        api:description,
+        api:description-html,
+        api:featured,
+        api:id,
+        api:iso3,
+        api:name,
+        api:profile,
+        api:profile.appeals_response_plans,
+        api:profile.appeals_response_plans.active,
+        api:profile.appeals_response_plans.active.image,
+        api:profile.appeals_response_plans.active.title,
+        api:profile.appeals_response_plans.active.url,
+        api:profile.appeals_response_plans.archive,
+        api:profile.appeals_response_plans.archive.image,
+        api:profile.appeals_response_plans.archive.title,
+        api:profile.appeals_response_plans.archive.url,
+        api:profile.appeals_response_plans.title,
+        api:profile.key_content,
+        api:profile.key_content.active,
+        api:profile.key_content.active.image,
+        api:profile.key_content.active.title,
+        api:profile.key_content.active.url,
+        api:profile.key_content.archive,
+        api:profile.key_content.archive.image,
+        api:profile.key_content.archive.title,
+        api:profile.key_content.archive.url,
+        api:profile.key_content.title,
+        api:profile.overview,
+        api:profile.overview-html,
+        api:profile.useful_links,
+        api:profile.useful_links.active,
+        api:profile.useful_links.active.image,
+        api:profile.useful_links.active.title,
+        api:profile.useful_links.active.url,
+        api:profile.useful_links.title,
+        api:shortname,
+        api:status,
+        api:url,
+        api:url_alias .
+
+api:disasters a api:Endpoint ;
+    rdfs:label "Disasters Endpoint" ;
+    api:hasField api:country,
+        api:country.id,
+        api:country.iso3,
+        api:country.name,
+        api:country.primary,
+        api:country.shortname,
+        api:current,
+        api:date,
+        api:date.changed,
+        api:date.created,
+        api:date.event,
+        api:description,
+        api:description-html,
+        api:featured,
+        api:glide,
+        api:id,
+        api:name,
+        api:primary_country,
+        api:primary_country.id,
+        api:primary_country.iso3,
+        api:primary_country.name,
+        api:primary_country.shortname,
+        api:primary_type,
+        api:primary_type.id,
+        api:primary_type.name,
+        api:profile,
+        api:profile.appeals_response_plans,
+        api:profile.appeals_response_plans.active,
+        api:profile.appeals_response_plans.active.image,
+        api:profile.appeals_response_plans.active.title,
+        api:profile.appeals_response_plans.active.url,
+        api:profile.appeals_response_plans.archive,
+        api:profile.appeals_response_plans.archive.image,
+        api:profile.appeals_response_plans.archive.title,
+        api:profile.appeals_response_plans.archive.url,
+        api:profile.appeals_response_plans.title,
+        api:profile.key_content,
+        api:profile.key_content.active,
+        api:profile.key_content.active.image,
+        api:profile.key_content.active.title,
+        api:profile.key_content.active.url,
+        api:profile.key_content.archive,
+        api:profile.key_content.archive.image,
+        api:profile.key_content.archive.title,
+        api:profile.key_content.archive.url,
+        api:profile.key_content.title,
+        api:profile.overview,
+        api:profile.overview-html,
+        api:profile.useful_links,
+        api:profile.useful_links.active,
+        api:profile.useful_links.active.image,
+        api:profile.useful_links.active.title,
+        api:profile.useful_links.active.url,
+        api:profile.useful_links.title,
+        api:related_glide,
+        api:status,
+        api:type,
+        api:type.code,
+        api:type.id,
+        api:type.name,
+        api:type.primary,
+        api:url,
+        api:url_alias .
+
+api:reports a api:Endpoint ;
+    rdfs:label "Reports Endpoint" ;
+    api:hasField api:body,
+        api:body-html,
+        api:country,
+        api:country.id,
+        api:country.iso3,
+        api:country.name,
+        api:country.primary,
+        api:country.shortname,
+        api:date,
+        api:date.changed,
+        api:date.created,
+        api:date.original,
+        api:disaster,
+        api:disaster.glide,
+        api:disaster.id,
+        api:disaster.name,
+        api:disaster.type,
+        api:disaster.type.code,
+        api:disaster.type.id,
+        api:disaster.type.name,
+        api:disaster.type.primary,
+        api:disaster_type,
+        api:disaster_type.code,
+        api:disaster_type.id,
+        api:disaster_type.name,
+        api:feature,
+        api:feature.id,
+        api:feature.name,
+        api:file,
+        api:file.description,
+        api:file.filename,
+        api:file.id,
+        api:file.mimetype,
+        api:file.preview,
+        api:file.preview.url,
+        api:file.preview.url-large,
+        api:file.preview.url-small,
+        api:file.preview.url-thumb,
+        api:file.url,
+        api:format,
+        api:format.id,
+        api:format.name,
+        api:headline,
+        api:headline.featured,
+        api:headline.image,
+        api:headline.image.caption,
+        api:headline.image.copyright,
+        api:headline.image.filename,
+        api:headline.image.id,
+        api:headline.image.mimetype,
+        api:headline.image.url,
+        api:headline.summary,
+        api:headline.title,
+        api:id,
+        api:image,
+        api:image.caption,
+        api:image.copyright,
+        api:image.filename,
+        api:image.id,
+        api:image.mimetype,
+        api:image.url,
+        api:image.url-large,
+        api:image.url-small,
+        api:image.url-thumb,
+        api:language,
+        api:language.code,
+        api:language.id,
+        api:language.name,
+        api:ocha_product,
+        api:ocha_product.id,
+        api:ocha_product.name,
+        api:origin,
+        api:primary_country,
+        api:primary_country.id,
+        api:primary_country.iso3,
+        api:primary_country.name,
+        api:primary_country.shortname,
+        api:source,
+        api:source.disclaimer,
+        api:source.homepage,
+        api:source.id,
+        api:source.longname,
+        api:source.name,
+        api:source.shortname,
+        api:source.spanish_name,
+        api:source.type,
+        api:source.type.id,
+        api:source.type.name,
+        api:status,
+        api:theme,
+        api:theme.id,
+        api:theme.name,
+        api:title,
+        api:url,
+        api:url_alias .
+
+api:sources a api:Endpoint ;
+    rdfs:label "Sources Endpoint" ;
+    api:hasField api:content_type,
+        api:country,
+        api:country.id,
+        api:country.iso3,
+        api:country.name,
+        api:country.primary,
+        api:country.shortname,
+        api:date,
+        api:date.changed,
+        api:date.created,
+        api:description,
+        api:description-html,
+        api:disclaimer,
+        api:fts_id,
+        api:homepage,
+        api:id,
+        api:logo,
+        api:logo.filename,
+        api:logo.filesize,
+        api:logo.height,
+        api:logo.id,
+        api:logo.mimetype,
+        api:logo.url,
+        api:logo.width,
+        api:longname,
+        api:name,
+        api:shortname,
+        api:spanish_name,
+        api:status,
+        api:type,
+        api:type.id,
+        api:type.name,
+        api:url,
+        api:url_alias .
+
+gn:102358 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saudi Arabia"@en .
+
+gn:1024031 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mayotte"@en .
+
+gn:1036973 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mozambique"@en .
+
+gn:1062947 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Madagascar"@en .
+
+gn:1149361 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Afghanistan"@en .
+
+gn:1168579 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Pakistan"@en .
+
+gn:1210997 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bangladesh"@en .
+
+gn:1218197 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Turkmenistan"@en .
+
+gn:1220409 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Tajikistan"@en .
+
+gn:1227603 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Sri Lanka"@en .
+
+gn:1252634 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bhutan"@en .
+
+gn:1269750 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "India"@en .
+
+gn:1282028 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Maldives"@en .
+
+gn:1282588 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "British Indian Ocean Territory"@en .
+
+gn:1282988 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Nepal"@en .
+
+gn:130758 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Iran"@en .
+
+gn:1327865 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Myanmar"@en .
+
+gn:146669 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cyprus"@en .
+
+gn:149590 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Tanzania"@en .
+
+gn:1512440 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Uzbekistan"@en .
+
+gn:1522867 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Kazakhstan"@en .
+
+gn:1527747 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Kyrgyzstan"@en .
+
+gn:1546748 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "French Southern Territories"@en .
+
+gn:1547314 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Heard Island and McDonald Islands"@en .
+
+gn:1547376 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cocos Islands"@en .
+
+gn:1559582 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Palau"@en .
+
+gn:1562822 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Vietnam"@en .
+
+gn:1605651 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Thailand"@en .
+
+gn:163843 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Syria"@en .
+
+gn:1643084 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Indonesia"@en .
+
+gn:1655842 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Laos"@en .
+
+gn:1668284 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Taiwan"@en .
+
+gn:1694008 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Philippines"@en .
+
+gn:1733045 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Malaysia"@en .
+
+gn:174982 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Armenia"@en .
+
+gn:1819730 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Hong Kong"@en .
+
+gn:1820814 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Brunei"@en .
+
+gn:1821275 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Macao"@en .
+
+gn:1831722 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cambodia"@en .
+
+gn:1835841 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "South Korea"@en .
+
+gn:1861060 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Japan"@en .
+
+gn:1873107 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "North Korea"@en .
+
+gn:1880251 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Singapore"@en .
+
+gn:1899402 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cook Islands"@en .
+
+gn:192950 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Kenya"@en .
+
+gn:1966436 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Timor Leste"@en .
+
+gn:2017370 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Russia"@en .
+
+gn:2029969 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mongolia"@en .
+
+gn:203312 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Democratic Republic of the Congo"@en .
+
+gn:2077456 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Australia"@en .
+
+gn:2078138 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Christmas Island"@en .
+
+gn:2080185 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Marshall Islands"@en .
+
+gn:2081918 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Micronesia"@en .
+
+gn:2088628 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Papua New Guinea"@en .
+
+gn:2103350 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Solomon Islands"@en .
+
+gn:2110297 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Tuvalu"@en .
+
+gn:2110425 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Nauru"@en .
+
+gn:2134431 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Vanuatu"@en .
+
+gn:2139685 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "New Caledonia"@en .
+
+gn:2155115 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Norfolk Island"@en .
+
+gn:2186224 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "New Zealand"@en .
+
+gn:2205218 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Fiji"@en .
+
+gn:2215636 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Libya"@en .
+
+gn:2233387 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cameroon"@en .
+
+gn:223816 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Djibouti"@en .
+
+gn:2245662 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Senegal"@en .
+
+gn:2260494 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Republic of the Congo"@en .
+
+gn:226074 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Uganda"@en .
+
+gn:2264397 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Portugal"@en .
+
+gn:2275384 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Liberia"@en .
+
+gn:2287781 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Ivory Coast"@en .
+
+gn:2300660 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Ghana"@en .
+
+gn:2309096 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Equatorial Guinea"@en .
+
+gn:2328926 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Nigeria"@en .
+
+gn:2361809 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Burkina Faso"@en .
+
+gn:2363686 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Togo"@en .
+
+gn:2372248 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guinea-Bissau"@en .
+
+gn:2378080 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mauritania"@en .
+
+gn:2395170 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Benin"@en .
+
+gn:239880 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Central African Republic"@en .
+
+gn:2400553 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Gabon"@en .
+
+gn:2403846 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Sierra Leone"@en .
+
+gn:2410758 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Sao Tome and Principe"@en .
+
+gn:2411586 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Gibraltar"@en .
+
+gn:241170 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Seychelles"@en .
+
+gn:2413451 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Gambia"@en .
+
+gn:2420477 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guinea"@en .
+
+gn:2434508 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Chad"@en .
+
+gn:2440476 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Niger"@en .
+
+gn:2453866 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mali"@en .
+
+gn:2461445 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Western Sahara"@en .
+
+gn:2464461 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Tunisia"@en .
+
+gn:248816 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Jordan"@en .
+
+gn:2510769 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Spain"@en .
+
+gn:2542007 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Morocco"@en .
+
+gn:2562770 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Malta"@en .
+
+gn:2589581 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Algeria"@en .
+
+gn:2622320 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Faroe Islands"@en .
+
+gn:2623032 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Denmark"@en .
+
+gn:2629691 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Iceland"@en .
+
+gn:2635167 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "United Kingdom"@en .
+
+gn:2658434 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Switzerland"@en .
+
+gn:2661886 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Sweden"@en .
+
+gn:272103 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Lebanon"@en .
+
+gn:2750405 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "The Netherlands"@en .
+
+gn:2782113 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Austria"@en .
+
+gn:2802361 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Belgium"@en .
+
+gn:285570 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Kuwait"@en .
+
+gn:286963 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Oman"@en .
+
+gn:289688 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Qatar"@en .
+
+gn:290291 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bahrain"@en .
+
+gn:290557 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "United Arab Emirates"@en .
+
+gn:2921044 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Germany"@en .
+
+gn:294640 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Israel"@en .
+
+gn:2960313 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Luxembourg"@en .
+
+gn:2963597 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Ireland"@en .
+
+gn:298795 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Turkey"@en .
+
+gn:2993457 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Monaco"@en .
+
+gn:3041565 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Andorra"@en .
+
+gn:3042058 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Liechtenstein"@en .
+
+gn:3042142 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Jersey"@en .
+
+gn:3042225 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Isle of Man"@en .
+
+gn:3042362 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guernsey"@en .
+
+gn:3057568 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Slovakia"@en .
+
+gn:3077311 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Czechia"@en .
+
+gn:3144096 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Norway"@en .
+
+gn:3164670 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Vatican"@en .
+
+gn:3168068 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "San Marino"@en .
+
+gn:3175395 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Italy"@en .
+
+gn:3190538 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Slovenia"@en .
+
+gn:3194884 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Montenegro"@en .
+
+gn:3202326 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Croatia"@en .
+
+gn:3277605 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bosnia and Herzegovina"@en .
+
+gn:3351879 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Angola"@en .
+
+gn:3355338 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Namibia"@en .
+
+gn:3370751 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Helena"@en .
+
+gn:3371123 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bouvet Island"@en .
+
+gn:3374084 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Barbados"@en .
+
+gn:3374766 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cabo Verde"@en .
+
+gn:3378535 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guyana"@en .
+
+gn:337996 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Ethiopia"@en .
+
+gn:338010 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Eritrea"@en .
+
+gn:3381670 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "French Guiana"@en .
+
+gn:3382998 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Suriname"@en .
+
+gn:3424932 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Pierre and Miquelon"@en .
+
+gn:3425505 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Greenland"@en .
+
+gn:3437598 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Paraguay"@en .
+
+gn:3439705 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Uruguay"@en .
+
+gn:3469034 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Brazil"@en .
+
+gn:3474414 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Falkland Islands"@en .
+
+gn:3474415 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "South Georgia and the South Sandwich Islands"@en .
+
+gn:3489940 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Jamaica"@en .
+
+gn:3508796 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Dominican Republic"@en .
+
+gn:3562981 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cuba"@en .
+
+gn:3570311 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Martinique"@en .
+
+gn:3572887 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bahamas"@en .
+
+gn:3573345 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bermuda"@en .
+
+gn:3573511 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Anguilla"@en .
+
+gn:3573591 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Trinidad and Tobago"@en .
+
+gn:3575174 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Kitts and Nevis"@en .
+
+gn:3575830 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Dominica"@en .
+
+gn:3576396 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Antigua and Barbuda"@en .
+
+gn:3576468 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Lucia"@en .
+
+gn:3576916 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Turks and Caicos Islands"@en .
+
+gn:3577279 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Aruba"@en .
+
+gn:3577718 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "British Virgin Islands"@en .
+
+gn:3577815 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Vincent and the Grenadines"@en .
+
+gn:3578097 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Montserrat"@en .
+
+gn:3578421 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Martin"@en .
+
+gn:3578476 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Saint Barthelemy"@en .
+
+gn:3579143 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guadeloupe"@en .
+
+gn:357994 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Egypt"@en .
+
+gn:3580239 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Grenada"@en .
+
+gn:3580718 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Cayman Islands"@en .
+
+gn:3582678 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Belize"@en .
+
+gn:3585968 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "El Salvador"@en .
+
+gn:3595528 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guatemala"@en .
+
+gn:3608932 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Honduras"@en .
+
+gn:3617476 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Nicaragua"@en .
+
+gn:3624060 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Costa Rica"@en .
+
+gn:3625428 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Venezuela"@en .
+
+gn:3658394 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Ecuador"@en .
+
+gn:366755 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Sudan"@en .
+
+gn:3686110 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Colombia"@en .
+
+gn:3703430 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Panama"@en .
+
+gn:3865483 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Argentina"@en .
+
+gn:3895114 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Chile"@en .
+
+gn:390903 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Greece"@en .
+
+gn:3923057 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bolivia"@en .
+
+gn:3932488 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Peru"@en .
+
+gn:3996063 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mexico"@en .
+
+gn:4030656 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "French Polynesia"@en .
+
+gn:4030699 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Pitcairn"@en .
+
+gn:4030945 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Kiribati"@en .
+
+gn:4031074 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Tokelau"@en .
+
+gn:4032283 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Tonga"@en .
+
+gn:4034749 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Wallis and Futuna"@en .
+
+gn:4034894 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Samoa"@en .
+
+gn:4036232 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Niue"@en .
+
+gn:4041468 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Northern Mariana Islands"@en .
+
+gn:4043988 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Guam"@en .
+
+gn:433561 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Burundi"@en .
+
+gn:453733 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Estonia"@en .
+
+gn:4566966 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Puerto Rico"@en .
+
+gn:458258 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Latvia"@en .
+
+gn:4796775 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "U.S. Virgin Islands"@en .
+
+gn:49518 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Rwanda"@en .
+
+gn:51537 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Somalia"@en .
+
+gn:5854968 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "United States Minor Outlying Islands"@en .
+
+gn:587116 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Azerbaijan"@en .
+
+gn:5880801 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "American Samoa"@en .
+
+gn:597427 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Lithuania"@en .
+
+gn:607072 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Svalbard and Jan Mayen"@en .
+
+gn:614540 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Georgia"@en .
+
+gn:617790 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Moldova"@en .
+
+gn:6251999 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Canada"@en .
+
+gn:6252001 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "United States"@en .
+
+gn:6254930 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Palestinian Territory"@en .
+
+gn:6290252 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Serbia"@en .
+
+gn:630336 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Belarus"@en .
+
+gn:660013 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Finland"@en .
+
+gn:661882 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Aland Islands"@en .
+
+gn:6697173 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Antarctica"@en .
+
+gn:690791 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Ukraine"@en .
+
+gn:69543 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Yemen"@en .
+
+gn:718075 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "North Macedonia"@en .
+
+gn:719819 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Hungary"@en .
+
+gn:732800 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bulgaria"@en .
+
+gn:7609695 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Sint Maarten"@en .
+
+gn:7626836 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Curacao"@en .
+
+gn:7626844 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Bonaire, Saint Eustatius and Saba "@en .
+
+gn:783754 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Albania"@en .
+
+gn:7909807 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "South Sudan"@en .
+
+gn:798544 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Poland"@en .
+
+gn:798549 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Romania"@en .
+
+gn:831053 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Kosovo"@en .
+
+gn:8505032 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Netherlands Antilles"@en .
+
+gn:8505033 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Serbia and Montenegro"@en .
+
+gn:878675 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Zimbabwe"@en .
+
+gn:895949 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Zambia"@en .
+
+gn:921929 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Comoros"@en .
+
+gn:927384 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Malawi"@en .
+
+gn:932692 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Lesotho"@en .
+
+gn:933860 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Botswana"@en .
+
+gn:934292 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Mauritius"@en .
+
+gn:934841 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Eswatini"@en .
+
+gn:935317 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Reunion"@en .
+
+gn:953987 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "South Africa"@en .
+
+gn:99237 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Iraq"@en .
+
+api:body a api:Field ;
+    api:name "body" ;
+    skos:altLabel "Corps du texte"@fr,
+        "Corpus"@latn ;
+    skos:note "Main text in Markdown format"@en ;
+    skos:prefLabel "Body"@en .
+
+api:body-html a api:Field ;
+    api:name "body-html" ;
+    skos:note "Main text in HTML format"@en ;
+    skos:prefLabel "Body-Html"@en .
+
+api:content_type a api:Field ;
+    api:name "content_type" .
+
+api:date.event a api:Field ;
+    api:name "date.event" .
+
+api:date.original a api:Field ;
+    api:name "date.original" ;
+    skos:note "Date entry first published by original source (ISO 8601)"@en ;
+    skos:prefLabel "Date Original"@en .
+
+api:disaster a api:Field ;
+    api:name "disaster" ;
+    skos:note "Shortcut for related disaster - defaults to disaster.name"@en ;
+    skos:prefLabel "Disaster"@en .
+
+api:disaster.glide a api:Field ;
+    api:name "disaster.glide" ;
+    skos:note "Global IDEntifier number (GLIDE) of the disaster"@en ;
+    skos:prefLabel "Disaster Glide"@en .
+
+api:disaster.id a api:Field ;
+    api:name "disaster.id" ;
+    skos:note "Id for related disaster used by ReliefWeb"@en ;
+    skos:prefLabel "Disaster Id"@en .
+
+api:disaster.name a api:Field ;
+    api:name "disaster.name" ;
+    skos:note "Name assigned to the disaster based on the ReliefWeb disaster naming convention"@en ;
+    skos:prefLabel "Disaster Name"@en .
+
+api:disaster.type a api:Field ;
+    api:name "disaster.type" ;
+    skos:note "Disaster type of the associated disaster. Note this may be different to the `disaster_type` of a report. Defaults to disaster.type.name"@en ;
+    skos:prefLabel "Disaster Type"@en .
+
+api:disaster.type.code a api:Field ;
+    api:name "disaster.type.code" ;
+    skos:note "Code for the disaster type of the associated disaster."@en ;
+    skos:prefLabel "Disaster Type Code"@en .
+
+api:disaster.type.id a api:Field ;
+    api:name "disaster.type.id" ;
+    skos:note "Id for the disaster type of the associated disaster."@en ;
+    skos:prefLabel "Disaster Type Id"@en .
+
+api:disaster.type.name a api:Field ;
+    api:name "disaster.type.name" ;
+    skos:note "Link for values"@en ;
+    skos:prefLabel "Disaster Type Name"@en .
+
+api:disaster.type.primary a api:Field ;
+    api:name "disaster.type.primary" ;
+    skos:note "Whether this is the primary disaster type for the associated disaster."@en ;
+    skos:prefLabel "Disaster Type Primary"@en .
+
+api:disaster_type a api:Field ;
+    api:name "disaster_type" ;
+    skos:note "Shortcut for disaster type - defaults to disaster_type.name"@en ;
+    skos:prefLabel "Disaster_Type"@en .
+
+api:disaster_type.code a api:Field ;
+    api:name "disaster_type.code" ;
+    skos:note "GLIDE hazard code for disaster type."@en ;
+    skos:prefLabel "Disaster_Type Code"@en .
+
+api:disaster_type.id a api:Field ;
+    api:name "disaster_type.id" ;
+    skos:note "Id for disaster type used by ReliefWeb"@en ;
+    skos:prefLabel "Disaster_Type Id"@en .
+
+api:disaster_type.name a api:Field ;
+    api:name "disaster_type.name" ;
+    skos:note "Link for values"@en ;
+    skos:prefLabel "Disaster_Type Name"@en .
+
+api:disclaimer a api:Field ;
+    api:name "disclaimer" .
+
+api:feature a api:Field ;
+    api:name "feature" ;
+    skos:note "defaults to feature.name"@en ;
+    skos:prefLabel "Feature"@en .
+
+api:feature.id a api:Field ;
+    api:name "feature.id" ;
+    skos:note "Id for feature used by ReliefWeb"@en ;
+    skos:prefLabel "Feature Id"@en .
+
+api:feature.name a api:Field ;
+    api:name "feature.name" ;
+    skos:note "Link for values."@en ;
+    skos:prefLabel "Feature Name"@en .
+
+api:file a api:Field ;
+    api:name "file" ;
+    skos:note "File attachment shortcut - defaults to file.id"@en ;
+    skos:prefLabel "File"@en .
+
+api:file.description a api:Field ;
+    api:name "file.description" ;
+    skos:note "Description of file attachment"@en ;
+    skos:prefLabel "File Description"@en .
+
+api:file.filename a api:Field ;
+    api:name "file.filename" ;
+    skos:note "File name of file attachment"@en ;
+    skos:prefLabel "File Filename"@en .
+
+api:file.id a api:Field ;
+    api:name "file.id" ;
+    skos:note "Id of file attachment used by ReliefWeb"@en ;
+    skos:prefLabel "File Id"@en .
+
+api:file.mimetype a api:Field ;
+    api:name "file.mimetype" ;
+    skos:note "MIME type of file attachment"@en ;
+    skos:prefLabel "File Mimetype"@en .
+
+api:file.preview a api:Field ;
+    api:name "file.preview" ;
+    skos:note "Shortcut for preview image of file attachment - defaults to file.preview.url"@en ;
+    skos:prefLabel "File Preview"@en .
+
+api:file.preview.url a api:Field ;
+    api:name "file.preview.url" ;
+    skos:note "Link to preview image of file attachment"@en ;
+    skos:prefLabel "File Preview Url"@en .
+
+api:file.preview.url-large a api:Field ;
+    api:name "file.preview.url-large" ;
+    skos:note "Link to a large preview image with a width of 680px"@en ;
+    skos:prefLabel "File Preview Url-Large"@en .
+
+api:file.preview.url-small a api:Field ;
+    api:name "file.preview.url-small" ;
+    skos:note "Link to a small preview image with a width of 200px"@en ;
+    skos:prefLabel "File Preview Url-Small"@en .
+
+api:file.preview.url-thumb a api:Field ;
+    api:name "file.preview.url-thumb" ;
+    skos:note "Link to a thumbnail preview image with a maximum width of 220px and a maximum height of 100px"@en ;
+    skos:prefLabel "File Preview Url-Thumb"@en .
+
+api:file.url a api:Field ;
+    api:name "file.url" ;
+    skos:note "Link to file attachment"@en ;
+    skos:prefLabel "File Url"@en .
+
+api:format a api:Field ;
+    api:name "format" ;
+    skos:note "Shortcut for content format - defaults to format.name"@en ;
+    skos:prefLabel "Format"@en .
+
+api:format.id a api:Field ;
+    api:name "format.id" ;
+    skos:note "Id of content format used by ReliefWeb"@en ;
+    skos:prefLabel "Format Id"@en .
+
+api:format.name a api:Field ;
+    api:name "format.name" ;
+    skos:note "Link for values"@en ;
+    skos:prefLabel "Format Name"@en .
+
+api:fts_id a api:Field ;
+    api:name "fts_id" .
+
+api:glide a api:Field ;
+    api:name "glide" .
+
+api:headline a api:Field ;
+    api:name "headline" ;
+    skos:note "Shortcut for headline - defaults to headline.title"@en ;
+    skos:prefLabel "Headline"@en .
+
+api:headline.featured a api:Field ;
+    api:name "headline.featured" ;
+    skos:prefLabel "Headline Featured"@en .
+
+api:headline.image a api:Field ;
+    api:name "headline.image" ;
+    skos:note "Shortcut for headline image - defaults to headline.image.id"@en ;
+    skos:prefLabel "Headline Image"@en .
+
+api:headline.image.caption a api:Field ;
+    api:name "headline.image.caption" ;
+    skos:note "Caption attached to the headline image"@en ;
+    skos:prefLabel "Headline Image Caption"@en .
+
+api:headline.image.copyright a api:Field ;
+    api:name "headline.image.copyright" ;
+    skos:note "Copyright attached to the headline image"@en ;
+    skos:prefLabel "Headline Image Copyright"@en .
+
+api:headline.image.filename a api:Field ;
+    api:name "headline.image.filename" ;
+    skos:note "File name of the headline image"@en ;
+    skos:prefLabel "Headline Image Filename"@en .
+
+api:headline.image.id a api:Field ;
+    api:name "headline.image.id" ;
+    skos:note "Unique id of headline image used by ReliefWeb"@en ;
+    skos:prefLabel "Headline Image Id"@en .
+
+api:headline.image.mimetype a api:Field ;
+    api:name "headline.image.mimetype" ;
+    skos:note "MIME type of the headline image"@en ;
+    skos:prefLabel "Headline Image Mimetype"@en .
+
+api:headline.image.url a api:Field ;
+    api:name "headline.image.url" ;
+    skos:note "URL of the headline image"@en ;
+    skos:prefLabel "Headline Image Url"@en .
+
+api:headline.summary a api:Field ;
+    api:name "headline.summary" ;
+    skos:note "Summary of body, if report is selected as headline. Typically 180-190 characters long"@en ;
+    skos:prefLabel "Headline Summary"@en .
+
+api:headline.title a api:Field ;
+    api:name "headline.title" ;
+    skos:note "Headline text, if report is selected as headline. Typically 100-120 characters long"@en ;
+    skos:prefLabel "Headline Title"@en .
+
+api:homepage a api:Field ;
+    api:name "homepage" .
+
+api:image a api:Field ;
+    api:name "image" ;
+    skos:note "Image shortcut - defaults to image.id"@en ;
+    skos:prefLabel "Image"@en .
+
+api:image.caption a api:Field ;
+    api:name "image.caption" ;
+    skos:note "Caption attached to the image"@en ;
+    skos:prefLabel "Image Caption"@en .
+
+api:image.copyright a api:Field ;
+    api:name "image.copyright" ;
+    skos:note "Copyright attached to the image"@en ;
+    skos:prefLabel "Image Copyright"@en .
+
+api:image.filename a api:Field ;
+    api:name "image.filename" ;
+    skos:note "File name of the image"@en ;
+    skos:prefLabel "Image Filename"@en .
+
+api:image.id a api:Field ;
+    api:name "image.id" ;
+    skos:note "Unique id of image used by ReliefWeb"@en ;
+    skos:prefLabel "Image Id"@en .
+
+api:image.mimetype a api:Field ;
+    api:name "image.mimetype" ;
+    skos:note "MIME type of the image"@en ;
+    skos:prefLabel "Image Mimetype"@en .
+
+api:image.url a api:Field ;
+    api:name "image.url" ;
+    skos:note "Link to the original image"@en ;
+    skos:prefLabel "Image Url"@en .
+
+api:image.url-large a api:Field ;
+    api:name "image.url-large" ;
+    skos:note "Link to a large image with a width of 680px"@en ;
+    skos:prefLabel "Image Url-Large"@en .
+
+api:image.url-small a api:Field ;
+    api:name "image.url-small" ;
+    skos:note "Link to a small image with a width of 200px"@en ;
+    skos:prefLabel "Image Url-Small"@en .
+
+api:image.url-thumb a api:Field ;
+    api:name "image.url-thumb" ;
+    skos:note "Link to a thumbnail image with a maximum width of 220px and a maximum height of 100px"@en ;
+    skos:prefLabel "Image Url-Thumb"@en .
+
+api:iso3 a api:Field ;
+    api:name "iso3" .
+
+api:language a api:Field ;
+    api:name "language" ;
+    skos:note "Shortcut for language - defaults to language.name"@en ;
+    skos:prefLabel "Language"@en .
+
+api:language.code a api:Field ;
+    api:name "language.code" ;
+    skos:altLabel "Code de langue"@fr,
+        "Codex Linguarum"@latn ;
+    skos:note "ISO 639-1 code of the language the entry is written in"@en ;
+    skos:prefLabel "Language Code"@en .
+
+api:language.id a api:Field ;
+    api:name "language.id" ;
+    skos:note "Id for language of report used by ReliefWeb"@en ;
+    skos:prefLabel "Language Id"@en .
+
+api:language.name a api:Field ;
+    api:name "language.name" ;
+    skos:note "Language the report is written in - Link for values."@en ;
+    skos:prefLabel "Language Name"@en .
+
+api:logo a api:Field ;
+    api:name "logo" .
+
+api:logo.filename a api:Field ;
+    api:name "logo.filename" .
+
+api:logo.filesize a api:Field ;
+    api:name "logo.filesize" .
+
+api:logo.height a api:Field ;
+    api:name "logo.height" .
+
+api:logo.id a api:Field ;
+    api:name "logo.id" .
+
+api:logo.mimetype a api:Field ;
+    api:name "logo.mimetype" .
+
+api:logo.url a api:Field ;
+    api:name "logo.url" .
+
+api:logo.width a api:Field ;
+    api:name "logo.width" .
+
+api:longname a api:Field ;
+    api:name "longname" .
+
+api:ocha_product a api:Field ;
+    api:name "ocha_product" ;
+    skos:note "Shortcut for OCHA product - defaults to ocha_product.name"@en ;
+    skos:prefLabel "Ocha_Product"@en .
+
+api:ocha_product.id a api:Field ;
+    api:name "ocha_product.id" ;
+    skos:note "Id of OCHA product used by ReliefWeb"@en ;
+    skos:prefLabel "Ocha_Product Id"@en .
+
+api:ocha_product.name a api:Field ;
+    api:name "ocha_product.name" ;
+    skos:note "Link for values"@en ;
+    skos:prefLabel "Ocha_Product Name"@en .
+
+api:origin a api:Field ;
+    api:name "origin" ;
+    skos:note "Url of original report when it was added to ReliefWeb"@en ;
+    skos:prefLabel "Origin"@en .
+
+api:primary_type a api:Field ;
+    api:name "primary_type" .
+
+api:primary_type.id a api:Field ;
+    api:name "primary_type.id" .
+
+api:primary_type.name a api:Field ;
+    api:name "primary_type.name" .
+
+api:related_glide a api:Field ;
+    api:name "related_glide" .
+
+api:source a api:Field ;
+    api:name "source" ;
+    skos:note "Shortcut for sources - defaults to source.name"@en ;
+    skos:prefLabel "Source"@en .
+
+api:source.disclaimer a api:Field ;
+    api:name "source.disclaimer" ;
+    skos:note "Disclaimer information for the source"@en ;
+    skos:prefLabel "Source Disclaimer"@en .
+
+api:source.homepage a api:Field ;
+    api:name "source.homepage" ;
+    skos:note "URL of the source's primary website"@en ;
+    skos:prefLabel "Source Homepage"@en .
+
+api:source.id a api:Field ;
+    api:name "source.id" ;
+    skos:note "Id for source used by ReliefWeb"@en ;
+    skos:prefLabel "Source Id"@en .
+
+api:source.longname a api:Field ;
+    api:name "source.longname" ;
+    skos:note "Official name of the source if different from source.name"@en ;
+    skos:prefLabel "Source Longname"@en .
+
+api:source.name a api:Field ;
+    api:name "source.name" ;
+    skos:note "Common name of source"@en ;
+    skos:prefLabel "Source Name"@en .
+
+api:source.shortname a api:Field ;
+    api:name "source.shortname" ;
+    skos:note "Short name of the source, typically an acronym e.g. UNICEF"@en ;
+    skos:prefLabel "Source Shortname"@en .
+
+api:source.spanish_name a api:Field ;
+    api:name "source.spanish_name" ;
+    skos:note "Spanish name of the source"@en ;
+    skos:prefLabel "Source Spanish_Name"@en .
+
+api:source.type a api:Field ;
+    api:name "source.type" ;
+    skos:note "Shortcut for source type - defaults to source.type.name"@en ;
+    skos:prefLabel "Source Type"@en .
+
+api:source.type.id a api:Field ;
+    api:name "source.type.id" ;
+    skos:note "Id for source type used by ReliefWeb"@en ;
+    skos:prefLabel "Source Type Id"@en .
+
+api:source.type.name a api:Field ;
+    api:name "source.type.name" ;
+    skos:note "Link for values"@en ;
+    skos:prefLabel "Source Type Name"@en .
+
+api:spanish_name a api:Field ;
+    api:name "spanish_name" .
+
+api:theme a api:Field ;
+    api:name "theme" ;
+    skos:note "Shortcut for theme - defaults to theme.name"@en ;
+    skos:prefLabel "Theme"@en .
+
+api:theme.id a api:Field ;
+    api:name "theme.id" ;
+    skos:note "Id of theme used by ReliefWeb"@en ;
+    skos:prefLabel "Theme Id"@en .
+
+api:theme.name a api:Field ;
+    api:name "theme.name" ;
+    skos:note "Link for values"@en ;
+    skos:prefLabel "Theme Name"@en .
+
+api:title a api:Field ;
+    api:name "title" ;
+    skos:altLabel "Titre"@fr,
+        "Titulus"@latn ;
+    skos:note "Title of report"@en ;
+    skos:prefLabel "Title"@en .
+
+api:type.code a api:Field ;
+    api:name "type.code" .
+
+api:type.primary a api:Field ;
+    api:name "type.primary" .
+
+gn:1814991 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "China"@en .
+
+gn:3017382 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "France"@en .
+
+gn:3723988 a skos:Concept ;
+    skos:inScheme ex:CountryScheme ;
+    skos:prefLabel "Haiti"@en .
+
+api:current a api:Field ;
+    api:name "current" .
+
+api:featured a api:Field ;
+    api:name "featured" .
+
+api:primary_country a api:Field ;
+    api:name "primary_country" ;
+    skos:note "Shortcut for primary country - defaults to primary_country.name"@en ;
+    skos:prefLabel "Primary_Country"@en .
+
+api:primary_country.id a api:Field ;
+    api:name "primary_country.id" ;
+    skos:note "Id of primary country used by ReliefWeb"@en ;
+    skos:prefLabel "Primary_Country Id"@en .
+
+api:primary_country.iso3 a api:Field ;
+    api:name "primary_country.iso3" ;
+    skos:note "ISO 3166-1 alpha-3 code"@en ;
+    skos:prefLabel "Primary_Country Iso3"@en .
+
+api:primary_country.name a api:Field ;
+    api:name "primary_country.name" ;
+    skos:note "Link for more information"@en ;
+    skos:prefLabel "Primary_Country Name"@en .
+
+api:primary_country.shortname a api:Field ;
+    api:name "primary_country.shortname" ;
+    skos:note "Short name of country where applicable, for example 'Syria' for 'Syrian Arab Republic'"@en ;
+    skos:prefLabel "Primary_Country Shortname"@en .
+
+api:profile a api:Field ;
+    api:name "profile" .
+
+api:profile.appeals_response_plans a api:Field ;
+    api:name "profile.appeals_response_plans" .
+
+api:profile.appeals_response_plans.active a api:Field ;
+    api:name "profile.appeals_response_plans.active" .
+
+api:profile.appeals_response_plans.active.image a api:Field ;
+    api:name "profile.appeals_response_plans.active.image" .
+
+api:profile.appeals_response_plans.active.title a api:Field ;
+    api:name "profile.appeals_response_plans.active.title" .
+
+api:profile.appeals_response_plans.active.url a api:Field ;
+    api:name "profile.appeals_response_plans.active.url" .
+
+api:profile.appeals_response_plans.archive a api:Field ;
+    api:name "profile.appeals_response_plans.archive" .
+
+api:profile.appeals_response_plans.archive.image a api:Field ;
+    api:name "profile.appeals_response_plans.archive.image" .
+
+api:profile.appeals_response_plans.archive.title a api:Field ;
+    api:name "profile.appeals_response_plans.archive.title" .
+
+api:profile.appeals_response_plans.archive.url a api:Field ;
+    api:name "profile.appeals_response_plans.archive.url" .
+
+api:profile.appeals_response_plans.title a api:Field ;
+    api:name "profile.appeals_response_plans.title" .
+
+api:profile.key_content a api:Field ;
+    api:name "profile.key_content" .
+
+api:profile.key_content.active a api:Field ;
+    api:name "profile.key_content.active" .
+
+api:profile.key_content.active.image a api:Field ;
+    api:name "profile.key_content.active.image" .
+
+api:profile.key_content.active.title a api:Field ;
+    api:name "profile.key_content.active.title" .
+
+api:profile.key_content.active.url a api:Field ;
+    api:name "profile.key_content.active.url" .
+
+api:profile.key_content.archive a api:Field ;
+    api:name "profile.key_content.archive" .
+
+api:profile.key_content.archive.image a api:Field ;
+    api:name "profile.key_content.archive.image" .
+
+api:profile.key_content.archive.title a api:Field ;
+    api:name "profile.key_content.archive.title" .
+
+api:profile.key_content.archive.url a api:Field ;
+    api:name "profile.key_content.archive.url" .
+
+api:profile.key_content.title a api:Field ;
+    api:name "profile.key_content.title" .
+
+api:profile.overview a api:Field ;
+    api:name "profile.overview" .
+
+api:profile.overview-html a api:Field ;
+    api:name "profile.overview-html" .
+
+api:profile.useful_links a api:Field ;
+    api:name "profile.useful_links" .
+
+api:profile.useful_links.active a api:Field ;
+    api:name "profile.useful_links.active" .
+
+api:profile.useful_links.active.image a api:Field ;
+    api:name "profile.useful_links.active.image" .
+
+api:profile.useful_links.active.title a api:Field ;
+    api:name "profile.useful_links.active.title" .
+
+api:profile.useful_links.active.url a api:Field ;
+    api:name "profile.useful_links.active.url" .
+
+api:profile.useful_links.title a api:Field ;
+    api:name "profile.useful_links.title" .
+
+api:shortname a api:Field ;
+    api:name "shortname" .
+
+api:type a api:Field ;
+    api:name "type" .
+
+api:type.id a api:Field ;
+    api:name "type.id" .
+
+api:type.name a api:Field ;
+    api:name "type.name" .
+
+api:country a api:Field ;
+    api:name "country" ;
+    skos:note "Shortcut for country - defaults to country.name"@en ;
+    skos:prefLabel "Country"@en .
+
+api:country.id a api:Field ;
+    api:name "country.id" ;
+    skos:note "Id for country used by ReliefWeb"@en ;
+    skos:prefLabel "Country Id"@en .
+
+api:country.iso3 a api:Field ;
+    api:name "country.iso3" ;
+    skos:note "ISO 3166-1 alpha-3 code"@en ;
+    skos:prefLabel "Country Iso3"@en .
+
+api:country.name a api:Field ;
+    api:name "country.name" ;
+    skos:altLabel "Nom du pays"@fr,
+        "Nomen Terrae"@latn ;
+    skos:note "Name of country in English"@en ;
+    skos:prefLabel "Country Name"@en ;
+    skos:related gn:1814991,
+        gn:3017382,
+        gn:3723988 .
+
+api:country.primary a api:Field ;
+    api:name "country.primary" ;
+    skos:note "Flag to indicate this is the primary country"@en ;
+    skos:prefLabel "Country Primary"@en .
+
+api:country.shortname a api:Field ;
+    api:name "country.shortname" ;
+    skos:note "Short name of country where applicable, for example 'Syria' for 'Syrian Arab Republic'"@en ;
+    skos:prefLabel "Country Shortname"@en .
+
+api:description a api:Field ;
+    api:name "description" .
+
+api:description-html a api:Field ;
+    api:name "description-html" .
+
+api:name a api:Field ;
+    api:name "name" .
+
+api:date a api:Field ;
+    api:name "date" ;
+    skos:note "Shortcut for date fields - defaults to date.created"@en ;
+    skos:prefLabel "Date"@en .
+
+api:date.changed a api:Field ;
+    api:name "date.changed" ;
+    skos:note "Date entry modified on ReliefWeb (ISO 8601)"@en ;
+    skos:prefLabel "Date Changed"@en .
+
+api:date.created a api:Field ;
+    api:name "date.created" ;
+    skos:note "Date entry created on ReliefWeb (ISO 8601)"@en ;
+    skos:prefLabel "Date Created"@en .
+
+api:id a api:Field ;
+    api:name "id" ;
+    skos:note "Unique id of report used by ReliefWeb"@en ;
+    skos:prefLabel "Id"@en .
+
+api:status a api:Field ;
+    api:name "status" ;
+    skos:prefLabel "Status"@en .
+
+api:url a api:Field ;
+    api:name "url" ;
+    skos:note "Canonical url"@en ;
+    skos:prefLabel "Url"@en .
+
+api:url_alias a api:Field ;
+    api:name "url_alias" ;
+    skos:note "Friendly' url of the report"@en ;
+    skos:prefLabel "Url_Alias"@en .
+
+ex:CountryScheme a skos:ConceptScheme ;
+    skos:prefLabel "GeoNames Country List"@en .
+
