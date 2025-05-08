@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:api="http://example.org/api#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.org/api#jobs">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Jobs Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#category.id"/>
+    <api:hasField rdf:resource="http://example.org/api#category.name"/>
+    <api:hasField rdf:resource="http://example.org/api#city.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#date.original"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#experience.id"/>
+    <api:hasField rdf:resource="http://example.org/api#experience.name"/>
+    <api:hasField rdf:resource="http://example.org/api#file.description"/>
+    <api:hasField rdf:resource="http://example.org/api#file.filename"/>
+    <api:hasField rdf:resource="http://example.org/api#file.id"/>
+    <api:hasField rdf:resource="http://example.org/api#file.mimetype"/>
+    <api:hasField rdf:resource="http://example.org/api#file.url"/>
+    <api:hasField rdf:resource="http://example.org/api#how-to-apply-html"/>
+    <api:hasField rdf:resource="http://example.org/api#how_to_apply"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.code"/>
+    <api:hasField rdf:resource="http://example.org/api#language.id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.name"/>
+    <api:hasField rdf:resource="http://example.org/api#link"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.id"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.name"/>
+    <api:hasField rdf:resource="http://example.org/api#title"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#reports">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Reports Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#body"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#date.original"/>
+    <api:hasField rdf:resource="http://example.org/api#format.id"/>
+    <api:hasField rdf:resource="http://example.org/api#format.name"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.code"/>
+    <api:hasField rdf:resource="http://example.org/api#language.id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#source.homepage"/>
+    <api:hasField rdf:resource="http://example.org/api#source.id"/>
+    <api:hasField rdf:resource="http://example.org/api#source.link"/>
+    <api:hasField rdf:resource="http://example.org/api#source.longname"/>
+    <api:hasField rdf:resource="http://example.org/api#source.name"/>
+    <api:hasField rdf:resource="http://example.org/api#source.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#source.type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#source.type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#status"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.id"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.name"/>
+    <api:hasField rdf:resource="http://example.org/api#title"/>
+    <api:hasField rdf:resource="http://example.org/api#type"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#training">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Training Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#category.id"/>
+    <api:hasField rdf:resource="http://example.org/api#category.name"/>
+    <api:hasField rdf:resource="http://example.org/api#city.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#date.changed"/>
+    <api:hasField rdf:resource="http://example.org/api#date.created"/>
+    <api:hasField rdf:resource="http://example.org/api#date.original"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#file.description"/>
+    <api:hasField rdf:resource="http://example.org/api#file.filename"/>
+    <api:hasField rdf:resource="http://example.org/api#file.id"/>
+    <api:hasField rdf:resource="http://example.org/api#file.mimetype"/>
+    <api:hasField rdf:resource="http://example.org/api#file.url"/>
+    <api:hasField rdf:resource="http://example.org/api#format.id"/>
+    <api:hasField rdf:resource="http://example.org/api#format.name"/>
+    <api:hasField rdf:resource="http://example.org/api#how-to-apply-html"/>
+    <api:hasField rdf:resource="http://example.org/api#how_to_apply"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.code"/>
+    <api:hasField rdf:resource="http://example.org/api#language.id"/>
+    <api:hasField rdf:resource="http://example.org/api#language.name"/>
+    <api:hasField rdf:resource="http://example.org/api#link"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.id"/>
+    <api:hasField rdf:resource="http://example.org/api#theme.name"/>
+    <api:hasField rdf:resource="http://example.org/api#title"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#disasters">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Disasters Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#category.id"/>
+    <api:hasField rdf:resource="http://example.org/api#category.name"/>
+    <api:hasField rdf:resource="http://example.org/api#category_primary.id"/>
+    <api:hasField rdf:resource="http://example.org/api#category_primary.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#current"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#featured"/>
+    <api:hasField rdf:resource="http://example.org/api#glide"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#link"/>
+    <api:hasField rdf:resource="http://example.org/api#name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.id"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.name"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#primary_country.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#type"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#sources">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Sources Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#longname"/>
+    <api:hasField rdf:resource="http://example.org/api#name"/>
+    <api:hasField rdf:resource="http://example.org/api#shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#type.id"/>
+    <api:hasField rdf:resource="http://example.org/api#type.iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#type.name"/>
+    <api:hasField rdf:resource="http://example.org/api#type.primary"/>
+    <api:hasField rdf:resource="http://example.org/api#type.shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#experience.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>experience.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.created">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.created</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.name</api:name>
+    <rdfs:comment>Countries impacted by this disaster.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#glide">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>glide</api:name>
+    <rdfs:comment>[Glide number](http://glidenumber.net)
+</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#countries">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Countries Endpoint</rdfs:label>
+    <api:hasField rdf:resource="http://example.org/api#current"/>
+    <api:hasField rdf:resource="http://example.org/api#description"/>
+    <api:hasField rdf:resource="http://example.org/api#description-html"/>
+    <api:hasField rdf:resource="http://example.org/api#featured"/>
+    <api:hasField rdf:resource="http://example.org/api#id"/>
+    <api:hasField rdf:resource="http://example.org/api#iso3"/>
+    <api:hasField rdf:resource="http://example.org/api#name"/>
+    <api:hasField rdf:resource="http://example.org/api#shortname"/>
+    <api:hasField rdf:resource="http://example.org/api#type"/>
+    <api:hasField rdf:resource="http://example.org/api#url"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.link">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.link</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#format.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>format.id</api:name>
+    <rdfs:comment>Format of report.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#featured">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>featured</api:name>
+    <rdfs:comment>Receiving special attention.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#discovery">
+    <rdf:type rdf:resource="http://example.org/api#Endpoint"/>
+    <rdfs:label>Discovery Endpoint</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#category_primary.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>category_primary.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#experience.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>experience.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#current">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>current</api:name>
+    <rdfs:comment>Ongoing disaster</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.type.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.type.name</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.homepage">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.homepage</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.shortname</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.iso3</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#theme.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>theme.id</api:name>
+    <rdfs:comment>Category of information contained in the report.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>shortname</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.name</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#category.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>category.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.iso3</api:name>
+    <rdfs:comment>Countries impacted by this disaster.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#category.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>category.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#status">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>status</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.shortname</api:name>
+    <rdfs:comment>Countries impacted by this disaster.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#description-html">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>description-html</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.primary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.primary</api:name>
+    <rdfs:comment>Countries impacted by this disaster.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#category_primary.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>category_primary.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#theme.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>theme.name</api:name>
+    <rdfs:comment>Category of information contained in the report.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#link">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>link</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.description">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.description</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#longname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>longname</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.longname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.longname</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#how_to_apply">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>how_to_apply</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.id</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.shortname</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.iso3</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.original">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.original</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#date.changed">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>date.changed</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#format.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>format.name</api:name>
+    <rdfs:comment>Format of report.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.id</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.mimetype">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.mimetype</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#source.type.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>source.type.id</api:name>
+    <rdfs:comment>Report production and coordination bodies.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#file.filename">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>file.filename</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#type.primary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>type.primary</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.primary">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.primary</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#body">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>body</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#description">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>description</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#country.id">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>country.id</api:name>
+    <rdfs:comment>Countries impacted by this disaster.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#how-to-apply-html">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>how-to-apply-html</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#url">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>url</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#title">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>title</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#city.name">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>city.name</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#language.code">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>language.code</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#iso3">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>iso3</api:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/api#primary_country.shortname">
+    <rdf:type rdf:resource="http://example.org/api#Field"/>
+    <api:name>primary_country.shortname</api:name>
+  </rdf:Description>
+</rdf:RDF>
