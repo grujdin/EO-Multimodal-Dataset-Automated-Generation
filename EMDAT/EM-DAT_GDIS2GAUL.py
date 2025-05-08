@@ -2,24 +2,26 @@ import pandas as pd
 import json
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
+import os
 
 ###############################################################################
 # 1) Define File Paths
 ###############################################################################
-file_path = 'D:/ProjDB/EMDAT/public_emdat_GDIS_aligned.xlsx'
+HOME_DIR = r"<your_home_directory>"
+file_path = os.path.join(HOME_DIR, "EMDAT", "public_emdat_GDIS_aligned.xlsx")
 
 # GAUL Level-2 XML (for extracting FID_2)
-xml_file_path_2 = 'D:/ProjDB/GAUL/g2015_2014_2.xml'
+xml_file_path_2 = os.path.join(HOME_DIR, "GAUL", "g2015_2014_2.xml")
 
 # GAUL Level-1 XML (for extracting FID_1)
-xml_file_path_1 = 'D:/ProjDB/GAUL/g2015_2014_1.xml'
+xml_file_path_1 = os.path.join(HOME_DIR, "GAUL", "g2015_2014_1.xml")
 
 # Final extracted files
-extracted_file_path_2 = 'D:/ProjDB/GAUL/g2015_2014_2_GeomExtract.xml'
-extracted_file_path_1 = 'D:/ProjDB/GAUL/g2015_2014_1_GeomExtract.xml'
+extracted_file_path_2 = os.path.join(HOME_DIR, "GAUL", "g2015_2014_2_GeomExtract.xml"
+extracted_file_path_1 = os.path.join(HOME_DIR, "GAUL", "g2015_2014_1_GeomExtract.xml"
 
 # Final modified Excel file
-output_file_path = 'D:/ProjDB/GAUL/public_emdat_GDIS_GAUL_aligned.xlsx'
+output_file_path = os.path.join(HOME_DIR, "GAUL", "public_emdat_GDIS_GAUL_aligned.xlsx"
 
 ###############################################################################
 # 2) Helper Function: Extract Administrative Units from JSON
