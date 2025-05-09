@@ -91,8 +91,8 @@ def find_best_matching_admin_units_v3(location, admin_units_string):
 # ----------------------- Data Processing -----------------------
 
 # Load the Excel file containing EM-DAT disaster data
-HOME_DIR = r"<your_home_direcctory>"
-excel_file = os.path.join(HOME_DIR, "EMDAT", "Data", "public_emdat_reduced.xlsx")
+HOME_DIR = r"<your_home_directory>"
+excel_file = os.path.join(HOME_DIR, "Data", "public_emdat_reduced.xlsx")
 df = pd.read_excel(excel_file)  # Read data into a Pandas DataFrame
 
 # Prepare a list to store processed event records
@@ -123,7 +123,7 @@ reshaped_data = pd.DataFrame(rows_list)
 # ----------------------- Save to Excel -----------------------
 
 # Define the path for the output Excel file
-new_excel_path = os.path.join(HOME_DIR, "EMDAT", "Data", "public_emdat_gdis_aligned.xlsx")
+new_excel_path = os.path.join(HOME_DIR, "Data", "public_emdat_gdis_aligned.xlsx")
 
 # Create an Excel writer object using the 'xlsxwriter' engine
 writer = pd.ExcelWriter(new_excel_path, engine='xlsxwriter')
