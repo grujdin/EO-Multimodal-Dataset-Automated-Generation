@@ -91,7 +91,7 @@ def find_best_matching_admin_units_v3(location, admin_units_string):
 # ----------------------- Data Processing -----------------------
 
 # Load the Excel file containing EM-DAT disaster data
-HOME_DIR = r"<your_home_directory>"
+HOME_DIR = r"path/to/your/home/directory"
 excel_file = os.path.join(HOME_DIR, "Data", "public_emdat_reduced.xlsx")
 df = pd.read_excel(excel_file)  # Read data into a Pandas DataFrame
 
