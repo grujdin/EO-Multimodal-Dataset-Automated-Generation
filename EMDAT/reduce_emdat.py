@@ -6,9 +6,11 @@
 # -----------------------------------------------------------------------------------
 
 import pandas as pd  # Import the pandas library for data manipulation
+import os
 
 # Define the path to the original Excel file
-input_file = 'D:/ProjDB/EMDAT/PublicTable/public_emdat_custom_request_2024-05-12_85ae59a7-afa1-41e3-8642-596f53c2731a.xlsx'
+HOME_DIR = r"path/to/your/home/directory"
+input_file = os.path.join(HOME_DIR, "EMDAT", "public_emdat_custom_request_2024-05-12_85ae59a7-afa1-41e3-8642-596f53c2731a.xlsx")
 
 # Load the Excel file into a DataFrame
 df = pd.read_excel(input_file)
@@ -25,7 +27,7 @@ columns_to_keep = [
 new_df = df[columns_to_keep]
 
 # Define the output file path where the modified dataset will be saved
-output_file = 'D:/ProjDB/EMDAT/public_emdat_reduced.xlsx'
+output_file = os.path.join(HOME_DIR, "EMDAT", "public_emdat_reduced.xlsx")
 
 # Save the filtered DataFrame to a new Excel file without including the index column
 new_df.to_excel(output_file, index=False)
