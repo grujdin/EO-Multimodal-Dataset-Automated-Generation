@@ -180,7 +180,7 @@ def save_adm0_composite_images(xml_file, output_folder, dpi=500, figsize=(40, 30
 
 # Example usage:
 HOME_DIR = r"path/to/your/home/directory"
-xml_file = os.path.join(HOME_DIR, "Data", "g2015_2014_1.xml")
+xml_file = os.path.join(HOME_DIR, "Data", "g2015_2014_1_geom_extract.xml")
 output_folder = os.path.join(HOME_DIR, "Data", "adm0_composite_maps")  # Folder for composite images.
 
 save_adm0_composite_images(xml_file, output_folder)
