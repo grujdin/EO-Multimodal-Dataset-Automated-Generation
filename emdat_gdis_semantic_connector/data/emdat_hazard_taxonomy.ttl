@@ -1,0 +1,403 @@
+@prefix eomdg: <http://example.org/eomdg/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+eomdg:Airburst a eomdg:HazardSubtype ;
+    rdfs:label "Airburst" ;
+    rdfs:subClassOf eomdg:Impact .
+
+eomdg:Ashfall a eomdg:HazardSubtype ;
+    rdfs:label "AshFall" ;
+    rdfs:subClassOf eomdg:Volcanicactivity .
+
+eomdg:Avalanchedry a eomdg:HazardSubtype ;
+    rdfs:label "AvalancheDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry .
+
+eomdg:Avalanchewet a eomdg:HazardSubtype ;
+    rdfs:label "AvalancheWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet .
+
+eomdg:Bacterialdisease a eomdg:HazardSubtype ;
+    rdfs:label "BacterialDisease" ;
+    rdfs:subClassOf eomdg:Epidemic .
+
+eomdg:Blizzardwinterstorm a eomdg:HazardSubtype ;
+    rdfs:label "BlizzardWinterStorm" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Coastalflood a eomdg:HazardSubtype ;
+    rdfs:label "CoastalFlood" ;
+    rdfs:subClassOf eomdg:Flood .
+
+eomdg:Coldwave a eomdg:HazardSubtype ;
+    rdfs:label "ColdWave" ;
+    rdfs:subClassOf eomdg:Extremetemperature .
+
+eomdg:Collision a eomdg:HazardSubtype ;
+    rdfs:label "Collision" ;
+    rdfs:subClassOf eomdg:Impact .
+
+eomdg:Derecho a eomdg:HazardSubtype ;
+    rdfs:label "Derecho" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Energeticparticles a eomdg:HazardSubtype ;
+    rdfs:label "EnergeticParticles" ;
+    rdfs:subClassOf eomdg:Spaceweather .
+
+eomdg:Extratropicalstorm a eomdg:HazardSubtype ;
+    rdfs:label "ExtraTropicalStorm" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Flashflood a eomdg:HazardSubtype ;
+    rdfs:label "FlashFlood" ;
+    rdfs:subClassOf eomdg:Flood .
+
+eomdg:Forestfire a eomdg:HazardSubtype ;
+    rdfs:label "ForestFire" ;
+    rdfs:subClassOf eomdg:Wildfire .
+
+eomdg:Fungaldisease a eomdg:HazardSubtype ;
+    rdfs:label "FungalDisease" ;
+    rdfs:subClassOf eomdg:Epidemic .
+
+eomdg:Geomagneticstorm a eomdg:HazardSubtype ;
+    rdfs:label "GeomagneticStorm" ;
+    rdfs:subClassOf eomdg:Spaceweather .
+
+eomdg:Grasshopperinfestation a eomdg:HazardSubtype ;
+    rdfs:label "GrasshopperInfestation" ;
+    rdfs:subClassOf eomdg:Infestation .
+
+eomdg:Groundmovement a eomdg:HazardSubtype ;
+    rdfs:label "GroundMovement" ;
+    rdfs:subClassOf eomdg:Earthquake .
+
+eomdg:Hail a eomdg:HazardSubtype ;
+    rdfs:label "Hail" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Heatwave a eomdg:HazardSubtype ;
+    rdfs:label "HeatWave" ;
+    rdfs:subClassOf eomdg:Extremetemperature .
+
+eomdg:Icejamflood a eomdg:HazardSubtype ;
+    rdfs:label "IceJamFlood" ;
+    rdfs:subClassOf eomdg:Flood .
+
+eomdg:Infectiousdisease a eomdg:HazardSubtype ;
+    rdfs:label "InfectiousDisease" ;
+    rdfs:subClassOf eomdg:Epidemic .
+
+eomdg:Lahar a eomdg:HazardSubtype ;
+    rdfs:label "Lahar" ;
+    rdfs:subClassOf eomdg:Volcanicactivity .
+
+eomdg:Landfire a eomdg:HazardSubtype ;
+    rdfs:label "LandFire" ;
+    rdfs:subClassOf eomdg:Wildfire .
+
+eomdg:Landslidedry a eomdg:HazardSubtype ;
+    rdfs:label "LandslideDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry .
+
+eomdg:Landslidewet a eomdg:HazardSubtype ;
+    rdfs:label "LandslideWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet .
+
+eomdg:Lavaflow a eomdg:HazardSubtype ;
+    rdfs:label "LavaFlow" ;
+    rdfs:subClassOf eomdg:Volcanicactivity .
+
+eomdg:Lightning a eomdg:HazardSubtype ;
+    rdfs:label "Lightning" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Locustinfestation a eomdg:HazardSubtype ;
+    rdfs:label "LocustInfestation" ;
+    rdfs:subClassOf eomdg:Infestation .
+
+eomdg:Mudslide a eomdg:HazardSubtype ;
+    rdfs:label "Mudslide" ;
+    rdfs:subClassOf eomdg:Massmovementwet .
+
+eomdg:Parasiticdisease a eomdg:HazardSubtype ;
+    rdfs:label "ParasiticDisease" ;
+    rdfs:subClassOf eomdg:Epidemic .
+
+eomdg:Priondisease a eomdg:HazardSubtype ;
+    rdfs:label "PrionDisease" ;
+    rdfs:subClassOf eomdg:Epidemic .
+
+eomdg:Pyroclasticflow a eomdg:HazardSubtype ;
+    rdfs:label "PyroclasticFlow" ;
+    rdfs:subClassOf eomdg:Volcanicactivity .
+
+eomdg:Radiodisturbance a eomdg:HazardSubtype ;
+    rdfs:label "RadioDisturbance" ;
+    rdfs:subClassOf eomdg:Spaceweather .
+
+eomdg:Riverineflood a eomdg:HazardSubtype ;
+    rdfs:label "RiverineFlood" ;
+    rdfs:subClassOf eomdg:Flood .
+
+eomdg:Rockfalldry a eomdg:HazardSubtype ;
+    rdfs:label "RockfallDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry .
+
+eomdg:Rockfallwet a eomdg:HazardSubtype ;
+    rdfs:label "RockfallWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet .
+
+eomdg:Roguewave a eomdg:HazardSubtype ;
+    rdfs:label "RogueWave" ;
+    rdfs:subClassOf eomdg:Waveaction .
+
+eomdg:Sandduststorm a eomdg:HazardSubtype ;
+    rdfs:label "SandDustStorm" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Seiche a eomdg:HazardSubtype ;
+    rdfs:label "Seiche" ;
+    rdfs:subClassOf eomdg:Waveaction .
+
+eomdg:Severeweather a eomdg:HazardSubtype ;
+    rdfs:label "SevereWeather" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Severewinterconditions a eomdg:HazardSubtype ;
+    rdfs:label "SevereWinterConditions" ;
+    rdfs:subClassOf eomdg:Extremetemperature .
+
+eomdg:Shockwave a eomdg:HazardSubtype ;
+    rdfs:label "Shockwave" ;
+    rdfs:subClassOf eomdg:Spaceweather .
+
+eomdg:Stormsurge a eomdg:HazardSubtype ;
+    rdfs:label "StormSurge" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Suddensubsidencedry a eomdg:HazardSubtype ;
+    rdfs:label "SuddenSubsidenceDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry .
+
+eomdg:Suddensubsidencewet a eomdg:HazardSubtype ;
+    rdfs:label "SuddenSubsidenceWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet .
+
+eomdg:Tornado a eomdg:HazardSubtype ;
+    rdfs:label "Tornado" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Tropicalcyclone a eomdg:HazardSubtype ;
+    rdfs:label "TropicalCyclone" ;
+    rdfs:subClassOf eomdg:Storm .
+
+eomdg:Tsunami a eomdg:HazardSubtype ;
+    rdfs:label "Tsunami" ;
+    rdfs:subClassOf eomdg:Earthquake .
+
+eomdg:Viraldisease a eomdg:HazardSubtype ;
+    rdfs:label "ViralDisease" ;
+    rdfs:subClassOf eomdg:Epidemic .
+
+eomdg:Wormsinfestation a eomdg:HazardSubtype ;
+    rdfs:label "WormsInfestation" ;
+    rdfs:subClassOf eomdg:Infestation .
+
+eomdg:Air a eomdg:HazardType ;
+    rdfs:label "Air" ;
+    rdfs:subClassOf eomdg:Air,
+        eomdg:Transport .
+
+eomdg:Animalincident a eomdg:HazardType ;
+    rdfs:label "AnimalIncident" ;
+    rdfs:subClassOf eomdg:Animalincident,
+        eomdg:Biological .
+
+eomdg:Chemicalspill a eomdg:HazardType ;
+    rdfs:label "ChemicalSpill" ;
+    rdfs:subClassOf eomdg:Chemicalspill,
+        eomdg:Industrialaccident .
+
+eomdg:Collapseindustrial a eomdg:HazardType ;
+    rdfs:label "CollapseIndustrial" ;
+    rdfs:subClassOf eomdg:Collapseindustrial,
+        eomdg:Industrialaccident .
+
+eomdg:Collapsemiscellaneous a eomdg:HazardType ;
+    rdfs:label "CollapseMiscellaneous" ;
+    rdfs:subClassOf eomdg:Collapsemiscellaneous,
+        eomdg:Miscellaneousaccident .
+
+eomdg:Drought a eomdg:HazardType ;
+    rdfs:label "Drought" ;
+    rdfs:subClassOf eomdg:Climatological,
+        eomdg:Drought .
+
+eomdg:Explosionindustrial a eomdg:HazardType ;
+    rdfs:label "ExplosionIndustrial" ;
+    rdfs:subClassOf eomdg:Explosionindustrial,
+        eomdg:Industrialaccident .
+
+eomdg:Explosionmiscellaneous a eomdg:HazardType ;
+    rdfs:label "ExplosionMiscellaneous" ;
+    rdfs:subClassOf eomdg:Explosionmiscellaneous,
+        eomdg:Miscellaneousaccident .
+
+eomdg:Fireindustrial a eomdg:HazardType ;
+    rdfs:label "FireIndustrial" ;
+    rdfs:subClassOf eomdg:Fireindustrial,
+        eomdg:Industrialaccident .
+
+eomdg:Firemiscellaneous a eomdg:HazardType ;
+    rdfs:label "FireMiscellaneous" ;
+    rdfs:subClassOf eomdg:Firemiscellaneous,
+        eomdg:Miscellaneousaccident .
+
+eomdg:Fog a eomdg:HazardType ;
+    rdfs:label "Fog" ;
+    rdfs:subClassOf eomdg:Fog,
+        eomdg:Meteorological .
+
+eomdg:Gasleak a eomdg:HazardType ;
+    rdfs:label "GasLeak" ;
+    rdfs:subClassOf eomdg:Gasleak,
+        eomdg:Industrialaccident .
+
+eomdg:Glaciallakeoutburstflood a eomdg:HazardType ;
+    rdfs:label "GlacialLakeOutburstFlood" ;
+    rdfs:subClassOf eomdg:Climatological,
+        eomdg:Glaciallakeoutburstflood .
+
+eomdg:Oilspill a eomdg:HazardType ;
+    rdfs:label "OilSpill" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Oilspill .
+
+eomdg:Poisoning a eomdg:HazardType ;
+    rdfs:label "Poisoning" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Poisoning .
+
+eomdg:Radiation a eomdg:HazardType ;
+    rdfs:label "Radiation" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Radiation .
+
+eomdg:Rail a eomdg:HazardType ;
+    rdfs:label "Rail" ;
+    rdfs:subClassOf eomdg:Rail,
+        eomdg:Transport .
+
+eomdg:Road a eomdg:HazardType ;
+    rdfs:label "Road" ;
+    rdfs:subClassOf eomdg:Road,
+        eomdg:Transport .
+
+eomdg:Water a eomdg:HazardType ;
+    rdfs:label "Water" ;
+    rdfs:subClassOf eomdg:Transport,
+        eomdg:Water .
+
+eomdg:Earthquake a eomdg:HazardType ;
+    rdfs:label "Earthquake" ;
+    rdfs:subClassOf eomdg:Geophysical .
+
+eomdg:Extraterrestrial a eomdg:HazardSubgroup ;
+    rdfs:label "ExtraTerrestrial" ;
+    rdfs:subClassOf eomdg:Natural .
+
+eomdg:Impact a eomdg:HazardType ;
+    rdfs:label "Impact" ;
+    rdfs:subClassOf eomdg:Extraterrestrial .
+
+eomdg:Waveaction a eomdg:HazardType ;
+    rdfs:label "WaveAction" ;
+    rdfs:subClassOf eomdg:Hydrological .
+
+eomdg:Biological a eomdg:HazardSubgroup ;
+    rdfs:label "Biological" ;
+    rdfs:subClassOf eomdg:Natural .
+
+eomdg:Climatological a eomdg:HazardSubgroup ;
+    rdfs:label "Climatological" ;
+    rdfs:subClassOf eomdg:Natural .
+
+eomdg:Extremetemperature a eomdg:HazardType ;
+    rdfs:label "ExtremeTemperature" ;
+    rdfs:subClassOf eomdg:Meteorological .
+
+eomdg:Geophysical a eomdg:HazardSubgroup ;
+    rdfs:label "Geophysical" ;
+    rdfs:subClassOf eomdg:Natural .
+
+eomdg:Hydrological a eomdg:HazardSubgroup ;
+    rdfs:label "Hydrological" ;
+    rdfs:subClassOf eomdg:Natural .
+
+eomdg:Meteorological a eomdg:HazardSubgroup ;
+    rdfs:label "Meteorological" ;
+    rdfs:subClassOf eomdg:Natural .
+
+eomdg:Technological a eomdg:HazardGroup ;
+    rdfs:label "Technological" .
+
+eomdg:Wildfire a eomdg:HazardType ;
+    rdfs:label "Wildfire" ;
+    rdfs:subClassOf eomdg:Climatological,
+        eomdg:Wildfire .
+
+eomdg:Infestation a eomdg:HazardType ;
+    rdfs:label "Infestation" ;
+    rdfs:subClassOf eomdg:Biological,
+        eomdg:Infestation .
+
+eomdg:Massmovementdry a eomdg:HazardType ;
+    rdfs:label "MassMovementDry" ;
+    rdfs:subClassOf eomdg:Geophysical .
+
+eomdg:Miscellaneousaccident a eomdg:HazardSubgroup ;
+    rdfs:label "MiscellaneousAccident" ;
+    rdfs:subClassOf eomdg:Miscellaneousaccident,
+        eomdg:Technological .
+
+eomdg:Spaceweather a eomdg:HazardType ;
+    rdfs:label "SpaceWeather" ;
+    rdfs:subClassOf eomdg:Extraterrestrial .
+
+eomdg:Transport a eomdg:HazardSubgroup ;
+    rdfs:label "Transport" ;
+    rdfs:subClassOf eomdg:Technological .
+
+eomdg:Flood a eomdg:HazardType ;
+    rdfs:label "Flood" ;
+    rdfs:subClassOf eomdg:Flood,
+        eomdg:Hydrological .
+
+eomdg:Massmovementwet a eomdg:HazardType ;
+    rdfs:label "MassMovementWet" ;
+    rdfs:subClassOf eomdg:Hydrological .
+
+eomdg:Volcanicactivity a eomdg:HazardType ;
+    rdfs:label "VolcanicActivity" ;
+    rdfs:subClassOf eomdg:Geophysical,
+        eomdg:Volcanicactivity .
+
+eomdg:Epidemic a eomdg:HazardType ;
+    rdfs:label "Epidemic" ;
+    rdfs:subClassOf eomdg:Biological .
+
+eomdg:Natural a eomdg:HazardGroup ;
+    rdfs:label "Natural" .
+
+eomdg:Industrialaccident a eomdg:HazardSubgroup ;
+    rdfs:label "IndustrialAccident" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Technological .
+
+eomdg:Storm a eomdg:HazardType ;
+    rdfs:label "Storm" ;
+    rdfs:subClassOf eomdg:Meteorological,
+        eomdg:Storm .
+
