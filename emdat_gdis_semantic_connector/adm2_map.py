@@ -117,7 +117,8 @@ def save_adm2_composite_images(xml_file, output_folder, dpi=300, figsize=(16, 12
 
 
 # Example usage:
-xml_file = 'D:/ProjDB/GAUL/g2015_2014_2.xml'  # Path to your GAUL XML file (ADM2-level data)
-output_folder = 'D:/ProjDB/GAUL/ADM2_Composite_Images'  # Folder to store composite images by ADM2
-save_fid_composite_images = save_adm2_composite_images  # Rename for clarity if desired
+HOME_DIR = r"path/to/your/home/directory"
+xml_file = os.path.join(HOME_DIR, "Data", "g2015_2014_2_geom_extract.xml") # Path to your GAUL XML file (ADM2-level data)
+output_folder = os.path.join(HOME_DIR, "Data", "adm2_maps")  # Folder for composite images.
+
 save_adm2_composite_images(xml_file, output_folder)
