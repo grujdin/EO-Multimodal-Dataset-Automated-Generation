@@ -1,0 +1,8 @@
+pandas
+openpyxl
+fuzzywuzzy
+xlsxwriter
+matplotlib
+geopandas
+rdflib
+SPARQLWrapper
