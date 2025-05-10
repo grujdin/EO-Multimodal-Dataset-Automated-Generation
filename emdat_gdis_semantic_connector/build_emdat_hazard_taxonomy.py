@@ -22,7 +22,7 @@ import os
 HOME_DIR = r"path/to/your/home/directory"
 
 CSV_FILE = os.path.join(HOME_DIR, "Data", "classification_mapping.csv")
-TTL_OUT  = os.path.join(HOME_DIR, "Data", "hazard_taxonomy.ttl")
+TTL_OUT  = os.path.join(HOME_DIR, "Data", "emdat_hazard_taxonomy.ttl")
 
 E = Namespace("http://example.org/eomdg/")
 
