@@ -6,16 +6,16 @@ import os
 # 1) Define file paths
 ###############################################################################
 HOME_DIR = r"path/to/your/home/directory"
-excel_file_path = os.path.join(HOME_DIR, "Data", "public_emdat_GDIS_GAUL_aligned.xlsx")
+excel_file_path = os.path.join(HOME_DIR, "Data", "public_emdat_gdis_gaul_aligned.xlsx")
 
 # GAUL Level-2 XML (for FID_2)
-xml_file_path_2 = os.path.join(HOME_DIR, "Data", "g2015_2014_2_GeomExtract.xml")
+xml_file_path_2 = os.path.join(HOME_DIR, "Data", "g2015_2014_2_geom_extract.xml")
 
 # GAUL Level-1 XML (for FID_1)
-xml_file_path_1 = os.path.join(HOME_DIR, "Data", "g2015_2014_1_GeomExtract.xml")
+xml_file_path_1 = os.path.join(HOME_DIR, "Data", "g2015_2014_1_geom_extract.xml")
 
 # Final single output (with both FID_1 and FID_2 columns)
-output_file_path = os.path.join(HOME_DIR, "Data", "public_emdat_GDIS_GAUL_FIDs.xlsx")
+output_file_path = os.path.join(HOME_DIR, "Data", "public_emdat_gdis_gaul_fids.xlsx")
 
 ###############################################################################
 # 2) Load Excel file into DataFrame
