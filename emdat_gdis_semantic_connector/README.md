@@ -6,7 +6,7 @@ The **EMDAT-GDIS Semantic Connector** provides a structured workflow to transfor
 
 The following table summarizes all processing operations applied to the raw EM-DAT data, from initial reduction through RDF conversion. Each step reads one or more source files and produces new outputs ready for the next stage.
 
-| Processing Operation | Description | Source File(s) | Destination File(s) | Script Name / API | Remarks |
+| Processing Operation | Description | Source File(s), <home_directory>/emdat_gdis_semantic_connector/ | Destination File(s), <home_directory>/emdat_gdis_semantic_connector/ | Script Name / API, <home_directory>/emdat_gdis_semantic_connector/ | Remarks |
 |:--------------------|:------------|:----------------|:---------------------|:------------------|:--------|
 | **REDUCE EM-DAT PUBLIC TABLE** | Extract required columns to reduce file size and retain relevant metadata | `<home_directory>/emdat_gdis_semantic_connector/` ` Data/public_emdat_custom_request_2024-05-12_85ae59a7.xlsx` | `<home_directory>/emdat_gdis_semantic_connector/ Data/public_emdat_reduced.xlsx` | `<home_directory>/emdat_gdis_semantic_connector/reduce_emdat.py` | Retains EM-DAT metadata (hazard, time, location, identifiers, coordinates, admin units) |
 | **SPLIT INTO OBSERVATIONS & ALIGN TO GDIS** | Split multi-location records, normalize names, and assign unique `MMR-xxx` codes | `<home_directory>/emdat_gdis_semantic_connector/Data/public_emdat_reduced.xlsx` | `<home_directory>/emdat_gdis_semantic_connector/Data/public_emdat_gdis_aligned.xlsx` | `<home_directory>/emdat_gdis_semantic_connector/emdat2gdis.py` | Includes fuzzy matching logic and expansion of regional naming structures |
