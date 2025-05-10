@@ -16,6 +16,7 @@ hazard_taxonomy.ttl   (load before any instance data)
 import re, csv, pathlib
 import rdflib
 from rdflib import Namespace, RDF, RDFS, OWL, Literal, URIRef
+import os
 
 # ---------------------------------------------------------------------- paths
 HOME_DIR = r"path/to/your/home/directory"
