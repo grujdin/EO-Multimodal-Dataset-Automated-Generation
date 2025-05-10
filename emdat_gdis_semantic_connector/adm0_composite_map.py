@@ -179,7 +179,8 @@ def save_adm0_composite_images(xml_file, output_folder, dpi=500, figsize=(40, 30
         print(f"🖼️ Saved composite map for ADM0 {adm0_code}: {output_path} (Elapsed: {elapsed:.2f} sec)")
 
 # Example usage:
-xml_file = 'D:/ProjDB/GAUL/g2015_2014_1.xml'  # Update if needed; your file name here.
-output_folder = 'D:/ProjDB/GAUL/ADM0_Composite_Images'  # Folder for composite images.
+HOME_DIR = r"path/to/your/home/directory"
+xml_file = os.path.join(HOME_DIR, "Data", "g2015_2014_1.xml")
+output_folder = os.path.join(HOME_DIR, "Data", "adm0_composite_maps")  # Folder for composite images.
 
 save_adm0_composite_images(xml_file, output_folder)
