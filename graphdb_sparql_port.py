@@ -124,10 +124,12 @@ if __name__ == "__main__":
         fig, ax = plt.subplots(figsize=(12, 8))
         gdf.plot(ax=ax, color='lightblue', edgecolor='black', alpha=0.7)
         ax.set_title('Disaster Observations by Administrative Unit (ADM2)', fontsize=15)
-        plt.savefig('disaster_observations.png', dpi=300)
+        out_png = os.path.join(HOME_DIR, 'disaster_observations.png')
+        plt.savefig(out_png, dpi=300)
         plt.show()
 
-        gdf.to_file('disaster_observations.geojson', driver='GeoJSON')
+       out_geojson = os.path.join(HOME_DIR, "disaster_observations.geojson")
+        gdf.to_file(out_geojson, driver="GeoJSON")
         print("✅ Geometries visualized and saved successfully.")
     else:
         print("❌ No geometries matched; visualization skipped.")
