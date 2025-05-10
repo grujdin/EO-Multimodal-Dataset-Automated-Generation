@@ -186,7 +186,8 @@ def save_adm1_composite_images(xml_file, output_folder, dpi=500, figsize=(40, 30
 
 
 # Example usage:
-xml_file = 'D:/ProjDB/GAUL/g2015_2014_2.xml'  # Path to your GAUL XML file
-output_folder = 'D:/ProjDB/GAUL/ADM1_Composite_Images'  # Folder where composite images will be saved
+HOME_DIR = r"path/to/your/home/directory"
+xml_file = os.path.join(HOME_DIR, "Data", "g2015_2014_2_geom_extract.xml")
+output_folder = os.path.join(HOME_DIR, "Data", "adm1_composite_maps")  # Folder for composite images.
 
 save_adm1_composite_images(xml_file, output_folder)
