@@ -27,7 +27,7 @@ columns_to_keep = [
 new_df = df[columns_to_keep]
 
 # Define the output file path where the modified dataset will be saved
-output_file = os.path.join(HOME_DIR, "Data", "public_emdat_reduced.xlsx")
+output_file = os.path.join(HOME_DIR, "Data", "emdat_reduced.xlsx")
 
 # Save the filtered DataFrame to a new Excel file without including the index column
 new_df.to_excel(output_file, index=False)
