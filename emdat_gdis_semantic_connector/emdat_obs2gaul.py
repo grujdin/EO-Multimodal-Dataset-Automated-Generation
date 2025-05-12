@@ -8,20 +8,20 @@ import os
 # 1) Define File Paths
 ###############################################################################
 HOME_DIR = r"path/to/your/home/directory"
-file_path = os.path.join(HOME_DIR, "Data", "emdat_ev2obs.xlsx")
+file_path = os.path.join(HOME_DIR, "data", "emdat_ev2obs.xlsx")
 
 # GAUL Level-2 XML (for extracting FID_2)
-xml_file_path_2 = os.path.join(HOME_DIR, "Data", "g2015_2014_2.xml")
+xml_file_path_2 = os.path.join(HOME_DIR, "data", "g2015_2014_2.xml")
 
 # GAUL Level-1 XML (for extracting FID_1)
-xml_file_path_1 = os.path.join(HOME_DIR, "Data", "g2015_2014_1.xml")
+xml_file_path_1 = os.path.join(HOME_DIR, "data", "g2015_2014_1.xml")
 
 # Final extracted files
-extracted_file_path_2 = os.path.join(HOME_DIR, "Data", "g2015_2014_2_GeomExtract.xml")
-extracted_file_path_1 = os.path.join(HOME_DIR, "Data", "g2015_2014_1_GeomExtract.xml")
+extracted_file_path_2 = os.path.join(HOME_DIR, "data", "g2015_2014_2_GeomExtract.xml")
+extracted_file_path_1 = os.path.join(HOME_DIR, "data", "g2015_2014_1_GeomExtract.xml")
 
 # Final modified Excel file
-output_file_path = os.path.join(HOME_DIR, "Data", "emdat_obs2gaul.xlsx")
+output_file_path = os.path.join(HOME_DIR, "data", "emdat_obs2gaul.xlsx")
 
 ###############################################################################
 # 2) Helper Function: Extract Administrative Units from JSON
