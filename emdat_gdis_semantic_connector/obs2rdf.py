@@ -11,9 +11,9 @@ import os
 
 # 1) CONFIG
 HOME_DIR = r"path/to/your/home/directory"
-SPREADSHEET = os.path.join(HOME_DIR, "Data", "public_emdat_gdis_gaul_fids.xlsx")
-MAP_CSV     = os.path.join(HOME_DIR, "Data", "classification_mapping.csv")
-OUT_TTL     = os.path.join(HOME_DIR, "Data", "emdat_gdis_gaul_observations.ttl")
+SPREADSHEET = os.path.join(HOME_DIR, "data", "emdat_obs2gaul_geom.xlsx")
+MAP_CSV     = os.path.join(HOME_DIR, "data", "classification_mapping.csv")
+OUT_TTL     = os.path.join(HOME_DIR, "data", "emdat_obs.ttl")
 
 # 2) NAMESPACES
 E    = Namespace("http://example.org/eomdg/")
