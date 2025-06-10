@@ -1,12 +1,12 @@
-import streamlit as st
-import pandas as pd
-import os
-import requests
-import json
-import pydeck as pdk
-from rdflib import Graph
-from rdflib.namespace import RDF, RDFS
-from rdflib import Namespace
+import streamlit as st            # Streamlit for building interactive web UI
+import pandas as pd              # pandas for tabular data manipulation/display
+import os                        # os for file system operations
+import requests                  # requests for HTTP calls
+import json                      # json for parsing payloads and GeoJSON
+import pydeck as pdk             # pydeck for rendering interactive maps
+from rdflib import Graph         # rdflib Graph for RDF/OWL parsing
+from rdflib.namespace import RDF, RDFS  # Standard RDF vocabularies
+from rdflib import Namespace     # Namespace helper for RDF URIRefs
 
 # --------------------------------------------------
 # Helper : load the OWL file and extract hazard labels
