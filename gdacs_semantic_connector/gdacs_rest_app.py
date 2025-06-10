@@ -75,7 +75,7 @@ sel_code = sel_label[:2].upper()
 
 
 # --------------------------------------------------
-# Main – summary call
+# Main summary: fetch and display event list
 # --------------------------------------------------
 
 st.title("GDACS Semantic Connector")
