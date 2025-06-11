@@ -6,7 +6,11 @@ import json                                # json for parsing GeoJSON & payloads
 import pydeck as pdk                       # pydeck for interactive map rendering
 from rdflib import Graph, Namespace        # rdflib for parsing OWL/RDF graphs
 from rdflib.namespace import RDF, RDFS     # Standard RDF vocabularies
-from gdacs.api import EVENT_TYPES         # Valid GDACS event_type codes
+from shapely.geometry import shape, mapping   # Shapely for geometry operations
+from shapely.ops import unary_union          # to merge & simplify geometries
+from gdacs.api import EVENT_TYPES           # Valid GDACS event_type codes
+import folium
+from streamlit_folium import st_folium
 
 # --------------------------------------------------
 # Define the namespace used in your OWL file
@@ -230,8 +234,11 @@ if "summary_df" in st.session_state:
 
 
 # --------------------------------------------------
-# Geometry fetch & interactive map preview
+# Geometry fetch & interactive map preview (Folium)
 # --------------------------------------------------
+import folium
+from streamlit_folium import st_folium
+
 if "summary_df" in st.session_state:
     st.markdown("---")
     st.subheader("🗺️ GDACS Event Geometry (polygons)")
@@ -239,7 +246,7 @@ if "summary_df" in st.session_state:
     if st.button("🌐 Fetch Geometry for Each Event"):
         geom_dir = "gdacs_event_geometry"
         os.makedirs(geom_dir, exist_ok=True)
-        geom_links, geom_objs = [], []
+        geom_objs = []
 
         for _, row in st.session_state["summary_df"].iterrows():
             url   = row.get("geometry_url")
@@ -248,81 +255,75 @@ if "summary_df" in st.session_state:
             if not url:
                 st.warning(f"⚠️ No geometry URL for {etype} {eid}")
                 continue
+
             try:
                 r = requests.get(url)
                 r.raise_for_status()
-                txt = r.text
-                obj = json.loads(txt)
+                gj = r.json()
 
+                # Save the raw GeoJSON
                 name = f"{etype}_{eid}_geometry.geojson"
                 path = os.path.join(geom_dir, name)
                 with open(path, "w", encoding="utf-8") as gf:
-                    gf.write(txt)
+                    json.dump(gj, gf)
 
-                geom_links.append((name, path))
-                geom_objs.append({"meta": row.to_dict(), "geojson": obj})
+                geom_objs.append({"meta": row.to_dict(), "geojson": gj})
                 st.success(f"✅ Saved geometry → {name}")
-            except Exception as ge:
-                st.error(f"❌ Failed to fetch geometry for {etype} {eid}: {ge}")
+            except Exception as e:
+                st.error(f"❌ Failed to fetch geometry for {etype} {eid}: {e}")
 
-        if geom_links:
-            st.session_state["geom_files"] = geom_links
-        if geom_objs:
-            st.session_state["geom_objects"] = geom_objs
-
-    if st.session_state.get("geom_files"):
-        st.markdown("### 📎 Download Geometry Files")
-        for name, path in st.session_state["geom_files"]:
-            with open(path, "rb") as f:
-                st.download_button(f"⬇️ {name}", f.read(), file_name=name)
+        st.session_state["geom_objects"] = geom_objs
 
     if st.session_state.get("geom_objects"):
-        alert_col = {
-            "RED":    [220,  20,  60, 80],
-            "ORANGE": [255, 140,   0, 80],
-            "GREEN":  [ 34, 139,  34, 80],
-        }
-
-        st.markdown("### 🗺️ Per-Event Map Preview")
+        st.markdown("### 🗺️ Per-Event Map Preview (Folium)")
         for entry in st.session_state["geom_objects"]:
             meta = entry["meta"]
             gj   = entry["geojson"]
 
-            if gj.get("type") != "FeatureCollection":
-                gj = {"type": "FeatureCollection", "features": [gj]}
+            # Choose map center: prefer a Point feature if present
+            pt = next((f for f in gj["features"] if f["geometry"]["type"] == "Point"), None)
+            if pt:
+                lon0, lat0 = pt["geometry"]["coordinates"][0:2]
+            else:
+                lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
 
-            for feat in gj["features"]:
-                lvl = str(feat.get("properties", {}).get("alertlevel", "GREEN")).upper()
-                feat.setdefault("properties", {})["_fill"] = alert_col.get(lvl, [128,128,128,80])
+            # Create a Folium map
+            m = folium.Map(location=[lat0, lon0], zoom_start=6, tiles="CartoDB positron")
 
-            lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
+            # Add footprint polygons
+            folium.GeoJson(
+                gj,
+                style_function=lambda feat: {
+                    "fillColor": "#228B22",
+                    "color": "#222",
+                    "weight": 1,
+                    "fillOpacity": 0.6
+                }
+            ).add_to(m)
 
-            layer = pdk.Layer(
-                "GeoJsonLayer", gj,
-                stroked=True, filled=True, extruded=False,
-                get_fill_color="properties._fill",
-                get_line_color=[60,60,60],
-                line_width_min_pixels=1,
-            )
-            deck = pdk.Deck(
-                layers=[layer],
-                initial_view_state=pdk.ViewState(latitude=lat0, longitude=lon0, zoom=6),
-                tooltip={"html": "<b>{properties.name}</b><br>Alert: {properties.alertlevel}"}
-            )
+            # Overlay centroid marker
+            folium.CircleMarker(
+                location=(lat0, lon0),
+                radius=5,
+                color="crimson",
+                fill=True,
+                fill_color="crimson",
+                fill_opacity=0.9
+            ).add_to(m)
 
-            with st.expander(f"🗺️ {meta['event_type']} {meta['event_id']} – {meta['name']}"):
-                st.pydeck_chart(deck, use_container_width=True)
+            # This call actually renders the map in Streamlit
+            with st.expander(f"🗺️ {meta['event_type']} {meta['event_id']} – {meta['name']}", expanded=True):
+                st_folium(m, width=700, height=500)
 
-        legend = """
+        # Legend once at the end
+        legend_html = """
         <div style='font-size:0.875rem;'>
-          <b>Legend</b><br>
-          <span style='background:#DC143C;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Red alert<br>
-          <span style='background:#FF8C00;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Orange alert<br>
-          <span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Green alert<br>
+            <b>Legend</b><br>
+            <span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Footprint<br>
+            <span style='background:#DC143C;width:8px;height:8px;display:inline-block;border:1px solid #333'></span>&nbsp;Centroid<br>
         </div>
         """
-        st.markdown(legend, unsafe_allow_html=True)
-
+        st.markdown(legend_html, unsafe_allow_html=True)
 
 # --------------------------------------------------
 # Footer: explanation of what the GDACS polygons represent
