@@ -233,97 +233,92 @@ if "summary_df" in st.session_state:
                 st.download_button(f"⬇️ {name}", f.read(), file_name=name)
 
 
-# --------------------------------------------------
-# Geometry fetch & interactive map preview (Folium)
-# --------------------------------------------------
 import folium
 from streamlit_folium import st_folium
 
+# --------------------------------------------------
+# Geometry fetch & interactive map preview (checkboxes)
+# --------------------------------------------------
 if "summary_df" in st.session_state:
     st.markdown("---")
     st.subheader("🗺️ GDACS Event Geometry (polygons)")
 
+    # 1) Fetch raw GeoJSON footprints on button click
     if st.button("🌐 Fetch Geometry for Each Event"):
         geom_dir = "gdacs_event_geometry"
         os.makedirs(geom_dir, exist_ok=True)
         geom_objs = []
-
         for _, row in st.session_state["summary_df"].iterrows():
-            url   = row.get("geometry_url")
-            etype = row["event_type"]
-            eid   = row["event_id"]
+            url, etype, eid = row["geometry_url"], row["event_type"], row["event_id"]
             if not url:
-                st.warning(f"⚠️ No geometry URL for {etype} {eid}")
+                st.warning(f"No geometry URL for {etype} {eid}")
                 continue
-
             try:
-                r = requests.get(url)
-                r.raise_for_status()
-                gj = r.json()
-
-                # Save the raw GeoJSON
-                name = f"{etype}_{eid}_geometry.geojson"
-                path = os.path.join(geom_dir, name)
-                with open(path, "w", encoding="utf-8") as gf:
-                    json.dump(gj, gf)
-
+                resp = requests.get(url)
+                resp.raise_for_status()
+                gj = resp.json()
+                fname = f"{etype}_{eid}_geometry.geojson"
+                fpath = os.path.join(geom_dir, fname)
+                with open(fpath, "w") as f:
+                    json.dump(gj, f)
                 geom_objs.append({"meta": row.to_dict(), "geojson": gj})
-                st.success(f"✅ Saved geometry → {name}")
+                st.success(f"Saved geometry → {fname}")
             except Exception as e:
-                st.error(f"❌ Failed to fetch geometry for {etype} {eid}: {e}")
+                st.error(f"Failed to fetch geometry for {etype} {eid}: {e}")
 
         st.session_state["geom_objects"] = geom_objs
 
+    # 2) For each event, show a checkbox that, when checked, displays its map
     if st.session_state.get("geom_objects"):
-        st.markdown("### 🗺️ Per-Event Map Preview (Folium)")
+        st.markdown("### 🗺️ Show/Hide Individual Event Maps")
         for entry in st.session_state["geom_objects"]:
             meta = entry["meta"]
             gj   = entry["geojson"]
+            etype, eid = meta["event_type"], meta["event_id"]
+            label = f"🗺️ {etype} {eid} – {meta['name']}"
 
-            # Choose map center: prefer a Point feature if present
-            pt = next((f for f in gj["features"] if f["geometry"]["type"] == "Point"), None)
-            if pt:
-                lon0, lat0 = pt["geometry"]["coordinates"][0:2]
-            else:
-                lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
+            # Each checkbox needs a unique key
+            chk_key = f"show_map_{etype}_{eid}"
+            if st.checkbox(label, key=chk_key):
+                # determine center (point if available, else polygon)
+                pt = next((f for f in gj["features"] if f["geometry"]["type"] == "Point"), None)
+                if pt:
+                    lon0, lat0 = pt["geometry"]["coordinates"][0:2]
+                else:
+                    lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
 
-            # Create a Folium map
-            m = folium.Map(location=[lat0, lon0], zoom_start=6, tiles="CartoDB positron")
+                # build Folium map
+                m = folium.Map(location=[lat0, lon0], zoom_start=6, tiles="CartoDB positron")
+                folium.GeoJson(
+                    gj,
+                    style_function=lambda feat: {
+                        "fillColor": "#228B22",
+                        "color": "#222",
+                        "weight": 1,
+                        "fillOpacity": 0.6
+                    }
+                ).add_to(m)
+                folium.CircleMarker(
+                    location=(lat0, lon0),
+                    radius=5,
+                    color="crimson",
+                    fill=True,
+                    fill_color="crimson",
+                    fill_opacity=0.9
+                ).add_to(m)
 
-            # Add footprint polygons
-            folium.GeoJson(
-                gj,
-                style_function=lambda feat: {
-                    "fillColor": "#228B22",
-                    "color": "#222",
-                    "weight": 1,
-                    "fillOpacity": 0.6
-                }
-            ).add_to(m)
-
-            # Overlay centroid marker
-            folium.CircleMarker(
-                location=(lat0, lon0),
-                radius=5,
-                color="crimson",
-                fill=True,
-                fill_color="crimson",
-                fill_opacity=0.9
-            ).add_to(m)
-
-            # This call actually renders the map in Streamlit
-            with st.expander(f"🗺️ {meta['event_type']} {meta['event_id']} – {meta['name']}", expanded=True):
+                # render the map
                 st_folium(m, width=700, height=500)
 
-        # Legend once at the end
-        legend_html = """
-        <div style='font-size:0.875rem;'>
-            <b>Legend</b><br>
-            <span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Footprint<br>
-            <span style='background:#DC143C;width:8px;height:8px;display:inline-block;border:1px solid #333'></span>&nbsp;Centroid<br>
-        </div>
-        """
-        st.markdown(legend_html, unsafe_allow_html=True)
+        # legend
+        st.markdown(
+            "<div style='font-size:0.875rem;'>"
+            "<b>Legend</b><br>"
+            "<span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Footprint<br>"
+            "<span style='background:#DC143C;width:8px;height:8px;display:inline-block;border:1px solid #333'></span>&nbsp;Centroid<br>"
+            "</div>",
+            unsafe_allow_html=True,
+        )
 
 # --------------------------------------------------
 # Footer: explanation of what the GDACS polygons represent
