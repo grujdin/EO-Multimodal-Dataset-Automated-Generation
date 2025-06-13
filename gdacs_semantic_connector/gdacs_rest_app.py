@@ -236,39 +236,41 @@ if "summary_df" in st.session_state:
 import folium
 from streamlit_folium import st_folium
 
+import folium
+from streamlit_folium import st_folium
+
 # --------------------------------------------------
-# Geometry fetch & interactive map preview (checkboxes)
+# Geometry fetch & interactive map preview (checkbox + dates)
 # --------------------------------------------------
 if "summary_df" in st.session_state:
     st.markdown("---")
     st.subheader("🗺️ GDACS Event Geometry (polygons)")
 
-    # 1) Fetch raw GeoJSON footprints on button click
+    # 1. Fetch raw GeoJSON footprints
     if st.button("🌐 Fetch Geometry for Each Event"):
         geom_dir = "gdacs_event_geometry"
         os.makedirs(geom_dir, exist_ok=True)
-        geom_objs = []
+        objs = []
         for _, row in st.session_state["summary_df"].iterrows():
             url, etype, eid = row["geometry_url"], row["event_type"], row["event_id"]
             if not url:
                 st.warning(f"No geometry URL for {etype} {eid}")
                 continue
             try:
-                resp = requests.get(url)
-                resp.raise_for_status()
-                gj = resp.json()
+                r = requests.get(url)
+                r.raise_for_status()
+                gj = r.json()
+                # save for download
                 fname = f"{etype}_{eid}_geometry.geojson"
-                fpath = os.path.join(geom_dir, fname)
-                with open(fpath, "w") as f:
+                with open(os.path.join(geom_dir, fname), "w") as f:
                     json.dump(gj, f)
-                geom_objs.append({"meta": row.to_dict(), "geojson": gj})
+                objs.append({"meta": row.to_dict(), "geojson": gj})
                 st.success(f"Saved geometry → {fname}")
             except Exception as e:
                 st.error(f"Failed to fetch geometry for {etype} {eid}: {e}")
+        st.session_state["geom_objects"] = objs
 
-        st.session_state["geom_objects"] = geom_objs
-
-    # 2) For each event, show a checkbox that, when checked, displays its map
+    # 2. Show a checkbox per event; when checked, display dates + map
     if st.session_state.get("geom_objects"):
         st.markdown("### 🗺️ Show/Hide Individual Event Maps")
         for entry in st.session_state["geom_objects"]:
@@ -276,19 +278,32 @@ if "summary_df" in st.session_state:
             gj   = entry["geojson"]
             etype, eid = meta["event_type"], meta["event_id"]
             label = f"🗺️ {etype} {eid} – {meta['name']}"
-
-            # Each checkbox needs a unique key
             chk_key = f"show_map_{etype}_{eid}"
+
             if st.checkbox(label, key=chk_key):
-                # determine center (point if available, else polygon)
-                pt = next((f for f in gj["features"] if f["geometry"]["type"] == "Point"), None)
+                # extract date fields
+                props   = gj["features"][0].get("properties", {})
+                from_dt = props.get("fromdate", "N/A")
+                to_dt   = props.get("todate", "N/A")
+                mod_dt  = props.get("datemodified", "N/A")
+                st.markdown(
+                    f"**From:** {from_dt}  \n"
+                    f"**To:** {to_dt}  \n"
+                    f"**Modified:** {mod_dt}"
+                )
+
+                # determine map center
+                pt = next((f for f in gj["features"]
+                           if f["geometry"]["type"] == "Point"), None)
                 if pt:
                     lon0, lat0 = pt["geometry"]["coordinates"][0:2]
                 else:
                     lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
 
                 # build Folium map
-                m = folium.Map(location=[lat0, lon0], zoom_start=6, tiles="CartoDB positron")
+                m = folium.Map(location=[lat0, lon0],
+                               zoom_start=6,
+                               tiles="CartoDB positron")
                 folium.GeoJson(
                     gj,
                     style_function=lambda feat: {
@@ -310,15 +325,16 @@ if "summary_df" in st.session_state:
                 # render the map
                 st_folium(m, width=700, height=500)
 
-        # legend
-        st.markdown(
-            "<div style='font-size:0.875rem;'>"
-            "<b>Legend</b><br>"
-            "<span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Footprint<br>"
-            "<span style='background:#DC143C;width:8px;height:8px;display:inline-block;border:1px solid #333'></span>&nbsp;Centroid<br>"
-            "</div>",
-            unsafe_allow_html=True,
-        )
+        # 3. Legend
+        legend_html = """
+        <div style='font-size:0.875rem;'>
+          <b>Legend</b><br>
+          <span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Footprint<br>
+          <span style='background:#DC143C;width:8px;height:8px;display:inline-block;border:1px solid #333'></span>&nbsp;Centroid<br>
+        </div>
+        """
+        st.markdown(legend_html, unsafe_allow_html=True)
+
 
 # --------------------------------------------------
 # Footer: explanation of what the GDACS polygons represent
