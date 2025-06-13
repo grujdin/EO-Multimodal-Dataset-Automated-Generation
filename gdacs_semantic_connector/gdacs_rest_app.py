@@ -1,343 +1,325 @@
 import streamlit as st                     # Streamlit for interactive UI
-import pandas as pd                        # pandas for DataFrame handling and export
-import os                                  # os for filesystem operations (directories, paths)
-import requests                            # requests for HTTP API calls
-import json                                # json for parsing GeoJSON & payloads
-import pydeck as pdk                       # pydeck for interactive map rendering
-from rdflib import Graph, Namespace        # rdflib for parsing OWL/RDF graphs
-from rdflib.namespace import RDF, RDFS     # Standard RDF vocabularies
-from shapely.geometry import shape, mapping   # Shapely for geometry operations
-from shapely.ops import unary_union          # to merge & simplify geometries
-from gdacs.api import EVENT_TYPES           # Valid GDACS event_type codes
-import folium
-from streamlit_folium import st_folium
+import pandas as pd                        # pandas for DataFrame handling & export
+import os                                  # filesystem operations
+import requests                            # HTTP API calls
+import json                                # JSON parsing
+import urllib.parse                        # URL parsing for episode IDs
+import folium                              # map rendering
+from streamlit_folium import st_folium     # embed Folium in Streamlit
+from io import BytesIO                     # in-memory buffer for Excel downloads
+from rdflib import Graph, Namespace        # OWL/RDF parsing
+from rdflib.namespace import RDF, RDFS     # RDF vocabularies
+from gdacs.api import EVENT_TYPES          # valid GDACS event_type codes
 
 # --------------------------------------------------
-# Define the namespace used in your OWL file
+# Namespace for your OWL
 # --------------------------------------------------
 DIS = Namespace("http://example.org/disaster#")
 
-
 # --------------------------------------------------
-# Helper: load the OWL and extract hazard definitions
+# Helper: parse OWL & extract hazard definitions
 # --------------------------------------------------
 @st.cache_data(show_spinner=False)
 def load_hazard_ontology(file_obj):
-    """
-    Parse the uploaded OWL file and return a list of dicts:
-      [ { "uri": str, "label": str, "code": str or None }, ... ]
-    for each subject typed as DIS.GDACSHazardType.
-    Caches the result to avoid re-parsing on every interaction.
-    """
     g = Graph()
     g.parse(file_obj)
-
     hazards = []
     for subj in g.subjects(RDF.type, DIS.GDACSHazardType):
-        label_literal = g.value(subj, RDFS.label)     # human-readable label
-        code_literal  = g.value(subj, DIS.gdacsCode)  # two-letter GDACS code or None
+        lbl  = g.value(subj, RDFS.label)
+        code = g.value(subj, DIS.gdacsCode)
         hazards.append({
-            "uri":   str(subj),
-            "label": str(label_literal) if label_literal else None,
-            "code":  str(code_literal)  if code_literal  else None
+            "label": str(lbl)  if lbl  else None,
+            "code":  str(code) if code else None
         })
-
-    # sort by label (safe against None)
     return sorted(hazards, key=lambda h: (h["label"] or ""))
-
 
 # --------------------------------------------------
 # Utility: extract a representative lon/lat from GeoJSON
 # --------------------------------------------------
 def first_lon_lat(geom):
-    """
-    Return a (lon, lat) tuple from the first coordinate found
-    in a GeoJSON geometry dict. Supports Polygon, MultiPolygon, Point.
-    Returns (0, 0) on any error.
-    """
+    t = geom.get("type", "")
+    c = geom.get("coordinates", [])
     try:
-        t = geom.get("type")
-        coords = geom.get("coordinates", [])
         if t == "Polygon":
-            return coords[0][0][0:2]
+            return c[0][0][0:2]
         if t == "MultiPolygon":
-            return coords[0][0][0][0:2]
+            return c[0][0][0][0:2]
         if t == "Point":
-            return coords[0:2]
-    except Exception:
+            return c[0:2]
+    except:
         pass
     return 0, 0
 
-
 # --------------------------------------------------
-# Sidebar: upload ontology, select hazard, show codes
+# Sidebar: Ontology upload & hazard selection
 # --------------------------------------------------
 st.set_page_config(page_title="GDACS Semantic Connector", layout="wide")
 st.sidebar.title("🌐 GDACS Semantic Query")
 
-# 1. Ontology uploader
-owl_file = st.sidebar.file_uploader(
-    "Upload Hazard Ontology (.owl)",
-    type=["owl"],
-    key="hazard_ontology"
-)
+owl_file = st.sidebar.file_uploader("Upload Hazard Ontology (.owl)", type=["owl"])
 if not owl_file:
-    st.stop()  # wait for user to upload OWL
+    st.sidebar.info("Please upload an OWL file to proceed.")
+    st.stop()
 
-# 2. Parse ontology to extract (label, code)
-hazards_all = load_hazard_ontology(owl_file)
-
-# 3. Inform user of supported GDACS codes
-supported = [c for c in EVENT_TYPES if c]  # drop the None
-st.sidebar.info(f"Supported GDACS codes: {', '.join(supported)}")
-
-# 4. Partition hazards into valid/invalid based on code
-valid   = [h for h in hazards_all if h["code"] in supported]
-invalid = [h for h in hazards_all if h["code"] not in supported]
+hazards   = load_hazard_ontology(owl_file)
+supported = [c for c in EVENT_TYPES if c]
+valid     = [h for h in hazards if h["code"] in supported]
+invalid   = [h for h in hazards if h["code"] not in supported]
 
 if invalid:
     st.sidebar.warning(
-        "These ontology hazards have no valid GDACS code and will be skipped: "
-        + ", ".join(h["label"] for h in invalid if h["label"])
+        "Skipped (no GDACS code): " + ", ".join(h["label"] for h in invalid if h["label"])
     )
-
 if not valid:
     st.sidebar.error("No valid hazards found in your ontology.")
     st.stop()
 
-# 5. Build dropdown from valid hazards
 labels    = [h["label"] for h in valid]
 sel_label = st.sidebar.selectbox("Select Hazard Type", labels)
-# lookup the matching code for the selected label
 sel_code  = next(h["code"] for h in valid if h["label"] == sel_label)
-
-# 6. Limit selector for number of summary events
-limit = st.sidebar.selectbox(
-    "Limit number of results",
-    [10, 20, 50, 100, 200, 500, 1000],
-    index=0
-)
-
+limit     = st.sidebar.selectbox("Limit number of results", [10,20,50,100,200,500,1000], 0)
 
 # --------------------------------------------------
 # Main: Summary of GDACS events
 # --------------------------------------------------
-st.title("GDACS Semantic Connector")
-st.caption(
-    "Unofficial GDACS API explorer with ontology-driven hazard "
-    "selection, detail & geometry fetch plus quick map preview."
-)
+st.title("🌍 GDACS Semantic Connector")
+st.caption("Ontology-driven hazard selection → event summary → detail & episode footprints")
 
 st.header("🗂️ Summary Events")
-st.markdown("Using <https://www.gdacs.org/observatory/api/data> (unofficial)")
-
 if st.sidebar.button("🔍 Fetch GDACS Events"):
     from gdacs.api import GDACSAPIReader
     client = GDACSAPIReader()
-
-    with st.spinner(f"Querying latest GDACS events for {sel_label} …"):
+    with st.spinner(f"Loading latest {sel_label} events…"):
         try:
-            geojson = client.latest_events(event_type=sel_code, limit=limit)
-        except Exception as err:
-            st.error(f"❌ Failed to fetch GDACS events: {err}")
-            geojson = []
+            gj = client.latest_events(event_type=sel_code, limit=limit)
+        except Exception as e:
+            st.error(f"Failed to fetch events: {e}")
+            gj = None
 
-    rows = []
-    for feat in getattr(geojson, "features", []):
-        props = feat.get("properties", {})
-        geom  = feat.get("geometry", {})
-        lon, lat = (None, None)
-        if geom.get("coordinates"):
-            lon, lat = geom["coordinates"][0:2]
-
-        etype = props.get("eventtype")
-        eid   = props.get("eventid")
-        rows.append({
-            "event_type":   etype,
-            "event_id":     eid,
-            "name":         props.get("name"),
-            "alert_level":  props.get("alertlevel"),
-            "from_date":    props.get("fromdate"),
-            "to_date":      props.get("todate"),
-            "country":      props.get("country"),
-            "severity":     props.get("severitydata", {}).get("severity"),
-            "latitude":     lat,
-            "longitude":    lon,
-            "report_url":   props.get("url", {}).get("report"),
-            "geometry_url": props.get("url", {}).get("geometry"),
-            # Pre-built detail endpoint for full event JSON
-            "detail_url": (
-                f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?"
-                f"eventtype={etype}&eventid={eid}"
-            ),
-        })
-
-    if not rows:
-        st.warning("⚠️ No events returned.")
+    if not gj or not getattr(gj, "features", []):
+        st.warning("No events returned.")
     else:
+        rows = []
+        for feat in gj.features:
+            p    = feat.get("properties", {})
+            geom = feat.get("geometry", {}) or {}
+            lon, lat = geom.get("coordinates", [None,None])[0:2]
+            et, eid = p.get("eventtype"), p.get("eventid")
+            rows.append({
+                "event_type":   et,
+                "event_id":     eid,
+                "name":         p.get("name"),
+                "alert":        p.get("alertlevel"),
+                "from_date":    p.get("fromdate"),
+                "to_date":      p.get("todate"),
+                "country":      p.get("country"),
+                "severity":     p.get("severitydata",{}).get("severity"),
+                "latitude":     lat,
+                "longitude":    lon,
+                "report_url":   p.get("url",{}).get("report"),
+                "geometry_url": p.get("url",{}).get("geometry"),
+                "detail_url":   (
+                    f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?"
+                    f"eventtype={et}&eventid={eid}"
+                )
+            })
         df = pd.DataFrame(rows)
         st.session_state["summary_df"] = df
         st.dataframe(df, use_container_width=True)
 
-        df.to_excel("gdacs_hazards.xlsx", index=False)
+        # Download CSV
         st.download_button(
-            "🗕️ Download Events CSV",
-            df.to_csv(index=False),
-            file_name="gdacs_hazards.csv"
+            "📥 Download Summary CSV",
+            data=df.to_csv(index=False),
+            file_name="gdacs_summary.csv",
+            mime="text/csv",
+            key="download_summary_csv"
         )
-        st.success("✅ Summary saved to gdacs_hazards.xlsx")
-
+        # Download Excel (in-memory)
+        excel_buffer = BytesIO()
+        with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
+            df.to_excel(writer, index=False)
+        excel_buffer.seek(0)
+        st.download_button(
+            "🗕️ Download Summary Excel",
+            data=excel_buffer.getvalue(),
+            file_name="gdacs_summary.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key="download_summary_excel"
+        )
 
 # --------------------------------------------------
-# Detail fetch: retrieve full properties JSON per event
+# Detail fetch: Sendai data per event
 # --------------------------------------------------
 if "summary_df" in st.session_state:
     st.markdown("---")
     st.subheader("📋 GDACS Event Details")
-
     if st.button("📥 Fetch Details for Each Event"):
         details_dir = "gdacs_event_details"
         os.makedirs(details_dir, exist_ok=True)
-        file_links = []
-
+        detail_files = []
         for _, row in st.session_state["summary_df"].iterrows():
-            url   = row["detail_url"]
-            etype = row["event_type"]
-            eid   = row["event_id"]
+            url, et, eid = row["detail_url"], row["event_type"], row["event_id"]
             try:
-                resp = requests.get(url)
-                resp.raise_for_status()
-                js   = resp.json()
-                props = js.get("properties", {})
+                r = requests.get(url); r.raise_for_status()
+                props = r.json().get("properties", {})
                 if not props:
-                    st.warning(f"⚠️ No properties returned for {etype} {eid}")
+                    st.warning(f"No properties for {et} {eid}")
                     continue
-
-                # Normalize the entire properties dict into one-row DataFrame
                 df_det = pd.json_normalize([props])
-                name   = f"{etype}_{eid}_details.xlsx"
-                path   = os.path.join(details_dir, name)
-                df_det.to_excel(path, index=False)
-                file_links.append((name, path))
-                st.success(f"✅ Saved details → {name}")
-            except Exception as exc:
-                st.error(f"❌ Failed to fetch details for {etype} {eid}: {exc}")
-
-        if file_links:
-            st.session_state["detail_files"] = file_links
+                fn = f"{et}_{eid}_details.xlsx"
+                fp = os.path.join(details_dir, fn)
+                df_det.to_excel(fp, index=False)
+                detail_files.append((fn, fp))
+                st.success(f"Saved details → {fn}")
+            except Exception as e:
+                st.error(f"Failed details {et} {eid}: {e}")
+        st.session_state["detail_files"] = detail_files
 
     if st.session_state.get("detail_files"):
         st.markdown("### 📎 Download Detailed Files")
-        for name, path in st.session_state["detail_files"]:
-            with open(path, "rb") as f:
-                st.download_button(f"⬇️ {name}", f.read(), file_name=name)
-
-
-import folium
-from streamlit_folium import st_folium
-
-import folium
-from streamlit_folium import st_folium
+        for fn, fp in st.session_state["detail_files"]:
+            with open(fp, "rb") as f:
+                st.download_button(
+                    label=fn,
+                    data=f.read(),
+                    file_name=fn,
+                    key=f"download_detail_{fn}"
+                )
 
 # --------------------------------------------------
-# Geometry fetch & interactive map preview (checkbox + dates)
+# Episode footprints: fetch & save per-episode geometry
 # --------------------------------------------------
 if "summary_df" in st.session_state:
     st.markdown("---")
-    st.subheader("🗺️ GDACS Event Geometry (polygons)")
-
-    # 1. Fetch raw GeoJSON footprints
-    if st.button("🌐 Fetch Geometry for Each Event"):
-        geom_dir = "gdacs_event_geometry"
-        os.makedirs(geom_dir, exist_ok=True)
-        objs = []
+    st.subheader("⌛ Fetch & Save All Episode Footprints")
+    if st.button("🌐 Fetch Episodes & Geometry"):
+        base_dir = "gdacs_event_geometry"
+        os.makedirs(base_dir, exist_ok=True)
+        evolution = {}
         for _, row in st.session_state["summary_df"].iterrows():
-            url, etype, eid = row["geometry_url"], row["event_type"], row["event_id"]
-            if not url:
-                st.warning(f"No geometry URL for {etype} {eid}")
-                continue
+            et, eid, name = row["event_type"], row["event_id"], row["name"]
+            ev_dir = os.path.join(base_dir, f"{et}_{eid}")
+            os.makedirs(ev_dir, exist_ok=True)
+
+            # Get episodes
             try:
-                r = requests.get(url)
-                r.raise_for_status()
-                gj = r.json()
-                # save for download
-                fname = f"{etype}_{eid}_geometry.geojson"
-                with open(os.path.join(geom_dir, fname), "w") as f:
-                    json.dump(gj, f)
-                objs.append({"meta": row.to_dict(), "geojson": gj})
-                st.success(f"Saved geometry → {fname}")
-            except Exception as e:
-                st.error(f"Failed to fetch geometry for {etype} {eid}: {e}")
-        st.session_state["geom_objects"] = objs
+                r  = requests.get(row["detail_url"]); r.raise_for_status()
+                eps = r.json().get("properties", {}).get("episodes", [])
+            except:
+                eps = []
+            episode_ids = []
+            for ep in eps:
+                q = urllib.parse.urlparse(ep.get("details","")).query
+                params = urllib.parse.parse_qs(q)
+                if "episodeid" in params:
+                    episode_ids.append(int(params["episodeid"][0]))
 
-    # 2. Show a checkbox per event; when checked, display dates + map
-    if st.session_state.get("geom_objects"):
-        st.markdown("### 🗺️ Show/Hide Individual Event Maps")
-        for entry in st.session_state["geom_objects"]:
-            meta = entry["meta"]
-            gj   = entry["geojson"]
-            etype, eid = meta["event_type"], meta["event_id"]
-            label = f"🗺️ {etype} {eid} – {meta['name']}"
-            chk_key = f"show_map_{etype}_{eid}"
-
-            if st.checkbox(label, key=chk_key):
-                # extract date fields
-                props   = gj["features"][0].get("properties", {})
-                from_dt = props.get("fromdate", "N/A")
-                to_dt   = props.get("todate", "N/A")
-                mod_dt  = props.get("datemodified", "N/A")
-                st.markdown(
-                    f"**From:** {from_dt}  \n"
-                    f"**To:** {to_dt}  \n"
-                    f"**Modified:** {mod_dt}"
+            # Fetch each episode's geometry
+            footprints = []
+            for ep_id in sorted(episode_ids):
+                geom_url = (
+                    f"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry"
+                    f"?eventtype={et}&eventid={eid}&episodeid={ep_id}"
                 )
+                try:
+                    r2    = requests.get(geom_url); r2.raise_for_status()
+                    gj_ep = r2.json()
+                    poly  = next(
+                        (f for f in gj_ep["features"]
+                         if f["geometry"]["type"] in ("Polygon","MultiPolygon")),
+                        None
+                    )
+                    ts    = poly["properties"].get("polygondate") if poly else "N/A"
+                    fn    = f"episode_{ep_id}.geojson"
+                    fp    = os.path.join(ev_dir, fn)
+                    with open(fp, "w", encoding="utf-8") as f:
+                        json.dump(gj_ep, f)
+                    footprints.append({
+                        "episode":   ep_id,
+                        "timestamp": ts,
+                        "geojson":   gj_ep,
+                        "path":      fp
+                    })
+                except:
+                    continue
 
-                # determine map center
-                pt = next((f for f in gj["features"]
-                           if f["geometry"]["type"] == "Point"), None)
-                if pt:
-                    lon0, lat0 = pt["geometry"]["coordinates"][0:2]
-                else:
-                    lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
+            evolution[f"{et}_{eid}"] = {
+                "meta":       {"event_type":et, "event_id":eid, "name":name},
+                "footprints": footprints
+            }
 
-                # build Folium map
-                m = folium.Map(location=[lat0, lon0],
-                               zoom_start=6,
-                               tiles="CartoDB positron")
-                folium.GeoJson(
-                    gj,
-                    style_function=lambda feat: {
-                        "fillColor": "#228B22",
-                        "color": "#222",
-                        "weight": 1,
-                        "fillOpacity": 0.6
-                    }
-                ).add_to(m)
-                folium.CircleMarker(
-                    location=(lat0, lon0),
-                    radius=5,
-                    color="crimson",
-                    fill=True,
-                    fill_color="crimson",
-                    fill_opacity=0.9
-                ).add_to(m)
+        st.session_state["evolution"] = evolution
+        st.success("Fetched & saved all episode geometries.")
 
-                # render the map
-                st_folium(m, width=700, height=500)
+    # --------------------------------------------------
+    # Display evolution: maps + download links (on-demand)
+    # --------------------------------------------------
+    if st.session_state.get("evolution"):
+        st.markdown("---")
+        st.header("📈 Evolution of Event Footprints")
+        for event_key, info in st.session_state["evolution"].items():
+            meta = info["meta"]
+            ecode = meta["event_type"]
+            eid = meta["event_id"]
+            ename = meta["name"]
 
-        # 3. Legend
-        legend_html = """
-        <div style='font-size:0.875rem;'>
-          <b>Legend</b><br>
-          <span style='background:#228B22;width:12px;height:12px;display:inline-block;border:1px solid #333'></span>&nbsp;Footprint<br>
-          <span style='background:#DC143C;width:8px;height:8px;display:inline-block;border:1px solid #333'></span>&nbsp;Centroid<br>
-        </div>
-        """
-        st.markdown(legend_html, unsafe_allow_html=True)
+            st.subheader(f"{ecode} {eid} – {ename}")
+            # for each episode, only render map & button if user ticks the box
+            for fp in info["footprints"]:
+                ep = fp["episode"]
+                ts = fp["timestamp"]
+                gj = fp["geojson"]
+                geo_fp = fp["path"]
+                chk_key = f"show_ep_{ecode}_{eid}_{ep}"
 
+                # this checkbox replaces the always-on st_folium calls
+                if st.checkbox(f"Episode {ep} — {ts}", key=chk_key):
+                    # compute center (use point if available)
+                    pt = next((f for f in gj["features"]
+                               if f["geometry"]["type"] == "Point"), None)
+                    if pt:
+                        lon0, lat0 = pt["geometry"]["coordinates"][:2]
+                    else:
+                        lon0, lat0 = first_lon_lat(gj["features"][0]["geometry"])
 
+                    # render the Folium map
+                    m = folium.Map(
+                        location=[lat0, lon0],
+                        zoom_start=6,
+                        tiles="CartoDB positron"
+                    )
+                    folium.GeoJson(
+                        gj,
+                        style_function=lambda feat: {
+                            "fillColor": "#228B22",
+                            "color": "#222",
+                            "weight": 1,
+                            "fillOpacity": 0.6
+                        }
+                    ).add_to(m)
+                    folium.CircleMarker(
+                        location=(lat0, lon0),
+                        radius=5,
+                        color="crimson",
+                        fill=True,
+                        fill_color="crimson",
+                        fill_opacity=0.9
+                    ).add_to(m)
+
+                    st_folium(m, width=700, height=400)
+
+                    # unique download key per episode
+                    st.download_button(
+                        label=f"⬇️ Download Episode {ep} GeoJSON",
+                        data=open(geo_fp, "rb").read(),
+                        file_name=os.path.basename(geo_fp),
+                        key=f"download_ep_{ecode}_{eid}_{ep}"
+                    )
+            # small spacer between events
+            st.markdown("—" * 10)
 # --------------------------------------------------
-# Footer: explanation of what the GDACS polygons represent
+# Footer: explanation of GDACS polygons
 # --------------------------------------------------
 st.markdown(
     "> **What do these polygons represent?**  \n"
