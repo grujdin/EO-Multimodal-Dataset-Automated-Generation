@@ -137,13 +137,13 @@ if st.sidebar.button("🔍 Fetch GDACS Events"):
 
     st.session_state["summary_df"] = pd.DataFrame(rows)
 
-# 2️⃣ Display summary, persist into .venv/gdacs_summary.csv, and show download buttons
+# 2️⃣ Display summary, persist into summary/gdacs_summary.csv, and show download buttons
 if "summary_df" in st.session_state:
     df_summary = st.session_state["summary_df"]
     st.dataframe(df_summary, use_container_width=True)
 
-    # ensure a .venv folder under project root
-    persist_dir = os.path.join(os.getcwd(), ".venv")
+    # ensure a summary folder under project root
+    persist_dir = os.path.join(os.getcwd(), "summary")
     os.makedirs(persist_dir, exist_ok=True)
     csv_path = os.path.join(persist_dir, "gdacs_summary.csv")
 
