@@ -80,73 +80,140 @@ sel_code  = next(h["code"] for h in valid if h["label"] == sel_label)
 limit     = st.sidebar.selectbox("Limit number of results", [10,20,50,100,200,500,1000], 0)
 
 # --------------------------------------------------
-# Main: Summary of GDACS events
+# Main – summary of GDACS events, persist CSV & download CSV+Excel
 # --------------------------------------------------
-st.title("🌍 GDACS Semantic Connector")
-st.caption("Ontology-driven hazard selection → event summary → detail & episode footprints")
+import os
+from io import BytesIO
+import pandas as pd
+from pandas.errors import EmptyDataError
+
+st.title("GDACS Semantic Connector")
+st.caption(
+    "Unofficial GDACS API explorer with ontology-driven hazard "
+    "selection, detail & geometry fetch plus quick map preview."
+)
 
 st.header("🗂️ Summary Events")
+st.markdown("Using <https://www.gdacs.org/observatory/api/data> (unofficial)")
+
+# 1️⃣ Fetch new events when the user clicks
 if st.sidebar.button("🔍 Fetch GDACS Events"):
     from gdacs.api import GDACSAPIReader
     client = GDACSAPIReader()
-    with st.spinner(f"Loading latest {sel_label} events…"):
+    with st.spinner(f"Querying latest GDACS events for {sel_label} …"):
         try:
-            gj = client.latest_events(event_type=sel_code, limit=limit)
-        except Exception as e:
-            st.error(f"Failed to fetch events: {e}")
-            gj = None
+            geojson = client.latest_events(event_type=sel_code, limit=limit)
+        except Exception as err:
+            st.error(f"❌ Failed to fetch GDACS events: {err}")
+            geojson = []
 
-    if not gj or not getattr(gj, "features", []):
-        st.warning("No events returned.")
-    else:
-        rows = []
-        for feat in gj.features:
-            p    = feat.get("properties", {})
-            geom = feat.get("geometry", {}) or {}
-            lon, lat = geom.get("coordinates", [None,None])[0:2]
-            et, eid = p.get("eventtype"), p.get("eventid")
-            rows.append({
-                "event_type":   et,
-                "event_id":     eid,
-                "name":         p.get("name"),
-                "alert":        p.get("alertlevel"),
-                "from_date":    p.get("fromdate"),
-                "to_date":      p.get("todate"),
-                "country":      p.get("country"),
-                "severity":     p.get("severitydata",{}).get("severity"),
-                "latitude":     lat,
-                "longitude":    lon,
-                "report_url":   p.get("url",{}).get("report"),
-                "geometry_url": p.get("url",{}).get("geometry"),
-                "detail_url":   (
-                    f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?"
-                    f"eventtype={et}&eventid={eid}"
-                )
-            })
-        df = pd.DataFrame(rows)
-        st.session_state["summary_df"] = df
-        st.dataframe(df, use_container_width=True)
+    rows = []
+    for feat in getattr(geojson, "features", []):
+        p = feat.get("properties", {}) or {}
+        g = feat.get("geometry", {}) or {}
+        lon, lat = (None, None)
+        if "coordinates" in g:
+            lon, lat = g["coordinates"][0:2]
 
-        # Download CSV
-        st.download_button(
-            "📥 Download Summary CSV",
-            data=df.to_csv(index=False),
-            file_name="gdacs_summary.csv",
-            mime="text/csv",
-            key="download_summary_csv"
-        )
-        # Download Excel (in-memory)
-        excel_buffer = BytesIO()
-        with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
-            df.to_excel(writer, index=False)
-        excel_buffer.seek(0)
-        st.download_button(
-            "🗕️ Download Summary Excel",
-            data=excel_buffer.getvalue(),
-            file_name="gdacs_summary.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            key="download_summary_excel"
-        )
+        et, eid = p.get("eventtype"), p.get("eventid")
+        rows.append({
+            "event_type":   et,
+            "event_id":     eid,
+            "name":         p.get("name"),
+            "alert":        p.get("alertlevel"),
+            "from_date":    p.get("fromdate"),
+            "to_date":      p.get("todate"),
+            "country":      p.get("country"),
+            "severity":     p.get("severitydata", {}).get("severity"),
+            "latitude":     lat,
+            "longitude":    lon,
+            "report_url":   p.get("url", {}).get("report"),
+            "geometry_url": p.get("url", {}).get("geometry"),
+            "detail_url":   (
+                f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?"
+                f"eventtype={et}&eventid={eid}"
+            ),
+        })
+
+    st.session_state["summary_df"] = pd.DataFrame(rows)
+
+# 2️⃣ Display summary, persist into .venv/gdacs_summary.csv, and show download buttons
+if "summary_df" in st.session_state:
+    df_summary = st.session_state["summary_df"]
+    st.dataframe(df_summary, use_container_width=True)
+
+    # ensure a .venv folder under project root
+    persist_dir = os.path.join(os.getcwd(), ".venv")
+    os.makedirs(persist_dir, exist_ok=True)
+    csv_path = os.path.join(persist_dir, "gdacs_summary.csv")
+
+    def append_new_csv(df_new: pd.DataFrame, path: str):
+        """
+        Append only brand-new rows (by event_type+event_id) to path.
+        If path missing, empty, or unreadable, write df_new fresh.
+        """
+        # if file missing or zero-length, write fresh
+        if not os.path.exists(path) or os.path.getsize(path) == 0:
+            df_new.to_csv(path, index=False)
+            return
+
+        # load existing CSV
+        try:
+            df_old = pd.read_csv(path)
+        except (EmptyDataError, pd.errors.ParserError):
+            df_new.to_csv(path, index=False)
+            return
+
+        # ensure keys present
+        if not {"event_type", "event_id"}.issubset(df_old.columns):
+            df_new.to_csv(path, index=False)
+            return
+
+        # build set of existing key‐tuples
+        existing = set(zip(df_old["event_type"], df_old["event_id"]))
+
+        # filter df_new to only those not in existing
+        mask = [
+            (et, eid) not in existing
+            for et, eid in zip(df_new["event_type"], df_new["event_id"])
+        ]
+        df_add = df_new[mask]
+
+        if df_add.empty:
+            return
+
+        # append and overwrite CSV
+        df_out = pd.concat([df_old, df_add], ignore_index=True)
+        df_out.to_csv(path, index=False)
+
+    # persist CSV
+    append_new_csv(df_summary, csv_path)
+
+    # 🗂️ Download Summary CSV
+    with open(csv_path, "rb") as f:
+        csv_bytes = f.read()
+    st.download_button(
+        "📥 Download Summary CSV",
+        data=csv_bytes,
+        file_name="gdacs_summary.csv",
+        mime="text/csv",
+        key="dl_summary_csv"
+    )
+
+    # 🗂️ Download Summary Excel (generated from the CSV)
+    df_csv = pd.read_csv(csv_path)
+    excel_buffer = BytesIO()
+    with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
+        df_csv.to_excel(writer, index=False)
+    excel_buffer.seek(0)
+
+    st.download_button(
+        "⬇️ Download Summary Excel",
+        data=excel_buffer.getvalue(),
+        file_name="gdacs_summary.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        key="dl_summary_xlsx"
+    )
 
 # --------------------------------------------------
 # Detail fetch: Sendai data per event
