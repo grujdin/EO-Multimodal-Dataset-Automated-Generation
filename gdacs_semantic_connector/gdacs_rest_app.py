@@ -1,18 +1,18 @@
 # Import necessary libraries
-import os
-import json
-import urllib.parse
-from io import BytesIO
+import os  # Provides a way to interact with the operating system, including file and directory operations
+import json  # Used for encoding and decoding JSON data
+import urllib.parse  # Provides utilities for parsing URLs
+from io import BytesIO  # Used for managing data in bytes, particularly useful for handling binary data in memory
 
-import streamlit as st
-import pandas as pd
-import requests
-import folium
-from rdflib import Graph, Namespace
-from rdflib.namespace import RDF, RDFS
-from streamlit_folium import st_folium
-from pandas.errors import EmptyDataError
-from gdacs.api import EVENT_TYPES
+import streamlit as st  # A library for creating web apps with Python, used here for building the interactive interface
+import pandas as pd  # Provides data structures and functions needed to manipulate structured data
+import requests  # Allows sending HTTP requests easily, used here to fetch data from web APIs
+import folium  # A library for visualizing geospatial data, used to create interactive maps
+from rdflib import Graph, Namespace  # Used for working with RDF (Resource Description Framework) data
+from rdflib.namespace import RDF, RDFS  # Provides predefined RDF and RDFS namespaces
+from streamlit_folium import st_folium  # Integrates folium maps into Streamlit apps
+from pandas.errors import EmptyDataError  # Exception raised when a DataFrame operation encounters empty data
+from gdacs.api import EVENT_TYPES  # Imports event types from the GDACS API, used for hazard data
 
 # Define namespaces and directories for data storage
 DIS = Namespace("http://example.org/disaster#")
