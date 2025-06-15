@@ -37,16 +37,19 @@ def load_hazard_ontology(file_obj):
 
 # Helper function to extract longitude and latitude from geometry
 def first_lon_lat(geom):
-    t = geom.get("type", "")
-    c = geom.get("coordinates", [])
+    t = geom.get("type","")
+    c = geom.get("coordinates",[])
     try:
         if t == "Point":
+            # point coords come in a flat list
             return c[0], c[1]
-        if t == "Polygon":
+        elif t == "Polygon":
+            # [ [ [lon, lat], … ] ]
             return c[0][0][0], c[0][0][1]
-        if t == "MultiPolygon":
+        elif t == "MultiPolygon":
+            # [ [ [ [lon, lat], … ] ], … ]
             return c[0][0][0][0], c[0][0][0][1]
-    except:
+    except Exception:
         pass
     return 0.0, 0.0
 
@@ -116,43 +119,82 @@ st.caption("Unofficial GDACS API explorer with ontology-driven hazard selection,
 st.header("🗂️ Summary Events")
 st.markdown("Using <https://www.gdacs.org/observatory/api/data> (unofficial)")
 
-# Fetch GDACS events based on selected hazard type and limit
+# ─── Fetch GDACS events based on selected hazard type and limit ─────────────────
 if st.sidebar.button("🔍 Fetch GDACS Events", key="fetch_sum"):
     from gdacs.api import GDACSAPIReader
-    client = GDACSAPIReader()
-    with st.spinner(f"Querying {sel_label} events…"):
-        try:
-            gj = client.latest_events(event_type=sel_code, limit=limit)
-        except Exception as e:
-            st.error(f"Failed to fetch: {e}")
-            gj = None
+    from types import SimpleNamespace
 
-    rows = []
-    if gj and getattr(gj, "features", []):
+    client = GDACSAPIReader()
+    rows = []  # ← ensure this is always defined
+
+    # 1️⃣ Try the GDACSAPIReader client
+    st.info(f"🔎 Debug: calling client.latest_events(event_type={sel_code!r}, limit={limit})")
+    try:
+        gj = client.latest_events(event_type=sel_code, limit=limit)
+        if not getattr(gj, "features", None):
+            raise ValueError("client returned no features")
+        st.success("✅ client.latest_events() succeeded")
+    except Exception as e:
+        st.warning(f"⚠️ client.latest_events failed: {e}")
+        gj = None
+
+    # 2️⃣ Fallback to raw Observatory endpoint
+    if not gj or not getattr(gj, "features", None):
+        raw_url = f"https://www.gdacs.org/observatory/api/data?eventtype={sel_code}&limit={limit}"
+        st.info(f"🌐 Debug: falling back to raw GET {raw_url}")
+        feats = []
+        try:
+            resp = requests.get(raw_url, timeout=15)
+            st.info(f"   → HTTP {resp.status_code}; Content-Type: {resp.headers.get('content-type')}")
+            resp.raise_for_status()
+            data = resp.json()  # may raise ValueError
+            feats = data.get("features", []) or []
+            if not feats:
+                raise ValueError("raw JSON has empty 'features'")
+            st.success("✅ raw endpoint returned features")
+        except requests.HTTPError as he:
+            st.error(f"❌ raw endpoint HTTP error: {he}")
+        except ValueError as ve:
+            st.error(f"❌ JSON decode or empty: {ve}")
+            snippet = resp.text[:500]
+            st.code(snippet, language="html")
+        except Exception as ex:
+            st.error(f"❌ Unexpected error fetching raw: {ex}")
+        # wrap into the same shape as client.latest_events()
+        gj = SimpleNamespace(features=feats)
+
+    # 3️⃣ Build the rows list if we have valid features
+    if getattr(gj, "features", None):
         for feat in gj.features:
             p = feat.get("properties", {}) or {}
-            g = feat.get("geometry", {}) or {}
+            g = feat.get("geometry", {})    or {}
             lon, lat = (None, None)
             if "coordinates" in g:
                 lon, lat = g["coordinates"][:2]
+
             et, eid = p.get("eventtype"), p.get("eventid")
             rows.append({
                 "event_type": et,
-                "event_id": eid,
-                "name": p.get("name"),
-                "alert": p.get("alertlevel"),
-                "from_date": p.get("fromdate"),
-                "to_date": p.get("todate"),
-                "country": p.get("country"),
-                "severity": p.get("severitydata", {}).get("severity"),
-                "latitude": lat,
-                "longitude": lon,
+                "event_id":   eid,
+                "name":       p.get("name"),
+                "alert":      p.get("alertlevel"),
+                "from_date":  p.get("fromdate"),
+                "to_date":    p.get("todate"),
+                "country":    p.get("country"),
+                "severity":   p.get("severitydata", {}).get("severity"),
+                "latitude":   lat,
+                "longitude":  lon,
                 "report_url": p.get("url", {}).get("report"),
                 "geometry_url": p.get("url", {}).get("geometry"),
-                "detail_url": f"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype={et}&eventid={eid}"
+                "detail_url": (
+                    f"https://www.gdacs.org/gdacsapi/api/events/"
+                    f"geteventdata?eventtype={et}&eventid={eid}"
+                ),
             })
     else:
-        st.warning("⚠️ No events returned.")
+        st.warning(f"⚠️ No {sel_label} events returned (client nor raw).")
+
+    # 4️⃣ Always write back into session_state (even if rows is empty)
     st.session_state["summary_df"] = pd.DataFrame(rows)
 
 # Display and persist the summary data
