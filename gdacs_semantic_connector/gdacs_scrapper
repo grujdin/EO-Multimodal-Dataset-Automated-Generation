@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+import time
+import random
+import csv
+import sys
+import os
+import json
+import requests
+
+# ─── CONFIGURATION ─────────────────────────────────────────────────────────────
+BASE_URL     = "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry"
+EVENT_TYPE   = "WF"            # Wildfire
+START_ID     = 1024031
+END_ID       = 1024111
+OUTPUT_CSV   = "wildfire_1024031-1024111.csv"
+DELAY        = 1.0             # base seconds between requests
+JITTER       = 0.5             # ± jitter
+PARENT_DIR   = EVENT_TYPE      # put each event folder under ./FL/
+TIMEOUT      = 10              # seconds before give up on a request
+# ────────────────────────────────────────────────────────────────────────────────
+
+def check_geometry(event_id: int, episode_id: int):
+    """
+    Returns (exists, geojson)
+      - exists = True if we got a 200 + non-empty features
+      - geojson = parsed JSON on success, else None
+    """
+    params = {
+        "eventtype": EVENT_TYPE,
+        "eventid":   event_id,
+        "episodeid": episode_id,
+    }
+    try:
+        r = requests.get(BASE_URL, params=params, timeout=TIMEOUT)
+        r.raise_for_status()
+        data = r.json()
+        if data.get("features"):
+            return True, data
+    except (requests.exceptions.RequestException, ValueError) as e:
+        # timeout, connection error, HTTP error, or JSON parse error
+        sys.stderr.write(f"\n⚠️  skip {EVENT_TYPE} {event_id}/{episode_id}: {e}\n")
+    return False, None
+
+def main():
+    found = []
+    total = END_ID - START_ID + 1
+    print(f"▶ Scraping geometry for {EVENT_TYPE} events {START_ID}→{END_ID}")
+    checked = 0
+
+    # 1️⃣ Discover all valid (event,episode)
+    for eid in range(START_ID, END_ID + 1):
+        checked += 1
+        sys.stdout.write(f"\r[{checked}/{total}] event {eid} … ")
+        sys.stdout.flush()
+
+        # probe episode 1
+        time.sleep(DELAY + random.uniform(-JITTER, JITTER))
+        ok, geo = check_geometry(eid, 1)
+        if not ok:
+            continue
+
+        found.append((eid, 1, geo))
+        sys.stdout.write("1")
+
+        # probe further episodes until fail
+        ep = 2
+        while True:
+            time.sleep(DELAY + random.uniform(-JITTER, JITTER))
+            ok, geo = check_geometry(eid, ep)
+            if not ok:
+                break
+            found.append((eid, ep, geo))
+            sys.stdout.write(f",{ep}")
+            ep += 1
+
+    print(f"\n✔ Done: scanned {total} events, found {len(found)} pairs.")
+    print(f"→ Writing CSV: {OUTPUT_CSV}")
+
+    # write CSV of (event,episode)
+    with open(OUTPUT_CSV, "w", newline="", encoding="utf-8") as csvf:
+        w = csv.writer(csvf)
+        w.writerow(["event_type","event_id","episode_id"])
+        for eid, ep, _ in found:
+            w.writerow([EVENT_TYPE, eid, ep])
+
+    # 2️⃣ Download each GeoJSON into its event‐folder under PARENT_DIR
+    print("▶ Downloading GeoJSON files …")
+    os.makedirs(PARENT_DIR, exist_ok=True)
+
+    for eid, ep, geojson in found:
+        ev_dir = os.path.join(PARENT_DIR, f"{EVENT_TYPE}_{eid}")
+        os.makedirs(ev_dir, exist_ok=True)
+
+        fn = f"{EVENT_TYPE}_{eid}_{ep}.geojson"
+        fp = os.path.join(ev_dir, fn)
+
+        if geojson is not None:
+            with open(fp, "w", encoding="utf-8") as f:
+                json.dump(geojson, f)
+        else:
+            # fallback: re-fetch raw
+            params = {"eventtype": EVENT_TYPE, "eventid": eid, "episodeid": ep}
+            try:
+                r = requests.get(BASE_URL, params=params, timeout=TIMEOUT)
+                r.raise_for_status()
+                with open(fp, "w", encoding="utf-8") as f:
+                    f.write(r.text)
+            except requests.exceptions.RequestException as e:
+                sys.stderr.write(f"⚠️  failed to download {eid}/{ep}: {e}\n")
+
+        time.sleep(DELAY + random.uniform(-JITTER, JITTER))
+
+    print("✅ All done.")
+
+if __name__ == "__main__":
+    main()
