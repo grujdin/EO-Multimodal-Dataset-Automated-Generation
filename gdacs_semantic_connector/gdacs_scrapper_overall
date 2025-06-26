@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+import pandas as pd
+import os
+import requests
+
+# --- CONFIGURATION ---
+INPUT_FILE = "wildfire_1000000-1024111.csv"  # Or .xlsx if needed
+OUTPUT_XLSX = "wildfire_1000000-1024111_filtered.xlsx"
+GEOJSON_DIR = "WF_Summary"
+GDACS_URL = "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry"
+# ----------------------
+
+def load_data(file_path):
+    if file_path.endswith(".xlsx"):
+        return pd.read_excel(file_path)
+    elif file_path.endswith(".csv"):
+        return pd.read_csv(file_path)
+    else:
+        raise ValueError("Unsupported file type")
+
+def filter_max_episodes(df):
+    return (
+        df.sort_values("episode_id", ascending=False)
+          .drop_duplicates(subset=["event_id"], keep="first")
+          .sort_values(["event_id"])  # Optional: sort output by event_id
+    )
+
+def download_geojsons(df, out_dir):
+    os.makedirs(out_dir, exist_ok=True)
+    for _, row in df.iterrows():
+        etype = row["event_type"]
+        eid = row["event_id"]
+        epid = row["episode_id"]
+        url = f"{GDACS_URL}?eventtype={etype}&eventid={eid}&episodeid={epid}&source=OverAll"
+        out_path = os.path.join(out_dir, f"{etype}_{eid}_{epid}.geojson")
+
+        print(f"Fetching: {url}")
+        try:
+            r = requests.get(url, timeout=10)
+            if r.status_code == 200 and r.text.strip():
+                with open(out_path, "w", encoding="utf-8") as f:
+                    f.write(r.text)
+                print(f"✔ Saved: {out_path}")
+            else:
+                print(f"✘ No data or error for: {etype} {eid} {epid}")
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Failed: {etype} {eid} {epid} - {e}")
+
+def main():
+    df = load_data(INPUT_FILE)
+    filtered = filter_max_episodes(df)
+    filtered.to_excel(OUTPUT_XLSX, index=False)
+    print(f"✅ Filtered file written: {OUTPUT_XLSX}")
+    download_geojsons(filtered, GEOJSON_DIR)
+
+if __name__ == "__main__":
+    main()
