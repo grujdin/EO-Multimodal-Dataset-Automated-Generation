@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""
+Flatten *all* features from *.geojson under WF_Summary/ into a table.
+
+Special rule: within each file
+    - first centroid  → episode_id = "ALL"
+    - remaining       → episode_id = 1,2,…
+"""
+
+from pathlib import Path
+import json, re, pandas as pd
+
+# ─── CONFIG ──────────────────────────────────────────────────────────────
+ROOT_DIR    = Path("WF_Summary")          # folder with WF_*_*.geojson
+OUT_CSV     = "WF_details_summary.csv"
+OUT_XLSX    = "WF_details_summary.xlsx"
+NAME_RE     = re.compile(r"^(?P<etype>\w+)_(?P<eid>\d+)_(?P<epfile>\d+)\.geojson$")
+CENTROID_LB = ("Centroid", "Point_Centroid")   # labels signalling centroid
+# ─────────────────────────────────────────────────────────────────────────
+
+def flatten(obj, prefix=""):
+    """dict & list flattener (key paths separated by '.')"""
+    flat = {}
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            new_k = f"{prefix}.{k}" if prefix else k
+            flat.update(flatten(v, new_k))
+    elif isinstance(obj, list):
+        flat[prefix] = json.dumps(obj, ensure_ascii=False)
+    else:
+        flat[prefix] = obj
+    return flat
+
+rows = []
+
+for gj_path in ROOT_DIR.glob("*.geojson"):
+    m = NAME_RE.match(gj_path.name)
+    if not m:
+        print(f"⚠️  skipped {gj_path.name}")
+        continue
+
+    etype   = m["etype"]
+    eventid = int(m["eid"])
+    # NOTE: m["epfile"] is the “max episode” tag in the filename,
+    #       but *inside* the file we renumber features as requested.
+
+    with gj_path.open(encoding="utf-8") as fp:
+        gj = json.load(fp)
+
+    feats = gj.get("features", [])
+    if not feats:
+        print(f"⚠️  {gj_path.name}: empty features")
+        continue
+
+    next_ep = 1
+    for feat in feats:
+        props = feat.get("properties", {})
+        geom  = feat.get("geometry", {})
+
+        # -------- decide episode_id for this feature --------
+        is_centroid = (
+            props.get("polygonlabel") in CENTROID_LB or
+            props.get("Class", "").startswith("Point_Centroid") or
+            geom.get("type") == "Point"
+        )
+        if is_centroid and "centroid_done" not in locals():
+            episode_id = "ALL"          # ← change to 0 if preferred
+            centroid_done = True        # sentinel so only first gets ALL
+        else:
+            episode_id = next_ep
+            next_ep   += 1
+        # ----------------------------------------------------
+
+        base = {
+            "source_file"     : gj_path.name,
+            "event_type"      : etype,
+            "event_id"        : eventid,
+            "episode_id"      : episode_id,
+            "feature_type"    : feat.get("type", "Feature"),
+            "bbox"            : json.dumps(feat.get("bbox")) if feat.get("bbox") else "",
+            "geometry.type"   : geom.get("type"),
+            "geometry.coordinates": json.dumps(geom.get("coordinates"))
+        }
+        base.update(flatten(props, "properties"))
+        rows.append(base)
+
+    # reset centroid flag for next file
+    if "centroid_done" in locals():
+        del centroid_done
+
+# ─── write output ───────────────────────────────────────────────────────
+if not rows:
+    raise SystemExit("❌ No data extracted – check WF_Summary path.")
+
+df = pd.DataFrame(rows)
+
+lead = ["source_file","event_type","event_id","episode_id",
+        "feature_type","bbox","geometry.type","geometry.coordinates"]
+df = df[lead + [c for c in df.columns if c not in lead]]
+
+df.to_csv(OUT_CSV, index=False)
+df.to_excel(OUT_XLSX, index=False)
+print(f"✅ {len(df)} rows → {OUT_CSV} / {OUT_XLSX}")
