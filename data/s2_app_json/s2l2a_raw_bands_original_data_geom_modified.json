@@ -1,0 +1,42 @@
+{
+  "input": {
+    "bounds": {
+      "properties": {
+        "crs": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+               [-94.0570, 41.8050],
+               [-94.0505, 41.8015],
+               [-94.0505, 41.7945],
+               [-94.0570, 41.7910],
+               [-94.0635, 41.7945],
+               [-94.0635, 41.8015],
+               [-94.0570, 41.8050] 
+          ]
+        ]
+      }
+    },
+    "data": [{
+      "type": "sentinel-2-l2a",
+      "dataFilter": {
+        "timeRange": {
+          "from": "2022-10-01T00:00:00Z",
+          "to":   "2022-10-31T00:00:00Z"
+        }
+      },
+      "processing": { "harmonizeValues": "false" }
+    }]
+  },
+
+  "output": {
+    "width": 512,
+    "height": 512,
+    "responses": [{
+      "identifier": "default",
+      "format": { "type": "image/tiff" }
+    }]
+  }
+}
