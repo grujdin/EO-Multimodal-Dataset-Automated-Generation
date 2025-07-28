@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
-Incremental wildfire-episode filter & downloader.
+Download the file containing all the episodes (one per event_id).
 
-• INPUT_FILE ─ raw table (event_type, event_id, episode_id …).
-• OUTPUTS    ─ wf_filtered_output_<LAST_EVENT>.{csv,xlsx}
-               – always contains *one* row per event (highest episode).
-• GEOJSON    ─ missing episodes are downloaded to <GEOJSON_DIR>/<etype>_<eid>_<ep>.geojson
+• INPUT_FILE ─ unfolded table (event_type, event_id, episode_id) with one row for each episode (e.g., wildfire_manifest.csv)
+• OUTPUTS    ─ compact table containing one row per event (highest episode) (e.g., wildfire_manifest_compact_<LAST_EVENT>.{csv,xlsx})
+• GEOJSON    ─ .geojson files (<etype>_<eid>_<ep>.geojson) are downloaded to <GEOJSON_DIR> (e.g., WF_Compact) 
 """
 
 from pathlib import Path
@@ -16,8 +15,8 @@ import requests
 import pandas as pd
 
 # ─── USER SETTINGS ─────────────────────────────────────────
-INPUT_FILE   = "wildfire_1000000-1024111.csv"       # or .xlsx
-GEOJSON_DIR  = Path("WF_Summary")
+INPUT_FILE   = "wildfire_manifest.csv"       # or .xlsx
+GEOJSON_DIR  = Path("WF_Compact")
 GDACS_URL    = "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry"
 TIMEOUT_SECS = 10
 # ───────────────────────────────────────────────────────────
@@ -41,7 +40,7 @@ def keep_max_episode(df: pd.DataFrame) -> pd.DataFrame:
 
 def find_existing_outputs() -> pd.DataFrame:
     """Merge every wf_filtered_output_*.csv / .xlsx (if any) into one DF."""
-    files = sorted(Path(".").glob(r"wf_filtered_output_*.*"))
+    files = sorted(Path(".").glob(r"wildfire_manifest_compact*.*"))
     dfs   = []
     for p in files:
         try:
@@ -100,7 +99,7 @@ def main() -> None:
     )
 
     last_event = combined["event_id"].max()
-    out_base   = f"wf_filtered_output_{last_event}"
+    out_base   = f"wildfire_manifest_compact_{last_event}"
 
     combined.to_csv (f"{out_base}.csv" , index=False)
     combined.to_excel(f"{out_base}.xlsx", index=False)
