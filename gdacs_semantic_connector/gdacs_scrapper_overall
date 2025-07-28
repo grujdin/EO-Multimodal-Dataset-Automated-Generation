@@ -4,7 +4,19 @@ Download the file containing all the episodes (one per event_id).
 
 • INPUT_FILE ─ unfolded table (event_type, event_id, episode_id) with one row for each episode (e.g., wildfire_manifest.csv)
 • OUTPUTS    ─ compact table containing one row per event (highest episode) (e.g., wildfire_manifest_compact_<LAST_EVENT>.{csv,xlsx})
-• GEOJSON    ─ .geojson files (<etype>_<eid>_<ep>.geojson) are downloaded to <GEOJSON_DIR> (e.g., WF_Compact) 
+• GEOJSON    ─ .geojson files (<etype>_<eid>_<ep>.geojson) are downloaded to <GEOJSON_DIR> (e.g., WF_Compact)
+
+After completion you will have a tree like::
+
+    ...\JSTARS\.venv\WF_Compact\  ( GDACS event-type code you root folder as choosen in the script EVENT_TYPE = "WF" for Wildfire)
+    │
+    ├── ...
+    ├── WF_1000003_1.geojson
+    ├── WF_1000004_1.geojson
+    ├── WF_1000005_5.geojson
+    ├── WF_1000006_7.geojson
+    ├── ...
+
 """
 
 from pathlib import Path
