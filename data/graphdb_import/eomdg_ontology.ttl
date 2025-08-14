@@ -1,0 +1,778 @@
+@prefix eomdg:   <http://example.org/eomdg/> .
+@prefix geo:     <http://www.opengis.net/ont/geosparql#> .
+@prefix geof:    <http://www.opengis.net/def/function/geosparql/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix sosa:    <http://www.w3.org/ns/sosa/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl:  <http://www.w3.org/2008/05/skos-xl#> .
+@prefix gn:      <https://www.geonames.org/ontology#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+
+###############################################################################
+# Ontology header
+###############################################################################
+
+eomdg:  a owl:Ontology ;
+        rdfs:label "EOMDG – Earth-Observation Multimodal-Dataset Generation ontology" ;
+        rdfs:comment "Core classes and properties for hazard events, geometry, sensing and ML metadata." ;
+        owl:versionInfo "2025-08-02 hazard-partition cleanup" .
+
+###############################################################################
+# Core classes
+###############################################################################
+
+## events / disasters / observations / places
+eomdg:HazardEvent        a owl:Class ; rdfs:label "Hazard Event" .
+### disaster event  ───────────────────────────────────────────────
+eomdg:DisasterEvent
+        a               owl:Class ;
+        rdfs:label      "Disaster Event" ;
+        rdfs:comment    "A hazard event that produced measurable loss or damage." ;
+        rdfs:subClassOf eomdg:HazardEvent ;
+
+        # Logical (“equivalent class”) definition so the reasoner can
+        # *infer* DisasterEvent from data   ──►  any HazardEvent that
+        # carries at least one SeverityAssessment.
+        owl:equivalentClass [
+            a             owl:Class ;
+            owl:intersectionOf (
+                eomdg:HazardEvent
+                [ a                 owl:Restriction ;
+                  owl:onProperty    eomdg:hasSeverity ;
+                  owl:someValuesFrom eomdg:SeverityAssessment
+                ]
+            )
+        ] .
+eomdg:HazardObservation  a owl:Class ; rdfs:label "Hazard Observation" ;
+                         rdfs:subClassOf sosa:Observation .
+eomdg:AdministrativeArea a owl:Class ; rdfs:label "Administrative Area" ;
+                         rdfs:subClassOf schema:Place , geo:Feature .
+
+## sensing
+eomdg:SensorModality a owl:Class ; rdfs:label "Sensor Modality" .
+eomdg:SensorPlatform a owl:Class ; rdfs:label "Sensor Platform" ;
+                     rdfs:subClassOf sosa:Platform .
+eomdg:SensorBand     a owl:Class ; rdfs:label "Sensor Band" .
+
+## hazard levels
+eomdg:HazardGroup    a owl:Class ; rdfs:label "Hazard Group" .
+eomdg:HazardSubgroup a owl:Class ; rdfs:label "Hazard Subgroup" .
+eomdg:HazardType     a owl:Class ; rdfs:label "Hazard Type" .
+eomdg:HazardSubtype  a owl:Class ; rdfs:label "Hazard Subtype" .
+eomdg:SeverityAssessment a owl:Class ; rdfs:label "Severity Assessment" .
+
+###############################################################################
+# Hazard partition, cardinality & HazardEvent definition
+###############################################################################
+
+### union = Hazard
+eomdg:Hazard  a owl:Class ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:unionOf ( eomdg:HazardGroup
+                      eomdg:HazardSubgroup
+                      eomdg:HazardType
+                      eomdg:HazardSubtype )
+    ] ;
+    rdfs:label "Hazard" .
+
+### mutual disjointness
+[ a owl:AllDisjointClasses ;
+  owl:members ( eomdg:HazardGroup
+                eomdg:HazardSubgroup
+                eomdg:HazardType
+                eomdg:HazardSubtype )
+] .
+
+### HazardEvent = something that hasHazardType some HazardType
+eomdg:HazardEvent
+    owl:equivalentClass [
+        a               owl:Class ;
+        owl:onProperty  eomdg:hasHazardType ;
+        owl:someValuesFrom eomdg:HazardType
+    ] .
+## geometry / time-slice footprint
+
+#####################################################################
+## Exact vs. approximate event footprints
+#####################################################################
+
+eomdg:EventFootprint
+    a               owl:Class ;
+    rdfs:subClassOf geo:Geometry ;
+    rdfs:label      "Event footprint (exact)"@en .
+
+eomdg:PlaceFootprint
+    a               owl:Class ;
+    rdfs:subClassOf geo:Geometry ;
+    rdfs:label      "Place footprint (approximate/admin)"@en .
+
+[ a owl:AllDisjointClasses ;
+  owl:members ( eomdg:EventFootprint eomdg:PlaceFootprint )
+] .
+
+eomdg:hasEventFootprint
+    a                 owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label        "has event footprint"@en ;
+    rdfs:domain       eomdg:HazardEvent ;
+    rdfs:range        eomdg:EventFootprint ;
+    rdfs:subPropertyOf geo:hasGeometry .
+
+eomdg:isEventFootprintOf   a owl:ObjectProperty ; owl:inverseOf eomdg:hasEventFootprint .
+
+eomdg:hasPlaceFootprint
+    a                 owl:ObjectProperty ;
+    rdfs:label        "has place footprint"@en ;
+    rdfs:domain       eomdg:HazardEvent ;
+    rdfs:range        eomdg:PlaceFootprint ;
+    rdfs:subPropertyOf geo:hasGeometry .
+
+eomdg:isPlaceFootprintOf   a owl:ObjectProperty ; owl:inverseOf eomdg:hasPlaceFootprint .
+
+# (optional) cardinalities
+eomdg:HazardEvent
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty eomdg:hasEventFootprint ;
+          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+          owl:onClass eomdg:EventFootprint ],
+        [ a owl:Restriction ; owl:onProperty eomdg:hasPlaceFootprint ;
+          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+          owl:onClass eomdg:PlaceFootprint ] .
+
+#####################################################################
+## Disaster ROI and Image Chips (ML‑ready sampling)
+#####################################################################
+
+eomdg:ImageROI
+    a               owl:Class ;
+    rdfs:subClassOf geo:Geometry ;
+    rdfs:label      "Image ROI (bounding box)"@en ;
+    rdfs:comment    "Rectangle that bounds the scene over the disaster area"@en .
+
+eomdg:hasROI
+    a                 owl:ObjectProperty ;
+    rdfs:label        "has ROI"@en ;
+    rdfs:domain       eomdg:EO_Data_Item ;
+    rdfs:range        eomdg:ImageROI ;
+    rdfs:subPropertyOf geo:hasGeometry .
+
+eomdg:ImageChip
+    a               owl:Class ;
+    rdfs:subClassOf dcat:Dataset , prov:Entity ;
+    rdfs:label      "Image chip (H×W subset)"@en ;
+    rdfs:comment    "Chip extracted from ROI for ML training/validation"@en .
+
+eomdg:ChipExtraction
+    a               owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label      "Chip extraction run"@en .
+
+eomdg:hasChip
+    a                 owl:ObjectProperty ;
+    rdfs:label        "has chip"@en ;
+    rdfs:domain       eomdg:EO_Data_Item ;
+    rdfs:range        eomdg:ImageChip ;
+    rdfs:subPropertyOf prov:hadMember .
+
+eomdg:isChipOf           a owl:ObjectProperty ; owl:inverseOf eomdg:hasChip .
+
+eomdg:generatedBy
+    a                 owl:ObjectProperty ;
+    rdfs:label        "generated by extraction"@en ;
+    rdfs:domain       eomdg:ImageChip ;
+    rdfs:range        eomdg:ChipExtraction ;
+    rdfs:subPropertyOf prov:wasGeneratedBy .
+
+# chip geometry uses geo:hasGeometry to a geo:Geometry node
+
+# Chip size & placement (relative to ROI origin)
+eomdg:chipWidthPx     a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:integer .
+eomdg:chipHeightPx    a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:integer .
+eomdg:offsetXPx       a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:integer .
+eomdg:offsetYPx       a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:integer .
+eomdg:rowIndex        a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:integer .
+eomdg:colIndex        a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:integer .
+eomdg:strideXPx       a owl:DatatypeProperty ; rdfs:domain eomdg:ChipExtraction ; rdfs:range xsd:integer .
+eomdg:strideYPx       a owl:DatatypeProperty ; rdfs:domain eomdg:ChipExtraction ; rdfs:range xsd:integer .
+eomdg:splitRole       a owl:DatatypeProperty ; rdfs:domain eomdg:ImageChip ; rdfs:range xsd:string ;
+                      rdfs:comment "train|val|test (or custom split name)"@en .
+#####################################################################
+## Place names with GeoNames + SKOS‑XL (time‑aware)
+#####################################################################
+
+eomdg:PlaceName
+    a               owl:Class ;
+    rdfs:subClassOf skosxl:Label ;
+    rdfs:label      "Place name (reified label)"@en .
+
+eomdg:NameCollection
+    a               owl:Class ;
+    rdfs:subClassOf skos:Collection ;
+    rdfs:label      "Name collection (group of alternates)"@en .
+
+eomdg:isInCollection
+    a               owl:ObjectProperty ;
+    owl:inverseOf   skos:member ;
+    rdfs:label      "is in name collection"@en .
+
+eomdg:hasValidity
+    a               owl:ObjectProperty ;
+    rdfs:domain     eomdg:PlaceName ;
+    rdfs:range      time:ProperInterval ;
+    rdfs:label      "has validity interval"@en .
+
+# Usage conventions (no new properties created):
+# gn:Feature  skosxl:prefLabel / skosxl:altLabel  -> eomdg:PlaceName .
+# eomdg:PlaceName  eomdg:hasValidity  -> time:ProperInterval with time:hasBeginning / time:hasEnd.
+
+#####################################################################
+## PROV compatibility helpers (optional)
+#####################################################################
+
+# If 'prov:isDerivedFrom' appears in legacy data, map it to PROV-O
+prov:isDerivedFrom
+    a               owl:ObjectProperty ;
+    owl:inverseOf   prov:wasDerivedFrom ;
+    owl:deprecated  "true"^^xsd:boolean ;
+    rdfs:comment    "Deprecated alias; use prov:wasDerivedFrom."@en .
+
+#####################################################################
+## SHACL checks 
+#####################################################################
+
+eomdg:EODataItemShape
+    a               sh:NodeShape ;
+    sh:targetClass  eomdg:EO_Data_Item ;
+    sh:property [
+        sh:path     eomdg:hasROI ;
+        sh:class    eomdg:ImageROI ;
+        sh:minCount 1 ; sh:maxCount 1
+    ] .
+
+eomdg:ImageChipShape
+    a               sh:NodeShape ;
+    sh:targetClass  eomdg:ImageChip ;
+    sh:property [ sh:path eomdg:chipWidthPx  ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+    sh:property [ sh:path eomdg:chipHeightPx ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+    sh:property [ sh:path eomdg:offsetXPx    ; sh:datatype xsd:integer ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path eomdg:offsetYPx    ; sh:datatype xsd:integer ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path eomdg:isChipOf     ; sh:class eomdg:EO_Data_Item ; sh:minCount 1 ] ;
+    sh:property [ sh:path geo:hasGeometry    ; sh:class geo:Geometry ; sh:minCount 1 ] .
+
+# Ensure chip footprint is within its ROI (requires GeoSPARQL functions)
+eomdg:ChipWithinROIShape
+    a               sh:NodeShape ;
+    sh:targetClass  eomdg:ImageChip ;
+    sh:sparql [
+        a           sh:SPARQLConstraint ;
+        sh:message  "Chip geometry must be within its data item's ROI."@en ;
+        sh:select """
+          PREFIX geo:  <http://www.opengis.net/ont/geosparql#>
+          PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+          PREFIX eomdg:<http://example.org/eomdg/>
+          SELECT ?this WHERE {
+            ?this geo:hasGeometry ?cg .
+            ?this eomdg:isChipOf ?item .
+            ?item eomdg:hasROI ?roi .
+            ?cg  geo:asWKT ?cwkt .
+            ?roi geo:asWKT ?rwkt .
+            FILTER ( ! geof:sfWithin(?cwkt, ?rwkt) )
+          }
+        """
+    ] .
+
+###############################################################################
+# Membership properties inside the taxonomy
+###############################################################################
+
+eomdg:inHazardGroup
+        a owl:ObjectProperty ;
+        rdfs:domain eomdg:HazardSubgroup ;
+        rdfs:range  eomdg:HazardGroup ;
+        rdfs:label  "in hazard group" .
+
+eomdg:inHazardSubgroup
+        a owl:ObjectProperty ;
+        rdfs:domain eomdg:HazardType ;
+        rdfs:range  eomdg:HazardSubgroup ;
+        rdfs:label  "in hazard subgroup" .
+
+eomdg:inHazardType
+        a owl:ObjectProperty ;
+        rdfs:domain eomdg:HazardSubtype ;
+        rdfs:range  eomdg:HazardType ;
+        rdfs:label  "in hazard type" .
+
+# upward-inference chains
+eomdg:inHazardGroup    owl:propertyChainAxiom ( eomdg:inHazardSubgroup eomdg:inHazardGroup ) .
+eomdg:inHazardGroup    owl:propertyChainAxiom ( eomdg:inHazardType eomdg:inHazardSubgroup eomdg:inHazardGroup ) .
+eomdg:inHazardSubgroup owl:propertyChainAxiom ( eomdg:inHazardType eomdg:inHazardSubgroup ) .
+
+###############################################################################
+# Hazard-to-event links  (single, consolidated declarations)
+###############################################################################
+
+eomdg:hasHazardGroup
+        a owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:domain eomdg:HazardEvent ;
+        rdfs:range  eomdg:HazardGroup ;
+        rdfs:label  "has hazard group" .
+
+eomdg:hasHazardSubgroup
+        a owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:domain eomdg:HazardEvent ;
+        rdfs:range  eomdg:HazardSubgroup ;
+        rdfs:label  "has hazard subgroup" .
+
+eomdg:hasHazardType
+        a owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:domain eomdg:HazardEvent ;
+        rdfs:range  eomdg:HazardType ;
+        rdfs:label  "has hazard type" .
+
+eomdg:hasHazardSubtype
+        a owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:domain eomdg:HazardEvent ;
+        rdfs:range  eomdg:HazardSubtype ;
+        rdfs:label  "has hazard subtype" .
+
+#####################################################################
+# Observation ↔ Data item split (SOSA/PROV/DCAT alignment)
+#####################################################################
+
+eomdg:Phenomenon           
+	a owl:Class ; 
+	rdfs:label "Physical Phenomenon" ;
+  	rdfs:comment "Physical effect to be detected (e.g., inundation, burn scar, smoke plume, backscatter drop)." .
+
+eomdg:Observable           
+	a owl:Class ; rdfs:label "Observable" ;
+  	rdfs:subClassOf sosa:ObservableProperty ;
+  	rdfs:comment "Derived quantity/index or raw signal used to detect a phenomenon (e.g., NDWI, NBR, VV/VH ratio)." .
+
+eomdg:AlgorithmReference   
+	a owl:Class ; rdfs:label "Algorithm / Procedure" ;
+  	rdfs:subClassOf sosa:Procedure, prov:Entity ;
+  	rdfs:comment "Reference to a computation method (paper/code) for an Observable." .
+
+eomdg:EO_Observation
+    a                 owl:Class ;
+    rdfs:label        "EO observation (acquisition act)"@en ;
+    rdfs:subClassOf   sosa:Observation , prov:Activity .
+
+eomdg:EO_Data_Item
+    a                 owl:Class ;
+    rdfs:label        "EO data item (file/granule)"@en ;
+    rdfs:subClassOf   dcat:Dataset , prov:Entity .
+
+# convenience sub-properties
+eomdg:observesEvent
+    a                 owl:ObjectProperty ;
+    rdfs:label        "has feature of interest (hazard event)"@en ;
+    rdfs:domain       eomdg:EO_Observation ;
+    rdfs:range        eomdg:HazardEvent ;
+    rdfs:subPropertyOf sosa:hasFeatureOfInterest .
+
+eomdg:observedVia
+    a                 owl:ObjectProperty ;
+    rdfs:label        "observed property (observable)"@en ;
+    rdfs:domain       eomdg:EO_Observation ;
+    rdfs:range        eomdg:Observable ;
+    rdfs:subPropertyOf sosa:observedProperty .
+
+eomdg:generatedDataItem
+    a                 owl:ObjectProperty ;
+    rdfs:label        "generated data item"@en ;
+    rdfs:domain       eomdg:EO_Observation ;
+    rdfs:range        eomdg:EO_Data_Item ;
+    rdfs:subPropertyOf prov:generated .
+
+eomdg:wasGeneratedFromObservation
+    a                 owl:ObjectProperty ;
+    owl:inverseOf     eomdg:generatedDataItem ;
+    rdfs:label        "was generated from observation"@en .
+
+
+#####################################################
+# ML & datasetting
+####################################################
+
+eomdg:MLObjective        
+	a owl:Class ; 
+	rdfs:label 	"ML Objective" .
+
+eomdg:InputTensorSpec    
+	a owl:Class ; 
+	rdfs:label 	"Input Tensor Spec" .
+
+eomdg:PreprocessingChain 
+	a owl:Class ; 
+	rdfs:label 	"Preprocessing Chain" .
+
+eomdg:ModelConfig        
+	a owl:Class ; 
+	rdfs:label 	"Model Config" .
+
+eomdg:DatasetBuild       
+	a owl:Class ; 
+	rdfs:label 	"Dataset Build" ; 
+	rdfs:subClassOf prov:Activity .
+
+eomdg:SensorSet          
+	a owl:Class ;
+	rdfs:label 	"Sensor Set" .
+
+eomdg:LabelMethod        
+	a owl:Class ; 
+	rdfs:label 	"Label Method" .
+
+eomdg:MetricResult       
+	a owl:Class ; 
+	rdfs:label 	"Metric Result" .
+
+################################################
+## Training runs & artifacts
+################################################
+
+eomdg:TrainingSpec       
+	a owl:Class ; 
+	rdfs:label 	"Training Specification" ;
+  	rdfs:comment 	"Concrete set of hyperparameters used in a training run." ;
+  	rdfs:subClassOf eomdg:ModelConfig, prov:Entity .
+
+eomdg:TrainingRun        
+	a owl:Class ; 
+	rdfs:label 	"Training Run" ;
+  	rdfs:subClassOf prov:Activity ;
+  	rdfs:comment 	"An executable training activity that uses a TrainingSpec and produces a ModelArtifact." .
+
+eomdg:ModelArtifact      
+	a owl:Class ; 
+	rdfs:label "Model Artifact" ;
+  	rdfs:subClassOf prov:Entity ;
+  	rdfs:comment "A trained model file/bundle produced by a training run." .
+
+####################################################################
+## Object Properties      
+####################################################################
+
+#####################################################################
+### hazard → phenomenon → observable → sensor links
+#####################################################################
+
+eomdg:hasCharacteristicPhenomenon 
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:HazardType ; 
+	rdfs:range 	eomdg:Phenomenon ;
+  	rdfs:label 	"has characteristic phenomenon" ;
+  	rdfs:comment 	"Links a hazard (e.g., Flood) to its physical signal (e.g., inundation, backscatter drop)." .
+
+eomdg:observedViaObservable 
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:Phenomenon ; 
+	rdfs:range 	eomdg:Observable ;
+  	rdfs:label 	"observed via observable" ;
+  	rdfs:comment 	"Phenomenon is typically measured/derived via this observable (index/signal)." .
+
+eomdg:supportedByModality 
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:Observable ; 
+	rdfs:range 	eomdg:SensorModality ;
+  	rdfs:label 	"supported by modality" ;
+  	rdfs:comment 	"Observable can be measured or derived from this sensing modality." .
+
+eomdg:computedFromBand 
+	a owl:ObjectProperty ;
+ 	 rdfs:domain 	eomdg:Observable ; 
+	rdfs:range 	eomdg:SensorBand ;
+  	rdfs:label 	"computed from band" ;
+  	rdfs:comment 	"Observable uses one or more bands/channels." .
+
+eomdg:hasAlgorithmRef 
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:Observable ; 
+	rdfs:range 	eomdg:AlgorithmReference ;
+  	rdfs:label 	"has algorithm reference" ;
+ 	rdfs:comment 	"Reference to method/paper/code used to compute the observable." .
+
+############################################################################
+### Convenience properties at HazardType level
+############################################################################
+
+eomdg:isMonitoredBy 
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:HazardType ; 
+	rdfs:range 	eomdg:SensorModality ;
+  	rdfs:label 	"is monitored by" ;
+  	rdfs:comment 	"General link indicating suitable sensing modalities for a hazard type." .
+
+eomdg:monitorsHazardType 
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:SensorModality ; 
+	rdfs:range 	eomdg:HazardType ;
+  	rdfs:label 	"monitors hazard type" ;
+  	owl:inverseOf 	eomdg:isMonitoredBy .
+
+eomdg:hasRecommendedSensor 
+	a owl:ObjectProperty ;
+  	rdfs:subPropertyOf 	eomdg:isMonitoredBy ;
+  	rdfs:domain 		eomdg:HazardType ; 
+	rdfs:range 		eomdg:SensorModality ;
+  	rdfs:label 		"has recommended sensor" ;
+  	rdfs:comment 		"Narrower guidance – modalities/platforms most often effective in practice." .
+
+eomdg:hasRelatedObjective  
+	a owl:ObjectProperty ;
+  	rdfs:domain 	eomdg:HazardType ; 
+	rdfs:range 	eomdg:MLObjective ;
+  	rdfs:label 	"has related ML objective" .
+
+######################################################################
+### hazard → place & admin
+######################################################################
+
+eomdg:affectedContinent a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardEvent ; rdfs:range eomdg:AdministrativeArea ;
+  rdfs:label "affected continent" ;
+  rdfs:subPropertyOf dcterms:spatial .
+eomdg:affectedCountry   a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardEvent ; rdfs:range eomdg:AdministrativeArea ;
+  rdfs:label "affected country" ;
+  rdfs:subPropertyOf dcterms:spatial .
+eomdg:affectedRegion    a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardEvent ; rdfs:range eomdg:AdministrativeArea ;
+  rdfs:label "affected region" ;
+  rdfs:subPropertyOf dcterms:spatial .
+
+eomdg:adminUnitLevel1   a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardObservation ; rdfs:range eomdg:AdministrativeArea ;
+  rdfs:label "admin unit level 1" .
+eomdg:adminUnitLevel2   a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardObservation ; rdfs:range eomdg:AdministrativeArea ;
+  rdfs:label "admin unit level 2" .
+
+############################################################
+### hazard → geometry (time-slice footprint)
+############################################################
+
+eomdg:hasCentroid
+        a              owl:ObjectProperty ;
+        rdfs:domain    eomdg:HazardEvent ;
+        rdfs:range     geo:Geometry ;
+        rdfs:subPropertyOf geo:hasGeometry ;
+        rdfs:label     "has centroid point" ;
+        rdfs:comment   "Geometric centroid supplied by alerting systems." .
+
+eomdg:isCentroidOf  owl:inverseOf  eomdg:hasCentroid .
+
+### time (OWL‑Time)
+eomdg:hasBeginning a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardEvent ; rdfs:range time:Instant ;
+  rdfs:subPropertyOf time:hasBeginning ;
+  rdfs:label "has beginning" .
+eomdg:hasEnd a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardEvent ; rdfs:range time:Instant ;
+  rdfs:subPropertyOf time:hasEnd ;
+  rdfs:label "has end" .
+
+### hazard severity
+eomdg:hasSeverity    a owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:domain  eomdg:HazardEvent ;
+        rdfs:range   eomdg:SeverityAssessment ;
+        rdfs:label   "has severity assessment" .
+
+eomdg:severityValue  a owl:DatatypeProperty ;
+        rdfs:domain  eomdg:SeverityAssessment ;
+        rdfs:range   xsd:decimal .
+
+eomdg:severityUnit   a owl:DatatypeProperty ;
+        rdfs:domain  eomdg:SeverityAssessment ;
+        rdfs:range   xsd:string .
+
+### SOSA alignment for observations
+eomdg:hasFeatureOfInterestEvent a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardObservation ; rdfs:range eomdg:HazardEvent ;
+  rdfs:label "has feature of interest (event)" ;
+  rdfs:subPropertyOf sosa:hasFeatureOfInterest .
+eomdg:observesObservable a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardObservation ; rdfs:range eomdg:Observable ;
+  rdfs:label "observes observable" ;
+  rdfs:subPropertyOf sosa:observedProperty .
+eomdg:usedProcedure a owl:ObjectProperty ;
+  rdfs:domain eomdg:HazardObservation ; rdfs:range eomdg:AlgorithmReference ;
+  rdfs:label "used procedure" ;
+  rdfs:subPropertyOf sosa:usedProcedure .
+
+### ML wiring (dataset build, configs, metrics)
+eomdg:usesSensorSet     a owl:ObjectProperty ;
+  rdfs:domain eomdg:DatasetBuild ; rdfs:range eomdg:SensorSet ;
+  rdfs:label "uses sensor set" .
+eomdg:coversAOI         a owl:ObjectProperty ;
+  rdfs:domain eomdg:DatasetBuild ; rdfs:range geo:Geometry ;
+  rdfs:subPropertyOf geo:hasGeometry ; rdfs:label "covers AOI geometry" .
+eomdg:generatedWith     a owl:ObjectProperty ;
+  rdfs:domain eomdg:DatasetBuild ; rdfs:range eomdg:LabelMethod ;
+  rdfs:label "generated with label method" .
+eomdg:achieved          a owl:ObjectProperty ;
+  rdfs:domain eomdg:DatasetBuild ; rdfs:range eomdg:MetricResult ;
+  rdfs:label "achieved metric result" .
+eomdg:hasInputSpec      a owl:ObjectProperty ;
+  rdfs:domain eomdg:ModelConfig ; rdfs:range eomdg:InputTensorSpec ;
+  rdfs:label "has input tensor spec" .
+eomdg:hasPreprocessing  a owl:ObjectProperty ;
+  rdfs:domain eomdg:ModelConfig ; rdfs:range eomdg:PreprocessingChain ;
+  rdfs:label "has preprocessing chain" .
+eomdg:targetsObjective  a owl:ObjectProperty ;
+  rdfs:domain eomdg:ModelConfig ; rdfs:range eomdg:MLObjective ;
+  rdfs:label "targets ML objective" .
+
+### Training run → spec/artifact (PROV‑correct)
+eomdg:usesTrainingSpec a owl:ObjectProperty ;
+  rdfs:domain eomdg:TrainingRun ; rdfs:range eomdg:TrainingSpec ;
+  rdfs:label  "uses training spec" ;
+  rdfs:subPropertyOf prov:used .
+
+eomdg:producesArtifact a owl:ObjectProperty ;
+  rdfs:domain eomdg:TrainingRun ; rdfs:range eomdg:ModelArtifact ;
+  rdfs:label "produces artifact" ;
+  owl:inverseOf prov:wasGeneratedBy .
+
+eomdg:trainedOnBuild a owl:ObjectProperty ;
+  rdfs:domain eomdg:ModelArtifact ; rdfs:range eomdg:DatasetBuild ;
+  rdfs:label "trained on build" .
+
+############################
+## Datatype Properties    ##
+############################
+
+# Event identifiers / codes
+eomdg:eventType   a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+eomdg:eventId     a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+eomdg:episodeId   a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+eomdg:eventName   a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+# Affected-country codes ----------------------------------------------------
+
+eomdg:AffectedCountry
+        a               owl:Class ;
+        rdfs:subClassOf eomdg:AdministrativeArea ;
+        rdfs:label      "Affected Country"@en .
+
+eomdg:iso2  a owl:DatatypeProperty ;
+    rdfs:domain  eomdg:AffectedCountry ;
+    rdfs:range   xsd:string .
+
+eomdg:iso3  a owl:DatatypeProperty ;
+    rdfs:domain  eomdg:AffectedCountry ;
+    rdfs:range   xsd:string .
+
+eomdg:countryISO  a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string ;
+  rdfs:comment "ISO 3166-1 alpha‑2 or alpha‑3 code." .
+
+eomdg:alertLevel  a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+eomdg:severityHa  a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:decimal ;
+  rdfs:comment "Affected area (hectares)." .
+
+# Data-quality helpers
+eomdg:startDateQuality a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+eomdg:endDateQuality   a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:string .
+
+# Sensor/Band descriptive literals
+eomdg:bandName            a owl:DatatypeProperty ; rdfs:domain eomdg:SensorBand ; rdfs:range xsd:string .
+eomdg:centerWavelengthNm  a owl:DatatypeProperty ; rdfs:domain eomdg:SensorBand ; rdfs:range xsd:decimal .
+eomdg:polarization        a owl:DatatypeProperty ; rdfs:domain eomdg:SensorBand ; rdfs:range xsd:string ;
+  rdfs:comment "e.g., VV, VH, HH, HV." .
+eomdg:platformName        a owl:DatatypeProperty ; rdfs:domain eomdg:SensorPlatform ; rdfs:range xsd:string .
+
+# Observable calculation hints
+eomdg:formula       a owl:DatatypeProperty ; rdfs:domain eomdg:Observable ; rdfs:range xsd:string .
+eomdg:algoURI       a owl:DatatypeProperty ; rdfs:domain eomdg:AlgorithmReference ; rdfs:range xsd:anyURI .
+eomdg:algoCitation  a owl:DatatypeProperty ; rdfs:domain eomdg:AlgorithmReference ; rdfs:range xsd:string .
+
+# ML Input/Config (ModelConfig and subclasses)
+eomdg:height        a owl:DatatypeProperty ; rdfs:domain eomdg:InputTensorSpec ; rdfs:range xsd:integer .
+eomdg:width         a owl:DatatypeProperty ; rdfs:domain eomdg:InputTensorSpec ; rdfs:range xsd:integer .
+eomdg:channels      a owl:DatatypeProperty ; rdfs:domain eomdg:InputTensorSpec ; rdfs:range xsd:integer .
+eomdg:bandsUsed     a owl:DatatypeProperty ; rdfs:domain eomdg:InputTensorSpec ; rdfs:range xsd:string ;
+  rdfs:comment "Comma- or space-separated list (e.g., 'S2:B02,B03,B04,B08; S1:VV,VH')." .
+eomdg:dtype         a owl:DatatypeProperty ; rdfs:domain eomdg:InputTensorSpec ; rdfs:range xsd:string .
+
+eomdg:architecture  a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string .
+eomdg:modelName     a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string ;
+  owl:equivalentProperty eomdg:architecture ;
+  rdfs:comment "Alias of architecture, kept for backward compatibility." .
+eomdg:backbone      a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string .
+eomdg:pretrainedFrom a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:anyURI .
+eomdg:optimizer     a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string .
+eomdg:learningRate  a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:decimal .
+eomdg:weightDecay   a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:decimal .
+eomdg:batchSize     a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:integer .
+eomdg:epochs        a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:integer .
+eomdg:lossFunction  a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string .
+eomdg:augmentation  a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string ;
+  rdfs:comment "YAML/JSON describing data augmentation." .
+eomdg:earlyStopping a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:boolean .
+eomdg:scheduler     a owl:DatatypeProperty ; rdfs:domain eomdg:ModelConfig ; rdfs:range xsd:string .
+eomdg:preprocOps    a owl:DatatypeProperty ; rdfs:domain eomdg:PreprocessingChain ; rdfs:range xsd:string ;
+  rdfs:comment "Free‑text/JSON describing normalization/augmentation pipeline." .
+
+# Build & metrics
+eomdg:buildId       a owl:DatatypeProperty ; rdfs:domain eomdg:DatasetBuild ; rdfs:range xsd:string .
+eomdg:yamlHash      a owl:DatatypeProperty ; rdfs:domain eomdg:DatasetBuild ; rdfs:range xsd:string .
+eomdg:timestamp     a owl:DatatypeProperty ; rdfs:domain eomdg:DatasetBuild ; rdfs:range xsd:dateTime .
+eomdg:creator       a owl:DatatypeProperty ; rdfs:domain eomdg:DatasetBuild ; rdfs:range xsd:string .
+
+eomdg:benchmarkId   a owl:DatatypeProperty ; rdfs:domain eomdg:MetricResult ; rdfs:range xsd:string .
+eomdg:iou           a owl:DatatypeProperty ; rdfs:domain eomdg:MetricResult ; rdfs:range xsd:decimal .
+eomdg:f1            a owl:DatatypeProperty ; rdfs:domain eomdg:MetricResult ; rdfs:range xsd:decimal .
+eomdg:auroc         a owl:DatatypeProperty ; rdfs:domain eomdg:MetricResult ; rdfs:range xsd:decimal .
+eomdg:buildMinutes  a owl:DatatypeProperty ; rdfs:domain eomdg:MetricResult ; rdfs:range xsd:decimal .
+eomdg:gpuMinutes    a owl:DatatypeProperty ; rdfs:domain eomdg:MetricResult ; rdfs:range xsd:decimal .
+
+# ModelArtifact literals
+eomdg:artifactURI      a owl:DatatypeProperty ; rdfs:domain eomdg:ModelArtifact ; rdfs:range xsd:anyURI .
+eomdg:paramCount       a owl:DatatypeProperty ; rdfs:domain eomdg:ModelArtifact ; rdfs:range xsd:integer .
+eomdg:trainedOnDataset a owl:DatatypeProperty ; rdfs:domain eomdg:ModelArtifact ; rdfs:range xsd:string ;
+  rdfs:comment "Identifier/hash for the dataset build used in training (use object property eomdg:trainedOnBuild when possible)." .
+eomdg:checksum         a owl:DatatypeProperty ; rdfs:domain eomdg:ModelArtifact ; rdfs:range xsd:string ;
+  rdfs:comment "Checksum or content hash of the artifact (e.g., SHA256)." .
+eomdg:format           a owl:DatatypeProperty ; rdfs:domain eomdg:ModelArtifact ; rdfs:range xsd:string ;
+  rdfs:comment "Serialization format (e.g., 'safetensors', 'onnx')." .
+
+### Added after debugging
+
+### Event-level flags & scores ------------------------------------------------
+eomdg:alertScore    a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:decimal .
+eomdg:isCurrent     a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:boolean .
+eomdg:isTemporary   a owl:DatatypeProperty ; rdfs:domain eomdg:HazardEvent ; rdfs:range xsd:boolean .
+
+eomdg:classLabel
+        a            owl:DatatypeProperty ;
+	rdfs:domain  [ a owl:Class ; owl:unionOf ( eomdg:EventFootprint eomdg:PlaceFootprint )] ;        
+        rdfs:range   xsd:string ;
+        rdfs:label   "class label" ;
+        rdfs:comment "Label assigned by the source: e.g. 'Poly_area', 'Point_Centroid'." .
+
+eomdg:polygonLabel
+        a            owl:DatatypeProperty ;
+	rdfs:domain  [ a owl:Class ; owl:unionOf ( eomdg:EventFootprint eomdg:PlaceFootprint )] ;        
+        rdfs:range   xsd:string ;
+        rdfs:label   "polygon label" ;
+        rdfs:comment "What geometry represents (e.g. 'Affected Area')." .
+
+eomdg:polygonDate
+        a            owl:DatatypeProperty ;
+	rdfs:domain  [ a owl:Class ; owl:unionOf ( eomdg:EventFootprint eomdg:PlaceFootprint )] ;        
+        rdfs:range   xsd:dateTime ;
+        rdfs:label   "geometry date" ;
+        rdfs:comment "Timestamp when this footprint was generated by the source organisation." .
+
+eomdg:bboxEnvelope
+        a            owl:DatatypeProperty ;
+	rdfs:domain  [ a owl:Class ; owl:unionOf ( eomdg:EventFootprint eomdg:PlaceFootprint )] ;        
+        rdfs:range   geo:wktLiteral ;
+        rdfs:label   "bounding envelope" .

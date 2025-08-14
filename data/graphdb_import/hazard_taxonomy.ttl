@@ -1,0 +1,816 @@
+@prefix eomdg: <http://example.org/eomdg/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eomdg:Airburst a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Airburst" ;
+    rdfs:subClassOf eomdg:Impact ;
+    skos:broader eomdg:Impact ;
+    skos:notation "nat-ext-imp-air" ;
+    skos:prefLabel "Airburst" .
+
+eomdg:Ashfall a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "AshFall" ;
+    rdfs:subClassOf eomdg:Volcanicactivity ;
+    skos:broader eomdg:Volcanicactivity ;
+    skos:notation "nat-geo-vol-ash" ;
+    skos:prefLabel "AshFall" .
+
+eomdg:Avalanchedry a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "AvalancheDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry ;
+    skos:broader eomdg:Massmovementdry ;
+    skos:notation "nat-geo-mmd-ava" ;
+    skos:prefLabel "AvalancheDry" .
+
+eomdg:Avalanchewet a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "AvalancheWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet ;
+    skos:broader eomdg:Massmovementwet ;
+    skos:notation "nat-hyd-mmw-ava" ;
+    skos:prefLabel "AvalancheWet" .
+
+eomdg:Bacterialdisease a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "BacterialDisease" ;
+    rdfs:subClassOf eomdg:Epidemic ;
+    skos:broader eomdg:Epidemic ;
+    skos:notation "nat-bio-epi-bac" ;
+    skos:prefLabel "BacterialDisease" .
+
+eomdg:Blizzardwinterstorm a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "BlizzardWinterStorm" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-bli" ;
+    skos:prefLabel "BlizzardWinterStorm" .
+
+eomdg:Coastalflood a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "CoastalFlood" ;
+    rdfs:subClassOf eomdg:Flood ;
+    skos:broader eomdg:Flood ;
+    skos:notation "nat-hyd-flo-coa" ;
+    skos:prefLabel "CoastalFlood" .
+
+eomdg:Coldwave a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "ColdWave" ;
+    rdfs:subClassOf eomdg:Extremetemperature ;
+    skos:broader eomdg:Extremetemperature ;
+    skos:notation "nat-met-ext-col" ;
+    skos:prefLabel "ColdWave" .
+
+eomdg:Collision a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Collision" ;
+    rdfs:subClassOf eomdg:Impact ;
+    skos:broader eomdg:Impact ;
+    skos:notation "nat-ext-imp-col" ;
+    skos:prefLabel "Collision" .
+
+eomdg:Derecho a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Derecho" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-der" ;
+    skos:prefLabel "Derecho" .
+
+eomdg:Energeticparticles a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "EnergeticParticles" ;
+    rdfs:subClassOf eomdg:Spaceweather ;
+    skos:broader eomdg:Spaceweather ;
+    skos:notation "nat-ext-spa-ene" ;
+    skos:prefLabel "EnergeticParticles" .
+
+eomdg:Extratropicalstorm a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "ExtraTropicalStorm" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-ext" ;
+    skos:prefLabel "ExtraTropicalStorm" .
+
+eomdg:Flashflood a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "FlashFlood" ;
+    rdfs:subClassOf eomdg:Flood ;
+    skos:broader eomdg:Flood ;
+    skos:notation "nat-hyd-flo-fla" ;
+    skos:prefLabel "FlashFlood" .
+
+eomdg:Forestfire a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "ForestFire" ;
+    rdfs:subClassOf eomdg:Wildfire ;
+    skos:broader eomdg:Wildfire ;
+    skos:notation "nat-cli-wil-for" ;
+    skos:prefLabel "ForestFire" .
+
+eomdg:Fungaldisease a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "FungalDisease" ;
+    rdfs:subClassOf eomdg:Epidemic ;
+    skos:broader eomdg:Epidemic ;
+    skos:notation "nat-bio-epi-fun" ;
+    skos:prefLabel "FungalDisease" .
+
+eomdg:Geomagneticstorm a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "GeomagneticStorm" ;
+    rdfs:subClassOf eomdg:Spaceweather ;
+    skos:broader eomdg:Spaceweather ;
+    skos:notation "nat-ext-spa-geo" ;
+    skos:prefLabel "GeomagneticStorm" .
+
+eomdg:Grasshopperinfestation a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "GrasshopperInfestation" ;
+    rdfs:subClassOf eomdg:Infestation ;
+    skos:broader eomdg:Infestation ;
+    skos:notation "nat-bio-inf-gra" ;
+    skos:prefLabel "GrasshopperInfestation" .
+
+eomdg:Groundmovement a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "GroundMovement" ;
+    rdfs:subClassOf eomdg:Earthquake ;
+    skos:broader eomdg:Earthquake ;
+    skos:notation "nat-geo-ear-gro" ;
+    skos:prefLabel "GroundMovement" .
+
+eomdg:Hail a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Hail" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-hai" ;
+    skos:prefLabel "Hail" .
+
+eomdg:Heatwave a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "HeatWave" ;
+    rdfs:subClassOf eomdg:Extremetemperature ;
+    skos:broader eomdg:Extremetemperature ;
+    skos:notation "nat-met-ext-hea" ;
+    skos:prefLabel "HeatWave" .
+
+eomdg:Icejamflood a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "IceJamFlood" ;
+    rdfs:subClassOf eomdg:Flood ;
+    skos:broader eomdg:Flood ;
+    skos:notation "nat-hyd-flo-ice" ;
+    skos:prefLabel "IceJamFlood" .
+
+eomdg:Infectiousdisease a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "InfectiousDisease" ;
+    rdfs:subClassOf eomdg:Epidemic ;
+    skos:broader eomdg:Epidemic ;
+    skos:notation "nat-bio-epi-dis" ;
+    skos:prefLabel "InfectiousDisease" .
+
+eomdg:Lahar a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Lahar" ;
+    rdfs:subClassOf eomdg:Volcanicactivity ;
+    skos:broader eomdg:Volcanicactivity ;
+    skos:notation "nat-geo-vol-lah" ;
+    skos:prefLabel "Lahar" .
+
+eomdg:Landfire a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "LandFire" ;
+    rdfs:subClassOf eomdg:Wildfire ;
+    skos:broader eomdg:Wildfire ;
+    skos:notation "nat-cli-wil-lan" ;
+    skos:prefLabel "LandFire" .
+
+eomdg:Landslidedry a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "LandslideDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry ;
+    skos:broader eomdg:Massmovementdry ;
+    skos:notation "nat-geo-mmd-lan" ;
+    skos:prefLabel "LandslideDry" .
+
+eomdg:Landslidewet a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "LandslideWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet ;
+    skos:broader eomdg:Massmovementwet ;
+    skos:notation "nat-hyd-mmw-lan" ;
+    skos:prefLabel "LandslideWet" .
+
+eomdg:Lavaflow a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "LavaFlow" ;
+    rdfs:subClassOf eomdg:Volcanicactivity ;
+    skos:broader eomdg:Volcanicactivity ;
+    skos:notation "nat-geo-vol-lav" ;
+    skos:prefLabel "LavaFlow" .
+
+eomdg:Lightning a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Lightning" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-lig" ;
+    skos:prefLabel "Lightning" .
+
+eomdg:Locustinfestation a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "LocustInfestation" ;
+    rdfs:subClassOf eomdg:Infestation ;
+    skos:broader eomdg:Infestation ;
+    skos:notation "nat-bio-inf-loc" ;
+    skos:prefLabel "LocustInfestation" .
+
+eomdg:Mudslide a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Mudslide" ;
+    rdfs:subClassOf eomdg:Massmovementwet ;
+    skos:broader eomdg:Massmovementwet ;
+    skos:notation "nat-hyd-mmw-mud" ;
+    skos:prefLabel "Mudslide" .
+
+eomdg:Parasiticdisease a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "ParasiticDisease" ;
+    rdfs:subClassOf eomdg:Epidemic ;
+    skos:broader eomdg:Epidemic ;
+    skos:notation "nat-bio-epi-par" ;
+    skos:prefLabel "ParasiticDisease" .
+
+eomdg:Priondisease a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "PrionDisease" ;
+    rdfs:subClassOf eomdg:Epidemic ;
+    skos:broader eomdg:Epidemic ;
+    skos:notation "nat-bio-epi-pri" ;
+    skos:prefLabel "PrionDisease" .
+
+eomdg:Pyroclasticflow a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "PyroclasticFlow" ;
+    rdfs:subClassOf eomdg:Volcanicactivity ;
+    skos:broader eomdg:Volcanicactivity ;
+    skos:notation "nat-geo-vol-pyr" ;
+    skos:prefLabel "PyroclasticFlow" .
+
+eomdg:Radiodisturbance a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "RadioDisturbance" ;
+    rdfs:subClassOf eomdg:Spaceweather ;
+    skos:broader eomdg:Spaceweather ;
+    skos:notation "nat-ext-spa-rad" ;
+    skos:prefLabel "RadioDisturbance" .
+
+eomdg:Riverineflood a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "RiverineFlood" ;
+    rdfs:subClassOf eomdg:Flood ;
+    skos:broader eomdg:Flood ;
+    skos:notation "nat-hyd-flo-riv" ;
+    skos:prefLabel "RiverineFlood" .
+
+eomdg:Rockfalldry a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "RockfallDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry ;
+    skos:broader eomdg:Massmovementdry ;
+    skos:notation "nat-geo-mmd-roc" ;
+    skos:prefLabel "RockfallDry" .
+
+eomdg:Rockfallwet a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "RockfallWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet ;
+    skos:broader eomdg:Massmovementwet ;
+    skos:notation "nat-hyd-mmw-roc" ;
+    skos:prefLabel "RockfallWet" .
+
+eomdg:Roguewave a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "RogueWave" ;
+    rdfs:subClassOf eomdg:Waveaction ;
+    skos:broader eomdg:Waveaction ;
+    skos:notation "nat-hyd-wav-rog" ;
+    skos:prefLabel "RogueWave" .
+
+eomdg:Sandduststorm a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "SandDustStorm" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-san" ;
+    skos:prefLabel "SandDustStorm" .
+
+eomdg:Seiche a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Seiche" ;
+    rdfs:subClassOf eomdg:Waveaction ;
+    skos:broader eomdg:Waveaction ;
+    skos:notation "nat-hyd-wav-sei" ;
+    skos:prefLabel "Seiche" .
+
+eomdg:Severeweather a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "SevereWeather" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-sev" ;
+    skos:prefLabel "SevereWeather" .
+
+eomdg:Severewinterconditions a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "SevereWinterConditions" ;
+    rdfs:subClassOf eomdg:Extremetemperature ;
+    skos:broader eomdg:Extremetemperature ;
+    skos:notation "nat-met-ext-sev" ;
+    skos:prefLabel "SevereWinterConditions" .
+
+eomdg:Shockwave a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Shockwave" ;
+    rdfs:subClassOf eomdg:Spaceweather ;
+    skos:broader eomdg:Spaceweather ;
+    skos:notation "nat-ext-spa-sho" ;
+    skos:prefLabel "Shockwave" .
+
+eomdg:Stormsurge a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "StormSurge" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-sur" ;
+    skos:prefLabel "StormSurge" .
+
+eomdg:Suddensubsidencedry a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "SuddenSubsidenceDry" ;
+    rdfs:subClassOf eomdg:Massmovementdry ;
+    skos:broader eomdg:Massmovementdry ;
+    skos:notation "nat-geo-mmd-sub" ;
+    skos:prefLabel "SuddenSubsidenceDry" .
+
+eomdg:Suddensubsidencewet a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "SuddenSubsidenceWet" ;
+    rdfs:subClassOf eomdg:Massmovementwet ;
+    skos:broader eomdg:Massmovementwet ;
+    skos:notation "nat-hyd-mmw-sub" ;
+    skos:prefLabel "SuddenSubsidenceWet" .
+
+eomdg:Tornado a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Tornado" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-tor" ;
+    skos:prefLabel "Tornado" .
+
+eomdg:Tropicalcyclone a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "TropicalCyclone" ;
+    rdfs:subClassOf eomdg:Storm ;
+    skos:broader eomdg:Storm ;
+    skos:notation "nat-met-sto-tro" ;
+    skos:prefLabel "TropicalCyclone" .
+
+eomdg:Tsunami a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "Tsunami" ;
+    rdfs:subClassOf eomdg:Earthquake ;
+    skos:broader eomdg:Earthquake ;
+    skos:notation "nat-geo-ear-tsu" ;
+    skos:prefLabel "Tsunami" .
+
+eomdg:Viraldisease a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "ViralDisease" ;
+    rdfs:subClassOf eomdg:Epidemic ;
+    skos:broader eomdg:Epidemic ;
+    skos:notation "nat-bio-epi-vir" ;
+    skos:prefLabel "ViralDisease" .
+
+eomdg:Wormsinfestation a eomdg:HazardSubtype,
+        owl:Class ;
+    rdfs:label "WormsInfestation" ;
+    rdfs:subClassOf eomdg:Infestation ;
+    skos:broader eomdg:Infestation ;
+    skos:notation "nat-bio-inf-wor" ;
+    skos:prefLabel "WormsInfestation" .
+
+eomdg:Air a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Air" ;
+    rdfs:subClassOf eomdg:Air,
+        eomdg:Transport ;
+    skos:broader eomdg:Air,
+        eomdg:Transport ;
+    skos:notation "tec-tra-air-air" ;
+    skos:prefLabel "Air" .
+
+eomdg:Animalincident a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "AnimalIncident" ;
+    rdfs:subClassOf eomdg:Animalincident,
+        eomdg:Biological ;
+    skos:broader eomdg:Animalincident,
+        eomdg:Biological ;
+    skos:notation "nat-bio-ani-ani" ;
+    skos:prefLabel "AnimalIncident" .
+
+eomdg:Chemicalspill a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "ChemicalSpill" ;
+    rdfs:subClassOf eomdg:Chemicalspill,
+        eomdg:Industrialaccident ;
+    skos:broader eomdg:Chemicalspill,
+        eomdg:Industrialaccident ;
+    skos:notation "tec-ind-che-che" ;
+    skos:prefLabel "ChemicalSpill" .
+
+eomdg:Collapseindustrial a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "CollapseIndustrial" ;
+    rdfs:subClassOf eomdg:Collapseindustrial,
+        eomdg:Industrialaccident ;
+    skos:broader eomdg:Collapseindustrial,
+        eomdg:Industrialaccident ;
+    skos:notation "tec-ind-col-col" ;
+    skos:prefLabel "CollapseIndustrial" .
+
+eomdg:Collapsemiscellaneous a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "CollapseMiscellaneous" ;
+    rdfs:subClassOf eomdg:Collapsemiscellaneous,
+        eomdg:Miscellaneousaccident ;
+    skos:broader eomdg:Collapsemiscellaneous,
+        eomdg:Miscellaneousaccident ;
+    skos:notation "tec-mis-col-col" ;
+    skos:prefLabel "CollapseMiscellaneous" .
+
+eomdg:Drought a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Drought" ;
+    rdfs:subClassOf eomdg:Climatological,
+        eomdg:Drought ;
+    skos:broader eomdg:Climatological,
+        eomdg:Drought ;
+    skos:notation "nat-cli-dro-dro" ;
+    skos:prefLabel "Drought" .
+
+eomdg:Explosionindustrial a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "ExplosionIndustrial" ;
+    rdfs:subClassOf eomdg:Explosionindustrial,
+        eomdg:Industrialaccident ;
+    skos:broader eomdg:Explosionindustrial,
+        eomdg:Industrialaccident ;
+    skos:notation "tec-ind-exp-exp" ;
+    skos:prefLabel "ExplosionIndustrial" .
+
+eomdg:Explosionmiscellaneous a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "ExplosionMiscellaneous" ;
+    rdfs:subClassOf eomdg:Explosionmiscellaneous,
+        eomdg:Miscellaneousaccident ;
+    skos:broader eomdg:Explosionmiscellaneous,
+        eomdg:Miscellaneousaccident ;
+    skos:notation "tec-mis-exp-exp" ;
+    skos:prefLabel "ExplosionMiscellaneous" .
+
+eomdg:Fireindustrial a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "FireIndustrial" ;
+    rdfs:subClassOf eomdg:Fireindustrial,
+        eomdg:Industrialaccident ;
+    skos:broader eomdg:Fireindustrial,
+        eomdg:Industrialaccident ;
+    skos:notation "tec-ind-fir-fir" ;
+    skos:prefLabel "FireIndustrial" .
+
+eomdg:Firemiscellaneous a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "FireMiscellaneous" ;
+    rdfs:subClassOf eomdg:Firemiscellaneous,
+        eomdg:Miscellaneousaccident ;
+    skos:broader eomdg:Firemiscellaneous,
+        eomdg:Miscellaneousaccident ;
+    skos:notation "tec-mis-fir-fir" ;
+    skos:prefLabel "FireMiscellaneous" .
+
+eomdg:Fog a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Fog" ;
+    rdfs:subClassOf eomdg:Fog,
+        eomdg:Meteorological ;
+    skos:broader eomdg:Fog,
+        eomdg:Meteorological ;
+    skos:notation "nat-met-fog-fog" ;
+    skos:prefLabel "Fog" .
+
+eomdg:Gasleak a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "GasLeak" ;
+    rdfs:subClassOf eomdg:Gasleak,
+        eomdg:Industrialaccident ;
+    skos:broader eomdg:Gasleak,
+        eomdg:Industrialaccident ;
+    skos:notation "tec-ind-gas-gas" ;
+    skos:prefLabel "GasLeak" .
+
+eomdg:Glaciallakeoutburstflood a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "GlacialLakeOutburstFlood" ;
+    rdfs:subClassOf eomdg:Climatological,
+        eomdg:Glaciallakeoutburstflood ;
+    skos:broader eomdg:Climatological,
+        eomdg:Glaciallakeoutburstflood ;
+    skos:notation "nat-cli-glo-glo" ;
+    skos:prefLabel "GlacialLakeOutburstFlood" .
+
+eomdg:Oilspill a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "OilSpill" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Oilspill ;
+    skos:broader eomdg:Industrialaccident,
+        eomdg:Oilspill ;
+    skos:notation "tec-ind-oil-oil" ;
+    skos:prefLabel "OilSpill" .
+
+eomdg:Poisoning a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Poisoning" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Poisoning ;
+    skos:broader eomdg:Industrialaccident,
+        eomdg:Poisoning ;
+    skos:notation "tec-ind-poi-poi" ;
+    skos:prefLabel "Poisoning" .
+
+eomdg:Radiation a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Radiation" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Radiation ;
+    skos:broader eomdg:Industrialaccident,
+        eomdg:Radiation ;
+    skos:notation "tec-ind-rad-rad" ;
+    skos:prefLabel "Radiation" .
+
+eomdg:Rail a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Rail" ;
+    rdfs:subClassOf eomdg:Rail,
+        eomdg:Transport ;
+    skos:broader eomdg:Rail,
+        eomdg:Transport ;
+    skos:notation "tec-tra-rai-rai" ;
+    skos:prefLabel "Rail" .
+
+eomdg:Road a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Road" ;
+    rdfs:subClassOf eomdg:Road,
+        eomdg:Transport ;
+    skos:broader eomdg:Road,
+        eomdg:Transport ;
+    skos:notation "tec-tra-roa-roa" ;
+    skos:prefLabel "Road" .
+
+eomdg:Water a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Water" ;
+    rdfs:subClassOf eomdg:Transport,
+        eomdg:Water ;
+    skos:broader eomdg:Transport,
+        eomdg:Water ;
+    skos:notation "tec-tra-wat-wat" ;
+    skos:prefLabel "Water" .
+
+eomdg:Earthquake a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Earthquake" ;
+    rdfs:subClassOf eomdg:Geophysical ;
+    skos:broader eomdg:Geophysical ;
+    skos:prefLabel "Earthquake" .
+
+eomdg:Extraterrestrial a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "ExtraTerrestrial" ;
+    rdfs:subClassOf eomdg:Natural ;
+    skos:broader eomdg:Natural ;
+    skos:prefLabel "ExtraTerrestrial" .
+
+eomdg:Impact a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Impact" ;
+    rdfs:subClassOf eomdg:Extraterrestrial ;
+    skos:broader eomdg:Extraterrestrial ;
+    skos:prefLabel "Impact" .
+
+eomdg:Waveaction a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "WaveAction" ;
+    rdfs:subClassOf eomdg:Hydrological ;
+    skos:broader eomdg:Hydrological ;
+    skos:prefLabel "WaveAction" .
+
+eomdg:Biological a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "Biological" ;
+    rdfs:subClassOf eomdg:Natural ;
+    skos:broader eomdg:Natural ;
+    skos:prefLabel "Biological" .
+
+eomdg:Climatological a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "Climatological" ;
+    rdfs:subClassOf eomdg:Natural ;
+    skos:broader eomdg:Natural ;
+    skos:prefLabel "Climatological" .
+
+eomdg:Extremetemperature a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "ExtremeTemperature" ;
+    rdfs:subClassOf eomdg:Meteorological ;
+    skos:broader eomdg:Meteorological ;
+    skos:prefLabel "ExtremeTemperature" .
+
+eomdg:Geophysical a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "Geophysical" ;
+    rdfs:subClassOf eomdg:Natural ;
+    skos:broader eomdg:Natural ;
+    skos:prefLabel "Geophysical" .
+
+eomdg:Hydrological a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "Hydrological" ;
+    rdfs:subClassOf eomdg:Natural ;
+    skos:broader eomdg:Natural ;
+    skos:prefLabel "Hydrological" .
+
+eomdg:Meteorological a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "Meteorological" ;
+    rdfs:subClassOf eomdg:Natural ;
+    skos:broader eomdg:Natural ;
+    skos:prefLabel "Meteorological" .
+
+eomdg:Technological a eomdg:HazardGroup,
+        owl:Class ;
+    rdfs:label "Technological" ;
+    skos:prefLabel "Technological" .
+
+eomdg:Wildfire a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Wildfire" ;
+    rdfs:subClassOf eomdg:Climatological,
+        eomdg:Wildfire ;
+    skos:broader eomdg:Climatological,
+        eomdg:Wildfire ;
+    skos:notation "nat-cli-wil-wil" ;
+    skos:prefLabel "Wildfire" .
+
+eomdg:Infestation a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Infestation" ;
+    rdfs:subClassOf eomdg:Biological,
+        eomdg:Infestation ;
+    skos:broader eomdg:Biological,
+        eomdg:Infestation ;
+    skos:notation "nat-bio-inf-inf" ;
+    skos:prefLabel "Infestation" .
+
+eomdg:Massmovementdry a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "MassMovementDry" ;
+    rdfs:subClassOf eomdg:Geophysical ;
+    skos:broader eomdg:Geophysical ;
+    skos:prefLabel "MassMovementDry" .
+
+eomdg:Miscellaneousaccident a eomdg:HazardSubgroup,
+        eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "MiscellaneousAccident" ;
+    rdfs:subClassOf eomdg:Miscellaneousaccident,
+        eomdg:Technological ;
+    skos:broader eomdg:Miscellaneousaccident,
+        eomdg:Technological ;
+    skos:notation "tec-mis-mis-mis" ;
+    skos:prefLabel "MiscellaneousAccident" .
+
+eomdg:Spaceweather a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "SpaceWeather" ;
+    rdfs:subClassOf eomdg:Extraterrestrial ;
+    skos:broader eomdg:Extraterrestrial ;
+    skos:prefLabel "SpaceWeather" .
+
+eomdg:Transport a eomdg:HazardSubgroup,
+        owl:Class ;
+    rdfs:label "Transport" ;
+    rdfs:subClassOf eomdg:Technological ;
+    skos:broader eomdg:Technological ;
+    skos:prefLabel "Transport" .
+
+eomdg:Flood a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Flood" ;
+    rdfs:subClassOf eomdg:Flood,
+        eomdg:Hydrological ;
+    skos:broader eomdg:Flood,
+        eomdg:Hydrological ;
+    skos:notation "nat-hyd-flo-flo" ;
+    skos:prefLabel "Flood" .
+
+eomdg:Massmovementwet a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "MassMovementWet" ;
+    rdfs:subClassOf eomdg:Hydrological ;
+    skos:broader eomdg:Hydrological ;
+    skos:prefLabel "MassMovementWet" .
+
+eomdg:Volcanicactivity a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "VolcanicActivity" ;
+    rdfs:subClassOf eomdg:Geophysical,
+        eomdg:Volcanicactivity ;
+    skos:broader eomdg:Geophysical,
+        eomdg:Volcanicactivity ;
+    skos:notation "nat-geo-vol-vol" ;
+    skos:prefLabel "VolcanicActivity" .
+
+eomdg:Epidemic a eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Epidemic" ;
+    rdfs:subClassOf eomdg:Biological ;
+    skos:broader eomdg:Biological ;
+    skos:prefLabel "Epidemic" .
+
+eomdg:Natural a eomdg:HazardGroup,
+        owl:Class ;
+    rdfs:label "Natural" ;
+    skos:prefLabel "Natural" .
+
+eomdg:Industrialaccident a eomdg:HazardSubgroup,
+        eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "IndustrialAccident" ;
+    rdfs:subClassOf eomdg:Industrialaccident,
+        eomdg:Technological ;
+    skos:broader eomdg:Industrialaccident,
+        eomdg:Technological ;
+    skos:notation "tec-ind-ind-ind" ;
+    skos:prefLabel "IndustrialAccident" .
+
+eomdg:Storm a eomdg:HazardSubtype,
+        eomdg:HazardType,
+        owl:Class ;
+    rdfs:label "Storm" ;
+    rdfs:subClassOf eomdg:Meteorological,
+        eomdg:Storm ;
+    skos:broader eomdg:Meteorological,
+        eomdg:Storm ;
+    skos:notation "nat-met-sto-sto" ;
+    skos:prefLabel "Storm" .
+

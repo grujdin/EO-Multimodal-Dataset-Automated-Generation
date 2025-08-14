@@ -1,0 +1,47 @@
+@prefix eomdg: <http://example.org/eomdg/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+eomdg:SH_GroupShape a sh:NodeShape ;
+    sh:property _:N89377729148b468b80bb7fbce8c9ace4 ;
+    sh:targetClass eomdg:HazardGroup .
+
+eomdg:SH_SubgroupShape a sh:NodeShape ;
+    sh:property _:N89377729148b468b80bb7fbce8c9ace4,
+        [ a sh:PropertyShape ;
+            sh:class eomdg:HazardGroup ;
+            sh:path rdfs:subClassOf ],
+        [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path rdfs:subClassOf ] ;
+    sh:targetClass eomdg:HazardSubgroup .
+
+eomdg:SH_SubtypeShape a sh:NodeShape ;
+    sh:property [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path rdfs:subClassOf ],
+        _:N89377729148b468b80bb7fbce8c9ace4,
+        [ a sh:PropertyShape ;
+            sh:class eomdg:HazardType ;
+            sh:path rdfs:subClassOf ],
+        [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path skos:notation ] ;
+    sh:targetClass eomdg:HazardSubtype .
+
+eomdg:SH_TypeShape a sh:NodeShape ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class eomdg:HazardSubgroup ;
+            sh:path rdfs:subClassOf ],
+        _:N89377729148b468b80bb7fbce8c9ace4,
+        [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path rdfs:subClassOf ] ;
+    sh:targetClass eomdg:HazardType .
+
+_:N89377729148b468b80bb7fbce8c9ace4 a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:path rdfs:label .
+

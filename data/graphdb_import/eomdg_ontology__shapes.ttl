@@ -1,0 +1,28 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix eomdg:<http://example.org/eomdg/> .
+
+eomdg:SH_FootprintShape
+        a               sh:NodeShape ;
+        sh:targetClass  eomdg:EventFootprint ;
+
+        ### rule Poly_area → polygonDate required
+        sh:property [
+            sh:path            eomdg:polygonDate ;
+            sh:minCount        1 ;
+            sh:message         "polygonDate is mandatory for Poly_area footprints." ;
+            sh:condition [
+                sh:path  eomdg:classLabel ;
+                sh:hasValue "Poly_area"
+            ]
+        ] ;
+
+        ### rule Point_Centroid → polygonDate forbidden
+        sh:property [
+            sh:path            eomdg:polygonDate ;
+            sh:maxCount        0 ;
+            sh:message         "polygonDate must be absent on centroid footprints." ;
+            sh:condition [
+                sh:path  eomdg:classLabel ;
+                sh:hasValue "Point_Centroid"
+            ]
+        ] .
