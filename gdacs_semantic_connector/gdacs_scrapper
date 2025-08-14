@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GDACS Flood Geometry Scraper
+GDACS Disaster Event Geometry Scraper
 ===========================
 
 This script discovers and downloads polygon (GeoJSON) geometries for a
@@ -31,7 +31,7 @@ Example::
 
     $ python gdacs_scraper.py
 
-After completion you will have a tree like::
+After completion you will have a tree like:
 
     ...\JSTARS\.venv\FL\  ( GDACS event-type code you root folder as choosen in the script EVENT_TYPE = "FL" for Flood)
     │
@@ -80,15 +80,15 @@ import requests
 BASE_URL     = "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry"
 
 # GDACS event‑type code: "FL"= Flood, "TC"= Tropical Cyclone, etc.
-EVENT_TYPE   = "WF"            # Flood
+EVENT_TYPE   = "FL"            # Flood
 
 # Inclusive 'range' of GDACS 'event' identifiers to probe.
-START_ID     = 1024111
-END_ID       = 1024313
+START_ID     = 1103339
+END_ID       = 1103400
 
 # Path of the CSV manifest that will be written (over‑written if present). A neutral name will be recommended
 # to avoid changing filename each time when it is updated
-OUTPUT_CSV   = "wildfire_manifest.csv"
+OUTPUT_CSV   = "flood_manifest.csv"
 
 # Throttling parameters – every HTTP call is delayed by ``DELAY`` ± ``JITTER``
 # seconds.  This helps to obey polite crawling practices and keeps us well
@@ -259,3 +259,4 @@ def main():  # noqa: C901 – function intentionally linear & verbose for clarit
 
 if __name__ == "__main__":
     main()
+
