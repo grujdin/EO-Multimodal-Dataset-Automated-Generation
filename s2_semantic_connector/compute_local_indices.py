@@ -68,15 +68,18 @@ if uploaded_file and def_root:
                 "with the bands present in this TIFF."
             )
         else:
+            # selecting an index immediately computes it
             idx_name = st.selectbox("Select spectral index", usable)
-            if st.button("Compute index"):
+            if idx_name:
                 func, _ = factory.get(idx_name)
                 result = func(band_map)
+
+                # normalized display
                 disp = (result + 1) / 2
                 disp = np.clip(disp, 0.0, 1.0)
                 st.image(disp, caption=f"{idx_name} (normalized)")
 
-                # Prepare download buffer of raw float32
+                # raw result download
                 out = result.astype(np.float32)
                 buf_out = BytesIO()
                 tiff.imwrite(buf_out, out)
