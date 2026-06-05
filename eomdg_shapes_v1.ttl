@@ -1,0 +1,464 @@
+@prefix eomdg: <http://example.org/eomdg/> .
+@prefix geo:   <http://www.opengis.net/ont/geosparql#> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+###############################################################################
+# SHACL checks for the rebuilt EOMDG model
+###############################################################################
+
+eomdg:SH_EventFootprintShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:EventFootprint ;
+    sh:property [
+        sh:path eomdg:hasGeometryReference ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:GeometryReference ;
+        sh:message "Every EventFootprint must link to one external GeometryReference; the full geometry should not be stored in the RDF graph." ;
+    ] ;
+    sh:property [
+        sh:path geo:asWKT ;
+        sh:maxCount 0 ;
+        sh:message "Do not store the complete footprint geometry with geo:asWKT on EventFootprint. Store it externally and use eomdg:hasGeometryReference. Keep only bboxEnvelope in the graph." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:classLabel ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Every EventFootprint should carry the source class label, such as Poly_area, Poly_area_overall, or Point_Centroid." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:bboxEnvelope ;
+        sh:datatype geo:wktLiteral ;
+        sh:message "bboxEnvelope, when present, must be a geo:wktLiteral." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:polygonDate ;
+        sh:datatype xsd:dateTime ;
+        sh:message "polygonDate, when present, must be an xsd:dateTime literal." ;
+    ] ;
+    sh:sparql [
+        sh:message "polygonDate is required for polygon footprints with classLabel Poly_area or Poly_area_overall." ;
+        sh:select """
+            PREFIX eomdg: <http://example.org/eomdg/>
+            SELECT $this
+            WHERE {
+              $this eomdg:classLabel ?label .
+              FILTER(?label IN (\"Poly_area\", \"Poly_area_overall\"))
+              FILTER NOT EXISTS { $this eomdg:polygonDate ?date }
+            }
+        """ ;
+    ] ;
+    sh:sparql [
+        sh:message "polygonDate must be absent on centroid footprints with classLabel Point_Centroid. Use absence, not a string NULL." ;
+        sh:select """
+            PREFIX eomdg: <http://example.org/eomdg/>
+            SELECT $this
+            WHERE {
+              $this eomdg:classLabel \"Point_Centroid\" ;
+                    eomdg:polygonDate ?date .
+            }
+        """ ;
+    ] .
+
+eomdg:SH_GeometryReferenceShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:GeometryReference ;
+    sh:property [
+        sh:path eomdg:geometryStoredIn ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:GeometryStore ;
+        sh:message "A GeometryReference must point to one GeometryStore." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:geometryFeatureId ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "A GeometryReference should identify the external feature/row with one geometryFeatureId." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:geometryCRS ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "geometryCRS, when present, should be a single string such as EPSG:4326 or OGC:CRS84." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:geometryEncoding ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "geometryEncoding, when present, should be a single string such as WKT, WKB, GeoJSON, native_gpkg_geometry, or native_gdb_shape." ;
+    ] .
+
+eomdg:SH_GeometryStoreShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:GeometryStore ;
+    sh:property [
+        sh:path eomdg:geometryStoreURI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:message "A GeometryStore should have one geometryStoreURI pointing to the external CSV/XLSX/GPKG/GDB/etc." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:geometryStoreFormat ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "A GeometryStore should declare its format, e.g. CSV, XLSX, GPKG, or GDB." ;
+    ] .
+
+eomdg:SH_HazardEventShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:HazardEvent ;
+    sh:property [
+        sh:path eomdg:hasHazardType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardType ;
+        sh:message "A HazardEvent must have exactly one hasHazardType value." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasHazardGroup ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardGroup ;
+        sh:message "A HazardEvent may have at most one hasHazardGroup value." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasHazardSubgroup ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardSubgroup ;
+        sh:message "A HazardEvent may have at most one hasHazardSubgroup value." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasHazardSubtype ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardSubtype ;
+        sh:message "A HazardEvent may have at most one hasHazardSubtype value." ;
+    ] .
+
+eomdg:SH_DisasterEventShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:DisasterEvent ;
+    sh:property [
+        sh:path eomdg:hasSeverity ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:SeverityAssessment ;
+        sh:message "A DisasterEvent must have exactly one SeverityAssessment." ;
+    ] .
+
+eomdg:SH_AffectedCountryShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:AffectedCountry ;
+    sh:property [
+        sh:path eomdg:countryName ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "AffectedCountry should carry countryName." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:iso2 ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "iso2, when present, should be a single string." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:iso3 ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "iso3, when present, should be a single string." ;
+    ] .
+
+###############################################################################
+# Taxonomy-level shapes for the Option-A concept hierarchy
+###############################################################################
+
+eomdg:SH_HazardGroupShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:HazardGroup ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every HazardGroup concept needs a label." ;
+    ] .
+
+eomdg:SH_HazardSubgroupShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:HazardSubgroup ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every HazardSubgroup concept needs a label." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:inHazardGroup ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardGroup ;
+        sh:message "Every HazardSubgroup must link to exactly one HazardGroup via inHazardGroup." ;
+    ] .
+
+eomdg:SH_HazardTypeShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:HazardType ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every HazardType concept needs a label." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:inHazardSubgroup ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardSubgroup ;
+        sh:message "Every HazardType must link to exactly one HazardSubgroup via inHazardSubgroup." ;
+    ] .
+
+eomdg:SH_HazardSubtypeShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:HazardSubtype ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every HazardSubtype concept needs a label." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:inHazardType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class eomdg:HazardType ;
+        sh:message "Every HazardSubtype must link to exactly one HazardType via inHazardType." ;
+    ] ;
+    sh:property [
+        sh:path skos:notation ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every HazardSubtype should have one skos:notation code." ;
+    ] .
+@prefix eomdg: <http://example.org/eomdg/> .
+@prefix geo:   <http://www.opengis.net/ont/geosparql#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+
+###############################################################################
+# SHACL extension for article-aligned EOMDG concepts
+###############################################################################
+
+eomdg:SH_MultimodalDatasetShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:MultimodalDataset ;
+    sh:property [
+        sh:path eomdg:hasMemberProduct ;
+        sh:minCount 1 ;
+        sh:class eomdg:DataItem ;
+        sh:message "A MultimodalDataset should contain at least one DataItem/product." ;
+    ] .
+
+eomdg:SH_EOProductShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:EOProduct ;
+    sh:property [
+        sh:path eomdg:productIdentifier ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "productIdentifier, when present, should be a single string." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasSpatialFootprint ;
+        sh:class eomdg:SpatialFootprint ;
+        sh:message "EO products may link to ImageFootprint or ROI records through hasSpatialFootprint." ;
+    ] .
+
+eomdg:SH_ImageChipShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:ImageChip ;
+    sh:property [
+        sh:path eomdg:chipExtractedFrom ;
+        sh:minCount 1 ;
+        sh:class eomdg:DataItem ;
+        sh:message "Every ImageChip should identify the data item/product from which it was extracted." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasChipFootprint ;
+        sh:maxCount 1 ;
+        sh:class eomdg:ChipFootprint ;
+        sh:message "An ImageChip may have at most one ChipFootprint." ;
+    ] .
+
+eomdg:SH_KGDerivedMaskShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:KGDerivedMask ;
+    sh:property [
+        sh:path eomdg:rasterizedFromFootprint ;
+        sh:minCount 1 ;
+        sh:class eomdg:EventFootprint ;
+        sh:message "A KGDerivedMask should be traceable to the EventFootprint that was rasterized or fused." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:alignedToProduct ;
+        sh:minCount 1 ;
+        sh:class eomdg:DataItem ;
+        sh:message "A KGDerivedMask should declare the EO product or chip grid to which it is aligned." ;
+    ] .
+
+eomdg:SH_DatasetVersionShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:DatasetVersion ;
+    sh:property [
+        sh:path eomdg:versionIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Every DatasetVersion should have exactly one versionIdentifier." ;
+    ] .
+
+eomdg:SH_DatasetChangeEventShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:DatasetChangeEvent ;
+    sh:property [
+        sh:path eomdg:changedDataset ;
+        sh:minCount 1 ;
+        sh:class eomdg:MultimodalDataset ;
+        sh:message "DatasetChangeEvent should identify the dataset it changed." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:resultedInVersion ;
+        sh:minCount 1 ;
+        sh:class eomdg:DatasetVersion ;
+        sh:message "DatasetChangeEvent should point to the DatasetVersion it produced." ;
+    ] .
+
+eomdg:SH_ProcessedObservationInventoryShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:ProcessedObservationInventory ;
+    sh:property [
+        sh:path eomdg:hasProcessedObservationRecord ;
+        sh:minCount 1 ;
+        sh:class eomdg:ProcessedObservationRecord ;
+        sh:message "A ProcessedObservationInventory should contain processed observation records." ;
+    ] .
+
+eomdg:SH_ProcessedObservationRecordShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:ProcessedObservationRecord ;
+    sh:property [
+        sh:path eomdg:instantiatesVariable ;
+        sh:class eomdg:HazardVariable ;
+        sh:message "ProcessedObservationRecord may instantiate one or more HazardVariables." ;
+    ] ;
+    sh:sparql [
+        sh:message "ProcessedObservationRecord should be derived from at least one observation, footprint, or product." ;
+        sh:select """
+            PREFIX eomdg: <http://example.org/eomdg/>
+            PREFIX prov:  <http://www.w3.org/ns/prov#>
+            SELECT $this
+            WHERE {
+              FILTER NOT EXISTS { $this eomdg:recordDerivedFromObservation ?o }
+              FILTER NOT EXISTS { $this eomdg:recordDerivedFromFootprint ?f }
+              FILTER NOT EXISTS { $this eomdg:recordDerivedFromProduct ?p }
+              FILTER NOT EXISTS { $this prov:wasDerivedFrom ?x }
+            }
+        """ ;
+    ] .
+
+eomdg:SH_TrainingSampleShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:TrainingSample ;
+    sh:sparql [
+        sh:message "TrainingSample should be derived from a processed observation record, observation, or footprint." ;
+        sh:select """
+            PREFIX eomdg: <http://example.org/eomdg/>
+            PREFIX prov:  <http://www.w3.org/ns/prov#>
+            SELECT $this
+            WHERE {
+              FILTER NOT EXISTS { $this eomdg:sampleDerivedFromRecord ?r }
+              FILTER NOT EXISTS { $this eomdg:sampleDerivedFromObservation ?o }
+              FILTER NOT EXISTS { $this eomdg:sampleDerivedFromFootprint ?f }
+              FILTER NOT EXISTS { $this prov:wasDerivedFrom ?x }
+            }
+        """ ;
+    ] .
+
+eomdg:SH_DatasetBuildInventoryShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:DatasetBuild ;
+    sh:property [
+        sh:path eomdg:usesObservationInventory ;
+        sh:class eomdg:ProcessedObservationInventory ;
+        sh:message "DatasetBuild may use a ProcessedObservationInventory to generate samples on demand." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasTrainingSample ;
+        sh:class eomdg:TrainingSample ;
+        sh:message "DatasetBuild may declare generated TrainingSample instances." ;
+    ] .
+
+eomdg:SH_VariableContextBuildShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:VariableContextBuild ;
+    sh:property [
+        sh:path eomdg:usesObservationInventory ;
+        sh:minCount 1 ;
+        sh:class eomdg:ProcessedObservationInventory ;
+        sh:message "VariableContextBuild should use a ProcessedObservationInventory." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:generatesVariableContext ;
+        sh:minCount 1 ;
+        sh:class eomdg:VariableContextSnapshot ;
+        sh:message "VariableContextBuild should generate a VariableContextSnapshot." ;
+    ] .
+
+eomdg:SH_DescriptorRecipeShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:DescriptorRecipe ;
+    sh:property [
+        sh:path eomdg:targetsVariable ;
+        sh:minCount 1 ;
+        sh:class eomdg:HazardVariable ;
+        sh:message "A DescriptorRecipe should identify the target HazardVariable it instantiates." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasValidityEnvelope ;
+        sh:class eomdg:ValidityEnvelope ;
+        sh:message "A DescriptorRecipe should declare a ValidityEnvelope when known." ;
+    ] .
+
+eomdg:SH_EvidenceGovernedRelationShape
+    a sh:NodeShape ;
+    sh:targetClass eomdg:EvidenceGovernedRelation ;
+    sh:property [
+        sh:path eomdg:egrSource ;
+        sh:minCount 1 ;
+        sh:message "EvidenceGovernedRelation should have at least one source entity." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:egrTarget ;
+        sh:minCount 1 ;
+        sh:message "EvidenceGovernedRelation should have at least one target entity." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:hasSupportingEvidence ;
+        sh:minCount 1 ;
+        sh:message "EvidenceGovernedRelation should carry supporting evidence." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:epistemicStatus ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "EvidenceGovernedRelation should declare epistemicStatus." ;
+    ] ;
+    sh:property [
+        sh:path eomdg:governanceStatus ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "EvidenceGovernedRelation should declare governanceStatus." ;
+    ] .
